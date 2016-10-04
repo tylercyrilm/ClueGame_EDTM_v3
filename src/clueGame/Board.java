@@ -16,6 +16,16 @@ public class Board {
 	private String boardConfigFile;
 	private String roomConfigFile;
 	
+	public void readConfigFiles(){
+		//FIXME later
+	}
+	
+	public void setConfigFiles(String legend, String layout){
+		boardConfigFile = layout;
+		roomConfigFile = legend;
+	}
+	
+	
 	// variable used for singleton pattern
 		private static Board theInstance = new Board();
 		// ctor is private to ensure only one can be created
@@ -44,4 +54,8 @@ public class Board {
 	private void calcTargets(BoardCell cell, int pathLength){
 		
 	}
+	
+	
+	
+	
 }

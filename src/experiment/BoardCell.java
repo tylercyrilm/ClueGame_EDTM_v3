@@ -18,4 +18,12 @@ public class BoardCell {
 	public String toString(){
 		return "[" + row + ", " + column + "]";
 	}
+	
+	private boolean isDoorway(){
+		return false;
+	}
+	
+	private DoorDirection getDoorDirection(){
+		return NONE;
+	}
 }
