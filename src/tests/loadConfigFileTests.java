@@ -43,11 +43,13 @@ public class loadConfigFileTests{
 	}
 
 
-	//Test to verifty at least one doorway in each direction.
+	//Test to verify at least one doorway in each direction.
 	//Also verify cells that don't contain doorways return false for isDoorway
 	@Test
 	public void doorwayDirectionsTest(){
-		
+		Board board = Board.getInstance();
+		BoardCell room = board.getCellAt(1,5);
+		assertTrue(room.isDoorway());
 	}
 	
 

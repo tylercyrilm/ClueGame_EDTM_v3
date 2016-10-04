@@ -1,5 +1,7 @@
 package experiment;
 
+import clueGame.DoorDirection;
+
 public class BoardCell {
 	public int row;
 	public int column;
@@ -19,11 +21,11 @@ public class BoardCell {
 		return "[" + row + ", " + column + "]";
 	}
 	
-	private boolean isDoorway(){
+	public boolean isDoorway(){
 		return false;
 	}
 	
 	private DoorDirection getDoorDirection(){
-		return NONE;
+		return DoorDirection.NONE;
 	}
 }

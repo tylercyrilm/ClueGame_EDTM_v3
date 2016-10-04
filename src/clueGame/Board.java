@@ -39,6 +39,11 @@ public class Board {
 		
 	}
 	
+	public BoardCell getCellAt(int row, int col){
+		BoardCell testcell = new BoardCell();
+		return testcell;
+	}
+	
 	private void loadRoomConfig(){
 		
 	}
