@@ -6,8 +6,8 @@ import java.util.Set;
 import experiment.BoardCell;
 
 public class Board {
-	private int numRows;
-	private int numColumns;
+	public int numRows;
+	public int numColumns;
 	private final int MAX_BOARD_SIZE = 50;
 	private BoardCell [][] board;
 	private Map<Character, String> rooms = new HashMap<Character, String>();
@@ -35,7 +35,7 @@ public class Board {
 			return theInstance;
 		}
 	
-	private void initialize(){
+	public void initialize(){
 		
 	}
 	
@@ -55,4 +55,8 @@ public class Board {
 		
 	}
 	
+	public Map<Character, String> getLegend(){
+		Map<Character, String> test = new HashMap<Character, String>();
+		return test;
+	}
 }

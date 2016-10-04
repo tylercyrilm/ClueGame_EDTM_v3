@@ -1,9 +1,13 @@
 package tests;
 
 import static org.junit.Assert.*;
+
+import java.util.Map;
 import java.util.Set;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import clueGame.Board;
 import experiment.BoardCell;
 import experiment.IntBoard;
 
@@ -14,13 +18,14 @@ public class loadConfigFileTests{
 	
 	@BeforeClass
 	public static void setUp(){
-		board = Board.getInstance();
+		Board board = Board.getInstance();
 		board.setConfigFiles("ClueLegend.txt", "ClueLayout.csv");
 		board.initialize();
 	}
 
 	@Test
 	public void numRoomsTest(){
+		Board board = Board.getInstance();
 		Map<Character, String> legend = board.getLegend();
 		assertEquals(LEGEND_SIZE, legend.size());
 		assertEquals("Mercury", legend.get('M'));
@@ -32,6 +37,7 @@ public class loadConfigFileTests{
 
 	@Test
 	public void numRowsColsTest(){
+		Board board = Board.getInstance();
 		assertEquals(NUM_ROWS, board.numRows);
 		assertEquals(NUM_COLUMNS, board.numColumns);
 	}
