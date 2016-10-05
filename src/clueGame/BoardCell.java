@@ -1,11 +1,9 @@
-package experiment;
-
-import clueGame.DoorDirection;
+package clueGame;
 
 public class BoardCell {
 	public int row;
 	public int column;
-	public String label;
+	public String initial;
 	
 	public void setLocation(int i, int j) {
 		row = i;
@@ -30,7 +28,7 @@ public class BoardCell {
 		return DoorDirection.NONE;
 	}
 	
-	public String getLabel(){
-		return label;
+	public Object getInitial() {
+		return initial; 
 	}
 }

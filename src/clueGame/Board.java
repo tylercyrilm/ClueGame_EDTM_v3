@@ -3,8 +3,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import experiment.BoardCell;
-
 public class Board {
 	public int numRows;
 	public int numColumns;
@@ -20,9 +18,9 @@ public class Board {
 		//FIXME later
 	}
 	
-	public void setConfigFiles(String legend, String layout){
-		boardConfigFile = layout;
-		roomConfigFile = legend;
+	public void setConfigFiles(String layout, String legend){
+		roomConfigFile = layout;
+		boardConfigFile = legend;
 	}
 	
 	
@@ -63,5 +61,13 @@ public class Board {
 	public Map<Character, String> getLegend(){
 		Map<Character, String> test = new HashMap<Character, String>();
 		return test;
+	}
+
+	public int getNumRows() {
+		return numRows;
+	}
+
+	public int getNumColumns() {
+		return numColumns;
 	}
 }
