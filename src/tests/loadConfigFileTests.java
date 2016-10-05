@@ -99,3 +99,4 @@ public class loadConfigFileTests{
 	
 }
 
+//Made comment to see if git bash is working
