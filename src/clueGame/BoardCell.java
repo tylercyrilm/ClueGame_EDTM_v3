@@ -4,6 +4,7 @@ public class BoardCell {
 	public int row;
 	public int column;
 	public String initial;
+	public DoorDirection direction = DoorDirection.NONE;
 	
 	public void setLocation(int i, int j) {
 		row = i;
@@ -20,8 +21,11 @@ public class BoardCell {
 		return "[" + row + ", " + column + "]";
 	}
 	
-	public boolean isDoorway(){
-		return false;
+	public boolean isDoorway(BoardCell cell){
+		if (direction == DoorDirection.NONE) return false;
+		else{
+			return true;
+		}
 	}
 	
 	public DoorDirection getDoorDirection(){
