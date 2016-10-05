@@ -103,19 +103,19 @@ public class CR_FileInitTests {
 	@Test
 	public void testRoomInitials() {
 		// Test first cell in room
-		assertEquals('C', board.getCellAt(0, 0).getLabel());
-		assertEquals('R', board.getCellAt(4, 8).getLabel());
-		assertEquals('B', board.getCellAt(9, 0).getLabel());
+		assertEquals('C', board.getCellAt(0, 0).getInitial());
+		assertEquals('R', board.getCellAt(4, 8).getInitial());
+		assertEquals('B', board.getCellAt(9, 0).getInitial());
 		// Test last cell in room
-		assertEquals('O', board.getCellAt(21, 22).getLabel());
-		assertEquals('K', board.getCellAt(21, 0).getLabel());
+		assertEquals('O', board.getCellAt(21, 22).getInitial());
+		assertEquals('K', board.getCellAt(21, 0).getInitial());
 		// Test a walkway
-		assertEquals('W', board.getCellAt(0, 5).getLabel());
+		assertEquals('W', board.getCellAt(0, 5).getInitial());
 		// Test the closet
-		assertEquals('X', board.getCellAt(9,13).getLabel());
+		assertEquals('X', board.getCellAt(9,13).getInitial());
 	}
 	
 
 }
 
-//Made comment to see if git bash is working
+
