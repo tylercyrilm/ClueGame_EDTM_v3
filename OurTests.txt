@@ -1,0 +1,11 @@
+Becca May and Katrina Steinman
+
+When selecting our test cells to test doorways, we made sure that we chose
+Venus because it has a door that opens left, Mars because it has a door that 
+opens right, Venus again because it has another door that opens down, and 
+Uranus because it has a door that opens up. We also tested a walkway to 
+ensure that it was not recognized as a doorway. 
+
+When selecting cells to test for initials, we selected a cell in Mars, 
+Venus, Uranus, and Mercury, as well as the closet and walkway, in order to 
+get a variety of cells tested. 

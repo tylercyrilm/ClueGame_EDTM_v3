@@ -8,6 +8,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import clueGame.Board;
+import clueGame.DoorDirection;
 import experiment.BoardCell;
 import experiment.IntBoard;
 
@@ -24,7 +25,7 @@ public class loadConfigFileTests{
 	}
 
 	@Test
-	public void numRoomsTest(){
+	public void roomsTest(){
 		Board board = Board.getInstance();
 		Map<Character, String> legend = board.getLegend();
 		assertEquals(LEGEND_SIZE, legend.size());
@@ -50,15 +51,51 @@ public class loadConfigFileTests{
 		Board board = Board.getInstance();
 		BoardCell room = board.getCellAt(1,5);
 		assertTrue(room.isDoorway());
+		assertEquals(DoorDirection.LEFT, room.getDoorDirection());
+		room = board.getCellAt(2,3);
+		assertTrue(room.isDoorway());
+		assertEquals(DoorDirection.RIGHT, room.getDoorDirection());
+		room = board.getCellAt(5,10);
+		assertTrue(room.isDoorway());
+		assertEquals(DoorDirection.DOWN, room.getDoorDirection());
+		room = board.getCellAt(19,7);
+		assertTrue(room.isDoorway());
+		assertEquals(DoorDirection.UP, room.getDoorDirection());
+		room = board.getCellAt(19,5);
+		assertFalse(room.isDoorway());
+		room = board.getCellAt(9,3);
+		assertFalse(room.isDoorway());
 	}
 	
 
 	//Test that the correct number of doors have been loaded
-
+	@Test
+	public void testNumDoors(){
+		Board board = Board.getInstance();
+		int doorNums = 0;
+		for(int r = 0; r < NUM_ROWS; r++){
+			for(int c = 0; c < NUM_COLUMNS; c++){
+				BoardCell cell = board.getCellAt(r, c);
+				if(cell.isDoorway()){
+					doorNums++;
+				}
+			}
+		}
+		assertEquals(12, doorNums);
+	}
 
 
 	//Test some of the cells to ensure they have the correct initial
-	
+	@Test
+	public void testRoomLetters(){
+		Board board = Board.getInstance();
+		assertEquals('M', board.getCellAt(1, 1).getLabel());
+		assertEquals('V', board.getCellAt(4, 8).getLabel());
+		assertEquals('U', board.getCellAt(22, 7).getLabel());
+		assertEquals('X', board.getCellAt(10, 9).getLabel());
+		assertEquals('W', board.getCellAt(13, 2).getLabel());
+		assertEquals('A', board.getCellAt(15, 19).getLabel());
+	}
 	
 }
 

@@ -5,6 +5,7 @@ import clueGame.DoorDirection;
 public class BoardCell {
 	public int row;
 	public int column;
+	public String label;
 	
 	public void setLocation(int i, int j) {
 		row = i;
@@ -25,7 +26,11 @@ public class BoardCell {
 		return false;
 	}
 	
-	private DoorDirection getDoorDirection(){
+	public DoorDirection getDoorDirection(){
 		return DoorDirection.NONE;
+	}
+	
+	public String getLabel(){
+		return label;
 	}
 }
