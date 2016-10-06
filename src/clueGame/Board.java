@@ -123,12 +123,12 @@ public class Board {
 		}
 	}
 	
-	private void calcAdjacencies(){
+	public void calcAdjacencies(){
 		
 	}
 	
-	private void calcTargets(BoardCell cell, int pathLength){
-		
+	public void calcTargets(int row, int col, int pathLength){
+	
 	}
 	
 	public Map<Character, String> getLegend(){
@@ -141,5 +141,14 @@ public class Board {
 
 	public int getNumColumns() {
 		return numColumns;
+	}
+	
+	public Set<BoardCell> getAdjList(int row, int col){
+		return adjMatrix.get(theInstance.getCellAt(row,col));
+	}
+	
+	public Set<BoardCell> getTargets(){ //TEST
+		Set<BoardCell> test = new HashSet<BoardCell>();
+		return test;
 	}
 }
