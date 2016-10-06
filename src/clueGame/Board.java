@@ -17,6 +17,7 @@ public class Board {
 	private Set<BoardCell> targets = new HashSet<BoardCell>();
 	private String boardConfigFile;
 	private String roomConfigFile;
+	private String legendInitials = "";
 	
 	
 	public void setConfigFiles(String layout, String legend){
@@ -58,9 +59,10 @@ public class Board {
 				System.out.println(nextLine);
 				String[] splitPieces = nextLine.split(", ");
 				rooms.put(splitPieces[0].charAt(0), splitPieces[1]);
-				//if (splitPieces[2] != "Card" || splitPieces[2] != "Other"){
-					//throw new BadConfigFormatException("Incorrect room type");
-				//}	
+				legendInitials += splitPieces[0].charAt(0);
+				if (!splitPieces[2].equalsIgnoreCase("Card") && !splitPieces[2].equalsIgnoreCase("Other")){
+					throw new BadConfigFormatException("Incorrect room type");
+				}	
 			}
 			in.close();
 		} catch (FileNotFoundException e){
@@ -69,20 +71,29 @@ public class Board {
 		
 	}
 	
-	public void loadBoardConfig(){
+	public void loadBoardConfig() throws BadConfigFormatException{
 		try{ 
 		FileReader input = new FileReader(boardConfigFile);
 		Scanner in = new Scanner(input);
+		int rowLength = 0;
 		numRows = 0;
 		while(in.hasNextLine()){
 			String newRow = in.nextLine();
 			String[] splitRows = newRow.split(",");
+			if(numRows == 0){
+				rowLength = splitRows.length;
+			}
 			if (numColumns == 0) numColumns = splitRows.length;
-			
+			if(splitRows.length != rowLength){
+				throw new BadConfigFormatException("Incorrect number of Columns");
+			}
 			for(int i = 0; i < numColumns; i++){
 				String label = splitRows[i];
 				boardArray[numRows][i] = new BoardCell();
 				boardArray[numRows][i].initial = label.charAt(0);
+				if(legendInitials.indexOf(boardArray[numRows][i].initial) < 0){
+					throw new BadConfigFormatException("Invalid room initial");
+				}
 				if(label.length() > 1){
 					Character dir = label.charAt(1);
 				
