@@ -3,7 +3,7 @@ package clueGame;
 public class BoardCell {
 	public int row;
 	public int column;
-	public Character initial;
+	public char initial;
 	public DoorDirection direction = DoorDirection.NONE;
 	
 	public void setLocation(int i, int j) {
@@ -32,7 +32,7 @@ public class BoardCell {
 		return direction;
 	}
 	
-	public Character getInitial() {
+	public char getInitial() {
 		return initial; 
 	}
 }
