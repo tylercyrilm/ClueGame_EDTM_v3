@@ -22,8 +22,8 @@ public class loadConfigFileTests{
 	
 	@BeforeClass
 	public static void setUp(){
-		Board board = Board.getInstance();
-		board.setConfigFiles("ClueLayout.csv", "ClueLegend.txt");
+		board = Board.getInstance();
+		board.setConfigFiles("data/ClueLayout.csv", "data/ClueLegend.txt");
 		board.initialize();
 	}
 
@@ -49,16 +49,16 @@ public class loadConfigFileTests{
 	//Also verify cells that don't contain doorways return false for isDoorway
 	@Test
 	public void FourDoorDirections(){
-		BoardCell room = board.getCellAt(1,5);
+		BoardCell room = board.getCellAt(0,5);
 		assertTrue(room.isDoorway());
 		assertEquals(DoorDirection.LEFT, room.getDoorDirection());
-		room = board.getCellAt(2,3);
+		room = board.getCellAt(1,2);
 		assertTrue(room.isDoorway());
 		assertEquals(DoorDirection.RIGHT, room.getDoorDirection());
-		room = board.getCellAt(5,10);
+		room = board.getCellAt(4,9);
 		assertTrue(room.isDoorway());
 		assertEquals(DoorDirection.DOWN, room.getDoorDirection());
-		room = board.getCellAt(19,7);
+		room = board.getCellAt(18,7);
 		assertTrue(room.isDoorway());
 		assertEquals(DoorDirection.UP, room.getDoorDirection());
 		room = board.getCellAt(19,5);
