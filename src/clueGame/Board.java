@@ -11,7 +11,7 @@ public class Board {
 	public int numRows;
 	public int numColumns;
 	private final int MAX_BOARD_SIZE = 50;
-	private BoardCell [][] board = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
+	private BoardCell [][] boardArray = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 	private Map<Character, String> rooms = new HashMap<Character, String>();
 	private Map<BoardCell, Set<BoardCell>> adjMatrix = new HashMap<BoardCell, Set<BoardCell>>();
 	private Set<BoardCell> targets = new HashSet<BoardCell>();
@@ -45,8 +45,8 @@ public class Board {
 	}
 	
 	public BoardCell getCellAt(int row, int col){
-		BoardCell testcell = new BoardCell();
-		return testcell;
+		BoardCell temp = theInstance.boardArray[row][col];
+		return temp;
 	}
 	
 	private void loadRoomConfig() throws BadConfigFormatException{
@@ -78,27 +78,34 @@ public class Board {
 			String newRow = in.nextLine();
 			String[] splitRows = newRow.split(",");
 			if (numColumns == 0) numColumns = splitRows.length;
-			numRows++;
+			
 			for(int i = 0; i < numColumns; i++){
-				board[numRows][i] = new BoardCell();
-				board[numRows][i].initial = splitRows[i];
-				if (splitRows[i].length() == 2){
-					switch (splitRows[0].charAt(1)){
+				String label = splitRows[i];
+				boardArray[numRows][i] = new BoardCell();
+				boardArray[numRows][i].initial = label.charAt(0);
+				if(label.length() > 1){
+					Character dir = label.charAt(1);
+				
+				
+					switch (dir){
 					case 'D':
-						board[numRows][i].direction = DoorDirection.DOWN;
+						boardArray[numRows][i].direction = DoorDirection.DOWN;
+						
 						break;
 					case 'U':
-						board[numRows][i].direction = DoorDirection.UP;
+						boardArray[numRows][i].direction = DoorDirection.UP;
 						break;
 					case 'L':
-						board[numRows][i].direction = DoorDirection.LEFT;
+						boardArray[numRows][i].direction = DoorDirection.LEFT;
 						break;
 					case 'R':
-						board[numRows][i].direction = DoorDirection.RIGHT;
+						boardArray[numRows][i].direction = DoorDirection.RIGHT;
 						break;
 					}
-				}
+				}	
+				
 			}
+			numRows++;
 		}
 		} catch (FileNotFoundException e){
 			System.out.println(e.getMessage());
