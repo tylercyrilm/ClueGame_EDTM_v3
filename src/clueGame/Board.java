@@ -49,7 +49,7 @@ public class Board {
 		return temp;
 	}
 	
-	private void loadRoomConfig() throws BadConfigFormatException{
+	public void loadRoomConfig() throws BadConfigFormatException{
 		try{
 			FileReader input = new FileReader(roomConfigFile);
 			Scanner in = new Scanner(input);
@@ -69,7 +69,7 @@ public class Board {
 		
 	}
 	
-	private void loadBoardConfig(){
+	public void loadBoardConfig(){
 		try{ 
 		FileReader input = new FileReader(boardConfigFile);
 		Scanner in = new Scanner(input);
