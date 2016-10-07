@@ -21,7 +21,7 @@ public class BoardAdjTargetTests {
 			board.initialize();
 		}
 
-		// Ensure that player does not move around within room
+		// Test that player does not move around within room
 		// These cells are pink on the planning spreadsheet
 		@Test
 		public void testAdjacenciesInsideRooms()
@@ -38,7 +38,7 @@ public class BoardAdjTargetTests {
 			assertEquals(0, testList.size());
 		}
 
-		// Ensure that the adjacency list from a doorway is only the walkway
+		// Test that the adjacency list from a doorway is only the walkway
 		// These tests are green on the planning spreadsheet
 		@Test
 		public void testAdjacencyRoomExit()
@@ -96,6 +96,7 @@ public class BoardAdjTargetTests {
 		}
 
 		// Test a variety of walkway scenarios
+		//Tests two edges
 		// These tests are orange on the planning spreadsheet
 		@Test
 		public void testAdjacencyWalkways()
@@ -143,8 +144,7 @@ public class BoardAdjTargetTests {
 		
 		// Tests of just walkways, 1 step, includes on edge of board
 		// and beside room
-		// Have already tested adjacency lists on all four edges, will
-		// only test two edges here
+		
 		// These are LIGHT BLUE on the planning spreadsheet
 		@Test
 		public void testTargetsOneStep() {
