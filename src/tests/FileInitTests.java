@@ -13,7 +13,7 @@ import clueGame.DoorDirection;
 import experiment.IntBoard;
 
 
-public class loadConfigFileTests{
+public class FileInitTests{
 	public static final int LEGEND_SIZE = 11;
 	public static final int NUM_ROWS = 24;
 	public static final int NUM_COLUMNS = 21;
