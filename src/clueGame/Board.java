@@ -15,6 +15,7 @@ public class Board {
 	private Map<Character, String> rooms = new HashMap<Character, String>();
 	private Map<BoardCell, Set<BoardCell>> adjMatrix = new HashMap<BoardCell, Set<BoardCell>>();
 	private Set<BoardCell> targets = new HashSet<BoardCell>();
+	private Set<BoardCell> visited = new HashSet<BoardCell>();
 	private String boardConfigFile;
 	private String roomConfigFile;
 	private String legendInitials = "";
@@ -144,7 +145,7 @@ public class Board {
 		for (int i = 0; i < x; i++){
 			for (int j = 0; j < y; j++){
 				Set<BoardCell> adj = new HashSet();
-				if (boardArray[i][j].initial != 'W'){
+				if (boardArray[i][j].initial != 'W'){ //testAdjacenciesInsideRooms is working
 					if (boardArray[i][j].isDoorway() == false){
 			
 					}
@@ -167,17 +168,29 @@ public class Board {
 						}
 					}
 				}
+				
+				
+				
+				
 				else if(i - 1 >= 0){ 
-					adj.add(boardArray[i-1][j]);
+					if(boardArray[i-1][j].isDoorway() || boardArray[i-1][j].initial == 'W'){
+						adj.add(boardArray[i-1][j]);
+					}
 				}
 				else if (i + 1 < x){
-					adj.add(boardArray[i +1][j]);
+					if(boardArray[i+1][j].isDoorway() || boardArray[i+1][j].initial == 'W'){
+						adj.add(boardArray[i +1][j]);
+					}
 				}
 				else if (j - 1 >= 0){
-					adj.add(boardArray[i][j-1]);
+					if(boardArray[i][j-1].isDoorway() || boardArray[i][j-1].initial == 'W'){
+						adj.add(boardArray[i][j-1]);
+					}
 				}
 				else if (j + 1 < y){
-					adj.add(boardArray[i][j+1]);
+					if(boardArray[i][j+1].isDoorway() || boardArray[i][j+1].initial == 'W'){
+						adj.add(boardArray[i][j+1]);
+					}
 				}
 				adjMatrix.put(boardArray[i][j], adj);
 			}
@@ -186,7 +199,23 @@ public class Board {
 	}
 	
 	public void calcTargets(int row, int col, int pathLength){
-		
+		Set<BoardCell> adjCells = getAdjList(row, col);
+		visited.add(boardArray[row][col]);
+		if(pathLength == 1){
+			for (BoardCell adjCell : adjCells) {
+				if(!visited.contains(adjCell)){
+					targets.add(adjCell);
+				}
+			}
+		}
+		else{
+			for (BoardCell adjCell : adjCells) {
+				row = adjCell.row;
+				col = adjCell.column;
+				calcTargets(row, col, pathLength - 1);
+			}
+		}
+		visited.remove(boardArray[row][col]);
 	}
 	
 	public Map<Character, String> getLegend(){
