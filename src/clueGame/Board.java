@@ -47,13 +47,13 @@ public class Board {
 	}
 	
 	public BoardCell getCellAt(int row, int col){
-		BoardCell temp = theInstance.boardArray[row][col];
+		BoardCell temp = boardArray[row][col];
 		return temp;
 	}
 	
 	public void loadRoomConfig() throws BadConfigFormatException{
 		try{
-			setConfigFiles("ClueLayout.csv", "ClueLegend.txt");
+			setConfigFiles("data/CR_ClueLayout.csv", "data/CR_ClueLegend.txt");
 			FileReader input = new FileReader(roomConfigFile);
 			Scanner in = new Scanner(input);
 			while(in.hasNextLine()){
@@ -77,14 +77,16 @@ public class Board {
 		try{ 
 		FileReader input = new FileReader(boardConfigFile);
 		Scanner in = new Scanner(input);
-		int rowLength = 0;
+		int rowLength = 0; //ends up being the number of columns
 		numRows = 0;
+		String newRow = in.nextLine();
 		while(in.hasNextLine()){
-			String newRow = in.nextLine();
 			String[] splitRows = newRow.split(",");
+			System.out.println("new row: " + newRow);
 			if(numRows == 0){
 				rowLength = splitRows.length;
 			}
+			System.out.println("row length:" + rowLength);
 			if (numColumns == 0) numColumns = splitRows.length;
 			if(splitRows.length != rowLength){
 				throw new BadConfigFormatException("Incorrect number of Columns");
@@ -93,13 +95,13 @@ public class Board {
 				String label = splitRows[i];
 				boardArray[numRows][i] = new BoardCell();
 				boardArray[numRows][i].initial = label.charAt(0);
+				
 				if(legendInitials.indexOf(boardArray[numRows][i].initial) < 0){
 					throw new BadConfigFormatException("Invalid room initial");
 				}
+				
 				if(label.length() > 1){
 					Character dir = label.charAt(1);
-				
-				
 					switch (dir){
 					case 'D':
 						boardArray[numRows][i].direction = DoorDirection.DOWN;
@@ -115,18 +117,67 @@ public class Board {
 						boardArray[numRows][i].direction = DoorDirection.RIGHT;
 						break;
 					}
+					
 				}	
-				
+				//System.out.println("initial: " + boardArray[numRows][i].initial);
+				//System.out.println(boardArray[numRows][i].direction);
 			}
 			numRows++;
+			System.out.println("numRows: " + numRows);
+			newRow = in.nextLine();
 		}
 		} catch (FileNotFoundException e){
 			System.out.println(e.getMessage());
 		}
+		
 	}
 	
 	public void calcAdjacencies(){
-
+		/*
+		int x = boardArray[0].length;
+		int y = boardArray.length;
+		for (int i = 0; i < x; i++){
+			for (int j = 0; j < y; j++){
+				Set<BoardCell> adj = new HashSet();
+				if (boardArray[i][j].initial != 'W'){
+					if (boardArray[i][j].isDoorway() == false){
+						
+					}
+					else{
+						switch(boardArray[i][j].direction){
+						case UP:
+							adj.add(boardArray[i-1][j]);
+							break;
+						case DOWN:
+							adj.add(boardArray[i+1][j]);
+							break;
+						case LEFT:
+							adj.add(boardArray[i][j-1]);
+							break;
+						case RIGHT:
+							adj.add(boardArray[i][j+1]);
+							break;
+						case NONE:
+							break;
+						}
+					}
+				}
+				else if(i - 1 >= 0){ 
+					adj.add(boardArray[i-1][j]);
+				}
+				else if (i + 1 < x){
+					adj.add(boardArray[i +1][j]);
+				}
+				else if (j - 1 >= 0){
+					adj.add(boardArray[i][j-1]);
+				}
+				else if (j + 1 < y){
+					adj.add(boardArray[i][j+1]);
+				}
+				adjMatrix.put(boardArray[i][j], adj);
+			}
+		}
+		*/
 	}
 	
 	public void calcTargets(int row, int col, int pathLength){

@@ -23,7 +23,7 @@ public class CR_BoardAdjTargetTests {
 	public static void setUp() {
 		// Board is singleton, get the only instance and initialize it		
 		board = Board.getInstance();
-		board.setConfigFiles("CR_ClueLayout.csv", "CR_ClueLegend.txt");		
+		board.setConfigFiles("data/CR_ClueLayout.csv", "data/CR_ClueLegend.txt");		
 		board.initialize();
 	}
 
