@@ -127,26 +127,6 @@ public class Board {
 	
 	public void calcAdjacencies(){
 
-		int x = boardArray[0].length;
-		int y = boardArray.length;
-		for (int i = 0; i < x; i++){
-			for (int j = 0; j < y; j++){
-				Set<BoardCell> adj = new HashSet();
-				if(i - 1 >= 0){ 
-					adj.add(boardArray[i-1][j]);
-				}
-				if (i + 1 < x){
-					adj.add(boardArray[i +1][j]);
-				}
-				if (j - 1 >= 0){
-					adj.add(boardArray[i][j-1]);
-				}
-				if (j + 1 < y){
-					adj.add(boardArray[i][j+1]);
-				}
-				adjMatrix.put(boardArray[i][j], adj);
-			}
-		}
 	}
 	
 	public void calcTargets(int row, int col, int pathLength){
