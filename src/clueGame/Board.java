@@ -37,9 +37,9 @@ public class Board {
 	
 	public void initialize(){
 		try{
-			calcAdjacencies();
 			loadRoomConfig();
 			loadBoardConfig();
+			calcAdjacencies();
 		} catch(BadConfigFormatException e){
 			e.printStackTrace();
 		}
@@ -58,7 +58,6 @@ public class Board {
 			Scanner in = new Scanner(input);
 			while(in.hasNextLine()){
 				String nextLine = in.nextLine();
-				System.out.println(nextLine);
 				String[] splitPieces = nextLine.split(", ");
 				rooms.put(splitPieces[0].charAt(0), splitPieces[1]);
 				legendInitials += splitPieces[0].charAt(0);
@@ -75,6 +74,12 @@ public class Board {
 	
 	public void loadBoardConfig() throws BadConfigFormatException{
 		try{ 
+			for (int i = 0; i < MAX_BOARD_SIZE; i++){
+				for (int j = 0; j < MAX_BOARD_SIZE; j++){
+					boardArray[i][j] = new BoardCell();
+					boardArray[i][j].setLocation(i,j);
+				}
+			}
 		FileReader input = new FileReader(boardConfigFile);
 		Scanner in = new Scanner(input);
 		int rowLength = 0; //ends up being the number of columns
@@ -82,15 +87,17 @@ public class Board {
 		String newRow = in.nextLine();
 		while(in.hasNextLine()){
 			String[] splitRows = newRow.split(",");
-			System.out.println("new row: " + newRow);
+			
 			if(numRows == 0){
 				rowLength = splitRows.length;
 			}
-			System.out.println("row length:" + rowLength);
+			
 			if (numColumns == 0) numColumns = splitRows.length;
+			
 			if(splitRows.length != rowLength){
 				throw new BadConfigFormatException("Incorrect number of Columns");
 			}
+			
 			for(int i = 0; i < numColumns; i++){
 				String label = splitRows[i];
 				boardArray[numRows][i] = new BoardCell();
@@ -119,21 +126,19 @@ public class Board {
 					}
 					
 				}	
-				//System.out.println("initial: " + boardArray[numRows][i].initial);
-				//System.out.println(boardArray[numRows][i].direction);
-			}
+				
+			}//end of for loop
+			
 			numRows++;
-			System.out.println("numRows: " + numRows);
 			newRow = in.nextLine();
-		}
+		} //end of while loop
+		
 		} catch (FileNotFoundException e){
 			System.out.println(e.getMessage());
 		}
-		
 	}
 	
 	public void calcAdjacencies(){
-		/*
 		int x = boardArray[0].length;
 		int y = boardArray.length;
 		for (int i = 0; i < x; i++){
@@ -141,7 +146,7 @@ public class Board {
 				Set<BoardCell> adj = new HashSet();
 				if (boardArray[i][j].initial != 'W'){
 					if (boardArray[i][j].isDoorway() == false){
-						
+			
 					}
 					else{
 						switch(boardArray[i][j].direction){
@@ -177,7 +182,7 @@ public class Board {
 				adjMatrix.put(boardArray[i][j], adj);
 			}
 		}
-		*/
+		
 	}
 	
 	public void calcTargets(int row, int col, int pathLength){
