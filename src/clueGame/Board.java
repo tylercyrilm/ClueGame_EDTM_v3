@@ -132,14 +132,14 @@ public class Board {
 			}//end of for loop
 			
 			numRows++;
-			
-			System.out.println(newRow);
+
 		} //end of while loop
 		BoardCell [][] tempArray = new BoardCell[numRows][rowLength];
 		for(int i = 0; i < numRows; i++){
 			for (int j = 0; j < rowLength; j++){
 				tempArray[i][j] = new BoardCell();
 				tempArray[i][j] = boardArray[i][j];
+				boardArray[i][j].setLocation(i, j);
 			}
 		}
 		boardArray = tempArray;
@@ -150,10 +150,8 @@ public class Board {
 	}
 	
 	public void calcAdjacencies(){
-		int x = boardArray[0].length;//change
+		int x = boardArray[0].length;
 		int y = boardArray.length;
-		System.out.println(x);
-		System.out.println(y);
 		for (int i = 0; i < y; i++){
 			for (int j = 0; j < x; j++){
 				Set<BoardCell> adj = new HashSet();
@@ -206,7 +204,13 @@ public class Board {
 				}
 				
 			}
-				adjMatrix.put(boardArray[i][j], adj);
+			adjMatrix.put(boardArray[i][j], adj);
+			//System.out.println(adjMatrix);
+			//Set<BoardCell>adjCells = new HashSet<BoardCell>();
+			//adjCells = adjMatrix.get(theInstance.getCellAt(i,j));
+			//for (BoardCell vis : adjCells) {
+				//System.out.println(vis);
+			//}
 			}
 		}
 	}
@@ -214,8 +218,13 @@ public class Board {
 	public void calcTargets(int row, int col, int pathLength){
 		Set<BoardCell> adjCells = getAdjList(row, col);
 		
+	//for (BoardCell vis : adjCells) {
+			//System.out.println(vis);
+			//System.out.println();
+		//}
 		visited.add(boardArray[row][col]);
-		
+		//System.out.println(visited);
+		//System.out.println();
 		if(pathLength == 1){
 			for (BoardCell adjCell : adjCells) {
 				//for (BoardCell vis : visited) {
@@ -227,13 +236,20 @@ public class Board {
 					}
 				}
 			}
+			
 		}
 		else{
 			
 			for (BoardCell adjCell : adjCells) {
+				//System.out.println("row: " + row);
+				//System.out.println("col: " + col);
 				row = adjCell.row;
 				col = adjCell.column;
+				
+				
+				//System.out.println("col: " + col);
 				calcTargets(row, col, pathLength - 1);
+				
 			}
 		}
 		visited.remove(boardArray[row][col]);
@@ -256,6 +272,9 @@ public class Board {
 	}
 	
 	public Set<BoardCell> getTargets(){
-		return targets;
+		Set<BoardCell> tempTargets = new HashSet<BoardCell>();
+		tempTargets = targets;
+		//targets.clear();
+		return tempTargets;
 	}
 }

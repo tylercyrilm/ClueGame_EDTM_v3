@@ -176,13 +176,13 @@ public class CR_BoardAdjTargetTests {
 		assertEquals(2, targets.size());
 		assertTrue(targets.contains(board.getCellAt(20, 7)));
 		assertTrue(targets.contains(board.getCellAt(21, 6)));	
-		
 		board.calcTargets(14, 0, 1);
 		targets= board.getTargets();
 		assertEquals(3, targets.size());
 		assertTrue(targets.contains(board.getCellAt(14, 1)));
 		assertTrue(targets.contains(board.getCellAt(13, 0)));	
-		assertTrue(targets.contains(board.getCellAt(15, 0)));			
+		assertTrue(targets.contains(board.getCellAt(15, 0)));	
+		
 	}
 	
 	// Tests of just walkways, 2 steps
