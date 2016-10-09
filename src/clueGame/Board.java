@@ -8,8 +8,8 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class Board {
-	public int numRows;
-	public int numColumns;
+	public int numRows = 0;
+	public int numColumns = 0;
 	private final int MAX_BOARD_SIZE = 50;
 	private BoardCell [][] boardArray = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 	private Map<Character, String> rooms = new HashMap<Character, String>();
@@ -91,13 +91,14 @@ public class Board {
 			String newRow = in.nextLine();
 			String[] splitRows = newRow.split(",");
 			
+			System.out.println(splitRows.length);
 			if(numRows == 0){
 				rowLength = splitRows.length;
 			}
 			//CHECK THIS STATEMENT
 			if (numColumns == 0) numColumns = splitRows.length;
 			
-			if(splitRows.length != rowLength){
+			if(splitRows.length != numColumns){
 				throw new BadConfigFormatException("Incorrect number of Columns");
 			}
 			
@@ -156,7 +157,7 @@ public class Board {
 		for (int i = 0; i < y; i++){
 			for (int j = 0; j < x; j++){
 				Set<BoardCell> adj = new HashSet();
-				if (boardArray[i][j].initial != 'W'){ //testAdjacenciesInsideRooms is working
+				if (boardArray[i][j].initial != 'W'){ 
 					if (boardArray[i][j].isDoorway() == false){
 						//in a room and not in a doorway
 						//no adjacencies added
@@ -206,12 +207,6 @@ public class Board {
 				
 			}
 			adjMatrix.put(boardArray[i][j], adj);
-			//System.out.println(adjMatrix);
-			//Set<BoardCell>adjCells = new HashSet<BoardCell>();
-			//adjCells = adjMatrix.get(theInstance.getCellAt(i,j));
-			//for (BoardCell vis : adjCells) {
-				//System.out.println(vis);
-			//}
 			}
 		}
 	}
