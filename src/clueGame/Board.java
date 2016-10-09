@@ -219,45 +219,25 @@ public class Board {
 	public void calcTargets(int row, int col, int pathLength){
 		Set<BoardCell> adjCells = getAdjList(row, col);
 		
-	//for (BoardCell vis : adjCells) {
-			//System.out.println(vis);
-			//System.out.println();
-		//}
 		visited.add(boardArray[row][col]);
-		//System.out.println(visited);
-		//System.out.println();
+
 		if(boardArray[row][col].isDoorway()){
 			tempTargets.add(boardArray[row][col]);
 		}
-		if(pathLength == 1 ){
-			for (BoardCell adjCell : adjCells) {
-				//for (BoardCell vis : visited) {
-				//	System.out.println(vis.initial);
-				//}
-				if(!visited.contains(adjCell)){
-					//if(adjCell.isDoorway() || adjCell.initial == 'W'){
-						tempTargets.add(adjCell);
-						//.out.println(tempTargets);
-					//}
+		
+		for (BoardCell adjCell : adjCells) {
+			if(!visited.contains(adjCell)){
+				if (pathLength == 1){
+					tempTargets.add(adjCell);
+				}
+				else{
+					row = adjCell.row;
+					col = adjCell.column;
+					calcTargets(row, col, pathLength - 1);
 				}
 			}
-			
+			visited.remove(boardArray[row][col]);
 		}
-		else{
-			
-			for (BoardCell adjCell : adjCells) {
-				//System.out.println("row: " + row);
-				//System.out.println("col: " + col);
-				row = adjCell.row;
-				col = adjCell.column;
-				
-				
-				//System.out.println("col: " + col);
-				calcTargets(row, col, pathLength - 1);
-				
-			}
-		}
-		visited.remove(boardArray[row][col]);
 	}
 	
 	public Map<Character, String> getLegend(){
