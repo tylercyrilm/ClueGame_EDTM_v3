@@ -55,7 +55,6 @@ public class Board {
 	
 	public void loadRoomConfig() throws BadConfigFormatException{
 		try{
-			setConfigFiles("data/CR_ClueLayout.csv", "data/CR_ClueLegend.txt");
 			FileReader input = new FileReader(roomConfigFile);
 			Scanner in = new Scanner(input);
 			while(in.hasNextLine()){
