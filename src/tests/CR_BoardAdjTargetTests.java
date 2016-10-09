@@ -302,6 +302,7 @@ public class CR_BoardAdjTargetTests {
 		// Take one step, essentially just the adj list
 		board.calcTargets(4, 20, 1);
 		Set<BoardCell> targets= board.getTargets();
+		System.out.println(targets); //REMOVE------------------------------------------------------------
 		// Ensure doesn't exit through the wall
 		assertEquals(1, targets.size());
 		assertTrue(targets.contains(board.getCellAt(4, 19)));

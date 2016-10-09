@@ -221,13 +221,10 @@ public class Board {
 		
 		visited.add(boardArray[row][col]);
 
-		if(boardArray[row][col].isDoorway()){
-			tempTargets.add(boardArray[row][col]);
-		}
-		
 		for (BoardCell adjCell : adjCells) {
 			if(!visited.contains(adjCell)){
-				if (pathLength == 1){
+				
+				if (pathLength == 1 || adjCell.isDoorway()){
 					tempTargets.add(adjCell);
 				}
 				else{
