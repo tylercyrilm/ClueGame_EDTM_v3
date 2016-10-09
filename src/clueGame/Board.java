@@ -85,14 +85,15 @@ public class Board {
 		Scanner in = new Scanner(input);
 		int rowLength = 0; //ends up being the number of columns
 		numRows = 0;
-		String newRow = in.nextLine();
+		
 		while(in.hasNextLine()){
+			String newRow = in.nextLine();
 			String[] splitRows = newRow.split(",");
 			
 			if(numRows == 0){
 				rowLength = splitRows.length;
 			}
-			
+			//CHECK THIS STATEMENT
 			if (numColumns == 0) numColumns = splitRows.length;
 			
 			if(splitRows.length != rowLength){
@@ -131,8 +132,17 @@ public class Board {
 			}//end of for loop
 			
 			numRows++;
-			newRow = in.nextLine();
+			
+			System.out.println(newRow);
 		} //end of while loop
+		BoardCell [][] tempArray = new BoardCell[numRows][rowLength];
+		for(int i = 0; i < numRows; i++){
+			for (int j = 0; j < rowLength; j++){
+				tempArray[i][j] = new BoardCell();
+				tempArray[i][j] = boardArray[i][j];
+			}
+		}
+		boardArray = tempArray;
 		
 		} catch (FileNotFoundException e){
 			System.out.println(e.getMessage());
@@ -140,16 +150,20 @@ public class Board {
 	}
 	
 	public void calcAdjacencies(){
-		int x = boardArray[0].length;
+		int x = boardArray[0].length;//change
 		int y = boardArray.length;
-		for (int i = 0; i < x; i++){
-			for (int j = 0; j < y; j++){
+		System.out.println(x);
+		System.out.println(y);
+		for (int i = 0; i < y; i++){
+			for (int j = 0; j < x; j++){
 				Set<BoardCell> adj = new HashSet();
 				if (boardArray[i][j].initial != 'W'){ //testAdjacenciesInsideRooms is working
 					if (boardArray[i][j].isDoorway() == false){
-			
+						//in a room and not in a doorway
+						//no adjacencies added
 					}
 					else{
+						//in a doorway
 						switch(boardArray[i][j].direction){
 						case UP:
 							adj.add(boardArray[i-1][j]);
@@ -168,47 +182,54 @@ public class Board {
 						}
 					}
 				}
-				
-				
-				
-				
-				else if(i - 1 >= 0){ 
-					if(boardArray[i-1][j].isDoorway() || boardArray[i-1][j].initial == 'W'){
+				else{
+				//outside of a room and not in a doorway
+				if(i - 1 >= 0){ 
+					if((boardArray[i-1][j].isDoorway() && boardArray[i-1][j].direction == DoorDirection.DOWN)|| boardArray[i-1][j].initial == 'W'){
 						adj.add(boardArray[i-1][j]);
 					}
 				}
-				else if (i + 1 < x){
-					if(boardArray[i+1][j].isDoorway() || boardArray[i+1][j].initial == 'W'){
+				if (i + 1 < y){
+					if((boardArray[i+1][j].isDoorway() && boardArray[i+1][j].direction == DoorDirection.UP)|| boardArray[i+1][j].initial == 'W'){
 						adj.add(boardArray[i +1][j]);
 					}
 				}
-				else if (j - 1 >= 0){
-					if(boardArray[i][j-1].isDoorway() || boardArray[i][j-1].initial == 'W'){
+				if (j - 1 >= 0){
+					if((boardArray[i][j-1].isDoorway() && boardArray[i][j-1].direction == DoorDirection.RIGHT)|| boardArray[i][j-1].initial == 'W'){
 						adj.add(boardArray[i][j-1]);
 					}
 				}
-				else if (j + 1 < y){
-					if(boardArray[i][j+1].isDoorway() || boardArray[i][j+1].initial == 'W'){
+				if (j + 1 < x){
+					if((boardArray[i][j+1].isDoorway() && boardArray[i][j+1].direction == DoorDirection.LEFT)|| boardArray[i][j+1].initial == 'W'){
 						adj.add(boardArray[i][j+1]);
 					}
 				}
+				
+			}
 				adjMatrix.put(boardArray[i][j], adj);
 			}
 		}
-		
 	}
 	
 	public void calcTargets(int row, int col, int pathLength){
 		Set<BoardCell> adjCells = getAdjList(row, col);
+		
 		visited.add(boardArray[row][col]);
+		
 		if(pathLength == 1){
 			for (BoardCell adjCell : adjCells) {
+				//for (BoardCell vis : visited) {
+				//	System.out.println(vis.initial);
+				//}
 				if(!visited.contains(adjCell)){
-					targets.add(adjCell);
+					if(adjCell.isDoorway() || adjCell.initial == 'W'){
+						targets.add(adjCell);
+					}
 				}
 			}
 		}
 		else{
+			
 			for (BoardCell adjCell : adjCells) {
 				row = adjCell.row;
 				col = adjCell.column;
@@ -234,8 +255,7 @@ public class Board {
 		return adjMatrix.get(theInstance.getCellAt(row,col));
 	}
 	
-	public Set<BoardCell> getTargets(){ //TEST
-		Set<BoardCell> test = new HashSet<BoardCell>();
-		return test;
+	public Set<BoardCell> getTargets(){
+		return targets;
 	}
 }

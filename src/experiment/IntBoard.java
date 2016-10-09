@@ -43,11 +43,13 @@ public class IntBoard {
 	}
 	
 	public void calcTargets(BoardCell startCell, int pathLength){
+		System.out.println("here");
 		//set of adjcells by calling calcadjacent for startcell
 		Set<BoardCell> adjCells = getAdjList(startCell);
 		visited.add(startCell);
 		if(pathLength == 1){
 			for (BoardCell adjCell : adjCells) {
+				System.out.println(adjCell.getInitial());
 				if(!visited.contains(adjCell)){
 					targets.add(adjCell);
 				}
