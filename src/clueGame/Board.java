@@ -14,7 +14,8 @@ public class Board {
 	private BoardCell [][] boardArray = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 	private Map<Character, String> rooms = new HashMap<Character, String>();
 	private Map<BoardCell, Set<BoardCell>> adjMatrix = new HashMap<BoardCell, Set<BoardCell>>();
-	private Set<BoardCell> targets = new HashSet<BoardCell>();
+	private Set<BoardCell> tempTargets = new HashSet<BoardCell>();
+	public Set<BoardCell> targets = new HashSet<BoardCell>();
 	private Set<BoardCell> visited = new HashSet<BoardCell>();
 	private String boardConfigFile;
 	private String roomConfigFile;
@@ -225,15 +226,19 @@ public class Board {
 		visited.add(boardArray[row][col]);
 		//System.out.println(visited);
 		//System.out.println();
-		if(pathLength == 1){
+		if(boardArray[row][col].isDoorway()){
+			tempTargets.add(boardArray[row][col]);
+		}
+		if(pathLength == 1 ){
 			for (BoardCell adjCell : adjCells) {
 				//for (BoardCell vis : visited) {
 				//	System.out.println(vis.initial);
 				//}
 				if(!visited.contains(adjCell)){
-					if(adjCell.isDoorway() || adjCell.initial == 'W'){
-						targets.add(adjCell);
-					}
+					//if(adjCell.isDoorway() || adjCell.initial == 'W'){
+						tempTargets.add(adjCell);
+						//.out.println(tempTargets);
+					//}
 				}
 			}
 			
@@ -272,9 +277,12 @@ public class Board {
 	}
 	
 	public Set<BoardCell> getTargets(){
-		Set<BoardCell> tempTargets = new HashSet<BoardCell>();
-		tempTargets = targets;
-		//targets.clear();
-		return tempTargets;
+		targets.clear();
+		for(BoardCell tar : tempTargets){
+			targets.add(tar);
+		}
+		
+		tempTargets.clear();
+		return targets;
 	}
 }
