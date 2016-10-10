@@ -90,7 +90,6 @@ public class Board {
 			String newRow = in.nextLine();
 			String[] splitRows = newRow.split(",");
 			
-			System.out.println(splitRows.length);
 			if(numRows == 0){
 				rowLength = splitRows.length;
 			}
