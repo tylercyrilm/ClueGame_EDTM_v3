@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
@@ -19,7 +20,6 @@ public class Board {
 	private BoardCell [][] boardArray = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 	private Map<Character, String> rooms = new HashMap<Character, String>();
 	private Map<BoardCell, Set<BoardCell>> adjMatrix = new HashMap<BoardCell, Set<BoardCell>>();
-	private Set<BoardCell> tempTargets = new HashSet<BoardCell>();
 	public Set<BoardCell> targets = new HashSet<BoardCell>();
 	private Set<BoardCell> visited = new HashSet<BoardCell>();
 	private String boardConfigFile;
@@ -33,6 +33,8 @@ public class Board {
 	private ArrayList<Card> roomCards = new ArrayList<Card>();
 	private ArrayList<Card> personCards = new ArrayList<Card>();
 	private ArrayList<Card> weaponCards = new ArrayList<Card>();
+	public Set<Card> dealtCards = new HashSet<Card>();
+	private static Solution winningCards;
 	
 	//This function has had "people" and "weapons" added, you'll need to update this call in previous tests
 	public void setConfigFiles(String layout, String legend){
@@ -291,29 +293,72 @@ public class Board {
 		}
 	}
 	
-	public void calcTargets(int row, int col, int pathLength){
+	public void calcTargets(int row, int column, int pathLength) {
+		visited.clear();
+		targets.clear();
+		visited.add(boardArray[row][column]);
+		findAllTargets(row, column, pathLength);
+	}
+	
+	public void findAllTargets(int row, int col, int pathLength){
 		Set<BoardCell> adjCells = getAdjList(row, col);
-		
-		visited.add(boardArray[row][col]);
 
 		for (BoardCell adjCell : adjCells) {
 			if(!visited.contains(adjCell)){
+				continue;
+			}
 				
-				if (pathLength == 1 || adjCell.isDoorway()){
-					tempTargets.add(adjCell);
-				}
-				else{
-					row = adjCell.row;
-					col = adjCell.column;
-					calcTargets(row, col, pathLength - 1);
+			if (pathLength == 1 || adjCell.isDoorway()){
+				targets.add(adjCell);
+			}
+			else{
+				visited.add(boardArray[adjCell.row][adjCell.column]);
+				findAllTargets(adjCell.row, adjCell.column, pathLength - 1);
 				}
 			}
 			visited.remove(boardArray[row][col]);
 		}
+	
+	public void deal() {
+		//Makes a set to deal from so that the cards are randomized
+		Set<Card> dealDeck = new HashSet<Card> ();
+		for(int i = 0; i < deck.size(); i++) {
+			for (int j = 0; j < deck.get(i).size(); j++) {
+				dealDeck.add(deck.get(i).get(j));
+			}
+		}
+		
+		//Deal the cards to each players hand
+		int numPlayers = comp.size() + 1;
+		int numCards = dealDeck.size();
+		int cardsPerPlayer = numCards/numPlayers;
+		int counter = 0;
+		for (Card c : dealDeck) {
+			int recip = (counter % (comp.size() + 1)) - 1;
+			if (recip == -1) {
+				player.hand.add(c);
+			}
+			else {
+				comp.get(recip).hand.add(c);
+			}
+			counter++;
+		}
+
 	}
 	
 	public void selectAnswer() {
-		//TODO
+		//Assign the "winning" 3 cards
+		Random r = new Random();
+		int rand = r.nextInt(deck.get(1).size());
+		Card person = deck.get(1).get(rand);
+		deck.get(1).remove(rand);
+		rand = r.nextInt(deck.get(0).size());
+		Card place = deck.get(0).get(rand);
+		deck.get(0).remove(rand);
+		rand = r.nextInt(deck.get(2).size());
+		Card weapon = deck.get(2).get(rand);
+		deck.get(2).remove(rand);
+		winningCards = new Solution(person.getName(), place.getName(), weapon.getName());
 	}
 	
 	public Card handleSuggestion() {
@@ -344,12 +389,6 @@ public class Board {
 	}
 	
 	public Set<BoardCell> getTargets(){
-		targets.clear();
-		for(BoardCell tar : tempTargets){
-			targets.add(tar);
-		}
-		
-		tempTargets.clear();
 		return targets;
 	}
 	

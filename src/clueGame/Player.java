@@ -1,5 +1,8 @@
 package clueGame;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import com.sun.prism.paint.Color;
 
 public class Player {
@@ -7,6 +10,7 @@ public class Player {
 	private int row;
 	private int column;
 	private Color color;	//CHANGE BACK TO A COLOR OBJECT
+	public Set<Card> hand = new HashSet<Card>();
 	
 	public Card disproveSuggestion(Solution suggestion) {
 		Card testCard = new Card();
