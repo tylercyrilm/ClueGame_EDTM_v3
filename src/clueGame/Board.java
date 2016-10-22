@@ -1,6 +1,7 @@
 package clueGame;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -8,6 +9,8 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
+
+import com.sun.prism.paint.Color;
 
 public class Board {
 	public int numRows = 0;
@@ -28,9 +31,13 @@ public class Board {
 	public ArrayList<ComputerPlayer> comp = new ArrayList<ComputerPlayer>();
 	
 	//This function has had "people" and "weapons" added, you'll need to update this call in previous tests
-	public void setConfigFiles(String layout, String legend, String people, String weapons){
+	public void setConfigFiles(String layout, String legend){
 		roomConfigFile = legend;
 		boardConfigFile = layout;
+	}
+	public void setWPConfigFiles(String people, String weapons) {
+		playerConfigFile = people;
+		weaponConfigFile = weapons;
 	}
 	
 	
@@ -162,7 +169,38 @@ public class Board {
 	}
 	
 	public void loadPlayerConfig() throws BadConfigFormatException {
-		//TODO
+		System.out.println("Inside LoadPlayerConfig()");
+		try{
+			FileReader input = new FileReader(playerConfigFile);
+			Scanner in = new Scanner(input);
+			while(in.hasNextLine()){
+				String nextLine = in.nextLine();
+				String[] splitPieces = nextLine.split(", ");
+				//check if computer or player card
+				if(splitPieces[4].equals("P")) {
+					System.out.println("Inside Player Loop");
+					player = new HumanPlayer();
+					player.setName(splitPieces[0]);
+					player.setColor(convertColor(splitPieces[1]));
+					player.setRow(Integer.parseInt(splitPieces[2]));
+					player.setColumn(Integer.parseInt(splitPieces[3]));
+				}
+				else if(splitPieces[4].equals("C")) {
+					ComputerPlayer C1 = new ComputerPlayer();
+					C1.setName(splitPieces[0]);
+					C1.setColor(convertColor(splitPieces[1]));
+					C1.setRow(Integer.parseInt(splitPieces[2]));
+					C1.setColumn(Integer.parseInt(splitPieces[3]));
+					comp.add(C1);
+				}
+				else {
+					throw new BadConfigFormatException("The player configuration file is not in the correct format. Correct it and load again.");
+				}
+			}
+			in.close();
+		} catch (FileNotFoundException e){
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	public void loadWeaponConfig() throws BadConfigFormatException {
@@ -289,5 +327,16 @@ public class Board {
 		
 		tempTargets.clear();
 		return targets;
+	}
+	
+	public Color convertColor(String strColor) {
+		Color color;
+		try {
+			Field field = Class.forName("java.awt.Color").getField(strColor.trim());
+			color = (Color)field.get(null);
+		} catch (Exception e) {
+			color = null;
+		}
+		return color;
 	}
 }
