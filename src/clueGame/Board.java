@@ -24,12 +24,15 @@ public class Board {
 	private Set<BoardCell> visited = new HashSet<BoardCell>();
 	private String boardConfigFile;
 	private String roomConfigFile;
-	private String weaponConfigFile;
-	private String playerConfigFile;
+	private String weaponConfigFile = "";
+	private String playerConfigFile = "";
 	private String legendInitials = "";
 	public HumanPlayer player;
 	public ArrayList<ComputerPlayer> comp = new ArrayList<ComputerPlayer>();
 	public ArrayList<ArrayList<Card>> deck = new ArrayList<ArrayList<Card>>();
+	private ArrayList<Card> roomCards = new ArrayList<Card>();
+	private ArrayList<Card> personCards = new ArrayList<Card>();
+	private ArrayList<Card> weaponCards = new ArrayList<Card>();
 	
 	//This function has had "people" and "weapons" added, you'll need to update this call in previous tests
 	public void setConfigFiles(String layout, String legend){
@@ -74,6 +77,7 @@ public class Board {
 	}
 	
 	public void loadRoomConfig() throws BadConfigFormatException{
+		deck.add(roomCards);
 		try{
 			FileReader input = new FileReader(roomConfigFile);
 			Scanner in = new Scanner(input);
@@ -82,6 +86,10 @@ public class Board {
 				String[] splitPieces = nextLine.split(", ");
 				rooms.put(splitPieces[0].charAt(0), splitPieces[1]);
 				legendInitials += splitPieces[0].charAt(0);
+				if (splitPieces[2].equalsIgnoreCase("Card")) {
+					Card roomCard = new Card(splitPieces[1], CardType.ROOM);
+					deck.get(0).add(roomCard);
+				}
 				if (!splitPieces[2].equalsIgnoreCase("Card") && !splitPieces[2].equalsIgnoreCase("Other")){
 					throw new BadConfigFormatException("Incorrect room type");
 				}	
@@ -170,6 +178,7 @@ public class Board {
 	}
 	
 	public void loadPlayerConfig() throws BadConfigFormatException {
+		deck.add(personCards);
 		try{
 			FileReader input = new FileReader(playerConfigFile);
 			Scanner in = new Scanner(input);
@@ -197,6 +206,8 @@ public class Board {
 				else {
 					throw new BadConfigFormatException("The player configuration file is not in the correct format. Correct it and load again.");
 				}
+				Card playerCard = new Card(splitPieces[0], CardType.PERSON);
+				deck.get(1).add(playerCard);
 			}
 			in.close();
 		} catch (FileNotFoundException e){
@@ -204,8 +215,20 @@ public class Board {
 		}
 	}
 	
-	public void loadWeaponConfig() throws BadConfigFormatException {
-		//TODO
+	public void loadWeaponConfig() {
+		deck.add(weaponCards);
+		try{
+			FileReader input = new FileReader(weaponConfigFile);
+			Scanner in = new Scanner(input);
+			while(in.hasNextLine()){
+				String nextLine = in.nextLine();
+				Card weaponCard = new Card(nextLine, CardType.WEAPON);
+				deck.get(2).add(weaponCard);	
+			}
+			in.close();
+		} catch (FileNotFoundException e){
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	public void calcAdjacencies(){
