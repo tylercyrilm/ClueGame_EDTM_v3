@@ -29,6 +29,7 @@ public class Board {
 	private String legendInitials = "";
 	public HumanPlayer player;
 	public ArrayList<ComputerPlayer> comp = new ArrayList<ComputerPlayer>();
+	public ArrayList<ArrayList<Card>> deck = new ArrayList<ArrayList<Card>>();
 	
 	//This function has had "people" and "weapons" added, you'll need to update this call in previous tests
 	public void setConfigFiles(String layout, String legend){
@@ -169,7 +170,6 @@ public class Board {
 	}
 	
 	public void loadPlayerConfig() throws BadConfigFormatException {
-		System.out.println("Inside LoadPlayerConfig()");
 		try{
 			FileReader input = new FileReader(playerConfigFile);
 			Scanner in = new Scanner(input);
@@ -178,9 +178,9 @@ public class Board {
 				String[] splitPieces = nextLine.split(", ");
 				//check if computer or player card
 				if(splitPieces[4].equals("P")) {
-					System.out.println("Inside Player Loop");
 					player = new HumanPlayer();
 					player.setName(splitPieces[0]);
+					System.out.println(splitPieces[1]);
 					player.setColor(convertColor(splitPieces[1]));
 					player.setRow(Integer.parseInt(splitPieces[2]));
 					player.setColumn(Integer.parseInt(splitPieces[3]));
@@ -188,6 +188,7 @@ public class Board {
 				else if(splitPieces[4].equals("C")) {
 					ComputerPlayer C1 = new ComputerPlayer();
 					C1.setName(splitPieces[0]);
+					System.out.println(splitPieces[1]);
 					C1.setColor(convertColor(splitPieces[1]));
 					C1.setRow(Integer.parseInt(splitPieces[2]));
 					C1.setColumn(Integer.parseInt(splitPieces[3]));
@@ -331,10 +332,13 @@ public class Board {
 	
 	public Color convertColor(String strColor) {
 		Color color;
+		System.out.println("Inside: " + strColor );
 		try {
 			Field field = Class.forName("java.awt.Color").getField(strColor.trim());
-			color = (Color)field.get(null);
+			color = (Color) field.get(null);
+			System.out.println("Color:" + color);
 		} catch (Exception e) {
+			System.out.println("No valid color?");
 			color = null;
 		}
 		return color;
