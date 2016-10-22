@@ -30,6 +30,7 @@ public class Board {
 	public HumanPlayer player;
 	public ArrayList<ComputerPlayer> comp = new ArrayList<ComputerPlayer>();
 	public ArrayList<ArrayList<Card>> deck = new ArrayList<ArrayList<Card>>();
+	public ArrayList<ArrayList<Card>> reducedDeck;
 	private ArrayList<Card> roomCards = new ArrayList<Card>();
 	private ArrayList<Card> personCards = new ArrayList<Card>();
 	private ArrayList<Card> weaponCards = new ArrayList<Card>();
@@ -322,16 +323,15 @@ public class Board {
 	public void deal() {
 		//Makes a set to deal from so that the cards are randomized
 		Set<Card> dealDeck = new HashSet<Card> ();
-		for(int i = 0; i < deck.size(); i++) {
-			for (int j = 0; j < deck.get(i).size(); j++) {
-				dealDeck.add(deck.get(i).get(j));
+		for(int i = 0; i < reducedDeck.size(); i++) {
+			for (int j = 0; j < reducedDeck.get(i).size(); j++) {
+				dealDeck.add(reducedDeck.get(i).get(j));
 			}
 		}
 		
 		//Deal the cards to each players hand
 		int numPlayers = comp.size() + 1;
 		int numCards = dealDeck.size();
-		int cardsPerPlayer = numCards/numPlayers;
 		int counter = 0;
 		for (Card c : dealDeck) {
 			int recip = (counter % (comp.size() + 1)) - 1;
@@ -341,23 +341,27 @@ public class Board {
 			else {
 				comp.get(recip).hand.add(c);
 			}
+			dealtCards.add(c);
 			counter++;
 		}
 
 	}
 	
 	public void selectAnswer() {
+		reducedDeck = new ArrayList<ArrayList<Card>>(deck);
 		//Assign the "winning" 3 cards
 		Random r = new Random();
-		int rand = r.nextInt(deck.get(1).size());
-		Card person = deck.get(1).get(rand);
-		deck.get(1).remove(rand);
-		rand = r.nextInt(deck.get(0).size());
+		int rand = r.nextInt(deck.get(0).size());
 		Card place = deck.get(0).get(rand);
-		deck.get(0).remove(rand);
+		reducedDeck.get(0).remove(rand);
+		rand = r.nextInt(deck.get(1).size());
+		Card person = deck.get(1).get(rand);
+		reducedDeck.get(1).remove(rand);
 		rand = r.nextInt(deck.get(2).size());
 		Card weapon = deck.get(2).get(rand);
-		deck.get(2).remove(rand);
+		System.out.println("Deck size: " + deck.get(0).size() + ", " + deck.get(1).size() + ", " + deck.get(2).size());
+		reducedDeck.get(2).remove(rand);
+		System.out.println("Deck size: " + deck.get(0).size() + ", " + deck.get(1).size() + ", " + deck.get(2).size());
 		winningCards = new Solution(person.getName(), place.getName(), weapon.getName());
 	}
 	
