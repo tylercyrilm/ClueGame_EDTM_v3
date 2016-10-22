@@ -1,11 +1,13 @@
 package clueGame;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class Board {
 	public int numRows = 0;
@@ -19,10 +21,14 @@ public class Board {
 	private Set<BoardCell> visited = new HashSet<BoardCell>();
 	private String boardConfigFile;
 	private String roomConfigFile;
+	private String weaponConfigFile;
+	private String playerConfigFile;
 	private String legendInitials = "";
+	public HumanPlayer player;
+	public ArrayList<ComputerPlayer> comp = new ArrayList<ComputerPlayer>();
 	
-	
-	public void setConfigFiles(String layout, String legend){
+	//This function has had "people" and "weapons" added, you'll need to update this call in previous tests
+	public void setConfigFiles(String layout, String legend, String people, String weapons){
 		roomConfigFile = legend;
 		boardConfigFile = layout;
 	}
