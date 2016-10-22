@@ -38,19 +38,25 @@ public class Board {
 		}
 	
 	public void initialize(){
-		try{
-			loadRoomConfig();
-			loadBoardConfig();
-			calcAdjacencies();
-		} catch(BadConfigFormatException e){
-			e.printStackTrace();
-		}
-		
+		loadConfigFiles();
+		calcAdjacencies();
 	}
 	
 	public BoardCell getCellAt(int row, int col){
 		BoardCell temp = boardArray[row][col];
 		return temp;
+	}
+	
+	public void loadConfigFiles() {
+		try {
+			loadRoomConfig();
+			loadBoardConfig();
+			loadPlayerConfig();
+			loadWeaponConfig();
+		}
+		catch (BadConfigFormatException e) {
+			
+		}
 	}
 	
 	public void loadRoomConfig() throws BadConfigFormatException{
@@ -149,6 +155,14 @@ public class Board {
 		}
 	}
 	
+	public void loadPlayerConfig() throws BadConfigFormatException {
+		//TODO
+	}
+	
+	public void loadWeaponConfig() throws BadConfigFormatException {
+		//TODO
+	}
+	
 	public void calcAdjacencies(){
 		int x = boardArray[0].length;
 		int y = boardArray.length;
@@ -228,6 +242,21 @@ public class Board {
 			}
 			visited.remove(boardArray[row][col]);
 		}
+	}
+	
+	public void selectAnswer() {
+		//TODO
+	}
+	
+	public Card handleSuggestion() {
+		Card testCard = new Card();
+		//TODO
+		return testCard;
+	}
+	
+	public boolean checkAccusation(Solution accusation) {
+		//TODO
+		return false;
 	}
 	
 	public Map<Character, String> getLegend(){

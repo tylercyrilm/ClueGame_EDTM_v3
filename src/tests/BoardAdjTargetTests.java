@@ -110,6 +110,16 @@ public class BoardAdjTargetTests {
 			testList = board.getAdjList(23, 4);
 			assertTrue(testList.contains(board.getCellAt(22, 4)));
 			assertEquals(1, testList.size());
+			
+			testList = board.getAdjList(9, 20);
+			assertTrue(testList.contains(board.getCellAt(10, 20)));
+			assertTrue(testList.contains(board.getCellAt(9,19)));
+			assertEquals(2, testList.size());
+			
+			testList = board.getAdjList(0, 13);
+			assertTrue(testList.contains(board.getCellAt(0, 12)));
+			assertTrue(testList.contains(board.getCellAt(1, 13)));
+			assertEquals(2, testList.size());
 
 			
 			testList = board.getAdjList(16, 17);
