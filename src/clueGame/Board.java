@@ -15,7 +15,7 @@ public class Board {
 	public int numRows = 0;
 	public int numColumns = 0;
 	private final int MAX_BOARD_SIZE = 50;
-	private BoardCell [][] boardArray = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
+	private BoardCell [][] board = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 	private Map<Character, String> rooms = new HashMap<Character, String>();
 	private Map<BoardCell, Set<BoardCell>> adjMatrix = new HashMap<BoardCell, Set<BoardCell>>();
 	public Set<BoardCell> targets = new HashSet<BoardCell>();
@@ -39,6 +39,7 @@ public class Board {
 		roomConfigFile = legend;
 		boardConfigFile = layout;
 	}
+	
 	public void setWPConfigFiles(String people, String weapons) {
 		playerConfigFile = people;
 		weaponConfigFile = weapons;
@@ -60,8 +61,7 @@ public class Board {
 	}
 	
 	public BoardCell getCellAt(int row, int col){
-		BoardCell temp = boardArray[row][col];
-		return temp;
+		return board[row][col];
 	}
 	
 	public void loadConfigFiles() {
@@ -105,8 +105,8 @@ public class Board {
 		try{ 
 			for (int i = 0; i < MAX_BOARD_SIZE; i++){
 				for (int j = 0; j < MAX_BOARD_SIZE; j++){
-					boardArray[i][j] = new BoardCell();
-					boardArray[i][j].setLocation(i,j);
+					board[i][j] = new BoardCell();
+					board[i][j].setLocation(i,j);
 				}
 			}
 		FileReader input = new FileReader(boardConfigFile);
@@ -130,10 +130,10 @@ public class Board {
 			
 			for(int i = 0; i < numColumns; i++){
 				String label = splitRows[i];
-				boardArray[numRows][i] = new BoardCell();
-				boardArray[numRows][i].initial = label.charAt(0);
+				board[numRows][i] = new BoardCell();
+				board[numRows][i].initial = label.charAt(0);
 				
-				if(legendInitials.indexOf(boardArray[numRows][i].initial) < 0){
+				if(legendInitials.indexOf(board[numRows][i].initial) < 0){
 					throw new BadConfigFormatException("Invalid room initial");
 				}
 				
@@ -141,17 +141,17 @@ public class Board {
 					Character dir = label.charAt(1);
 					switch (dir){
 					case 'D':
-						boardArray[numRows][i].direction = DoorDirection.DOWN;
+						board[numRows][i].direction = DoorDirection.DOWN;
 						
 						break;
 					case 'U':
-						boardArray[numRows][i].direction = DoorDirection.UP;
+						board[numRows][i].direction = DoorDirection.UP;
 						break;
 					case 'L':
-						boardArray[numRows][i].direction = DoorDirection.LEFT;
+						board[numRows][i].direction = DoorDirection.LEFT;
 						break;
 					case 'R':
-						boardArray[numRows][i].direction = DoorDirection.RIGHT;
+						board[numRows][i].direction = DoorDirection.RIGHT;
 						break;
 					}
 					
@@ -166,11 +166,11 @@ public class Board {
 		for(int i = 0; i < numRows; i++){
 			for (int j = 0; j < rowLength; j++){
 				tempArray[i][j] = new BoardCell();
-				tempArray[i][j] = boardArray[i][j];
-				boardArray[i][j].setLocation(i, j);
+				tempArray[i][j] = board[i][j];
+				board[i][j].setLocation(i, j);
 			}
 		}
-		boardArray = tempArray;
+		board = tempArray;
 		
 		} catch (FileNotFoundException e){
 			System.out.println(e.getMessage());
@@ -230,30 +230,30 @@ public class Board {
 	}
 	
 	public void calcAdjacencies(){
-		int x = boardArray[0].length;
-		int y = boardArray.length;
+		int x = board[0].length;
+		int y = board.length;
 		for (int i = 0; i < y; i++){
 			for (int j = 0; j < x; j++){
 				Set<BoardCell> adj = new HashSet<BoardCell>();
-				if (boardArray[i][j].initial != 'W'){ 
-					if (boardArray[i][j].isDoorway() == false){
+				if (board[i][j].initial != 'W'){ 
+					if (board[i][j].isDoorway() == false){
 						//in a room and not in a doorway
 						//no adjacencies added
 					}
 					else{
 						//in a doorway
-						switch(boardArray[i][j].direction){
+						switch(board[i][j].direction){
 						case UP:
-							adj.add(boardArray[i-1][j]);
+							adj.add(board[i-1][j]);
 							break;
 						case DOWN:
-							adj.add(boardArray[i+1][j]);
+							adj.add(board[i+1][j]);
 							break;
 						case LEFT:
-							adj.add(boardArray[i][j-1]);
+							adj.add(board[i][j-1]);
 							break;
 						case RIGHT:
-							adj.add(boardArray[i][j+1]);
+							adj.add(board[i][j+1]);
 							break;
 						case NONE:
 							break;
@@ -263,28 +263,28 @@ public class Board {
 				else{
 				//outside of a room and not in a doorway
 				if(i - 1 >= 0){ 
-					if((boardArray[i-1][j].isDoorway() && boardArray[i-1][j].direction == DoorDirection.DOWN)|| boardArray[i-1][j].initial == 'W'){
-						adj.add(boardArray[i-1][j]);
+					if((board[i-1][j].isDoorway() && board[i-1][j].direction == DoorDirection.DOWN)|| board[i-1][j].initial == 'W'){
+						adj.add(board[i-1][j]);
 					}
 				}
 				if (i + 1 < y){
-					if((boardArray[i+1][j].isDoorway() && boardArray[i+1][j].direction == DoorDirection.UP)|| boardArray[i+1][j].initial == 'W'){
-						adj.add(boardArray[i +1][j]);
+					if((board[i+1][j].isDoorway() && board[i+1][j].direction == DoorDirection.UP)|| board[i+1][j].initial == 'W'){
+						adj.add(board[i +1][j]);
 					}
 				}
 				if (j - 1 >= 0){
-					if((boardArray[i][j-1].isDoorway() && boardArray[i][j-1].direction == DoorDirection.RIGHT)|| boardArray[i][j-1].initial == 'W'){
-						adj.add(boardArray[i][j-1]);
+					if((board[i][j-1].isDoorway() && board[i][j-1].direction == DoorDirection.RIGHT)|| board[i][j-1].initial == 'W'){
+						adj.add(board[i][j-1]);
 					}
 				}
 				if (j + 1 < x){
-					if((boardArray[i][j+1].isDoorway() && boardArray[i][j+1].direction == DoorDirection.LEFT)|| boardArray[i][j+1].initial == 'W'){
-						adj.add(boardArray[i][j+1]);
+					if((board[i][j+1].isDoorway() && board[i][j+1].direction == DoorDirection.LEFT)|| board[i][j+1].initial == 'W'){
+						adj.add(board[i][j+1]);
 					}
 				}
 				
 			}
-			adjMatrix.put(boardArray[i][j], adj);
+			adjMatrix.put(board[i][j], adj);
 			}
 		}
 	}
@@ -292,7 +292,7 @@ public class Board {
 	public void calcTargets(int row, int column, int pathLength) {
 		visited.clear();
 		targets.clear();
-		visited.add(boardArray[row][column]);
+		visited.add(board[row][column]);
 		findAllTargets(row, column, pathLength);
 	}
 	
@@ -301,32 +301,36 @@ public class Board {
 
 		for (BoardCell adjCell : adjCells) {
 			if(!visited.contains(adjCell)){
-				continue;
-			}
-				
-			if (pathLength == 1 || adjCell.isDoorway()){
-				targets.add(adjCell);
-			}
-			else{
-				visited.add(boardArray[adjCell.row][adjCell.column]);
-				findAllTargets(adjCell.row, adjCell.column, pathLength - 1);
+				if (pathLength == 1 || adjCell.isDoorway()) {
+					targets.add(adjCell);
+				}
+				else {
+					visited.add(board[adjCell.row][adjCell.column]);
+					findAllTargets(adjCell.row, adjCell.column, pathLength - 1);
 				}
 			}
-			visited.remove(boardArray[row][col]);
+			else {
+				continue;
+			}
+			visited.remove(board[adjCell.row][adjCell.column]);
 		}
+	}
 	
 	private void buildDeck() {
 		dealDeck = new HashSet<Card>();
+		//Add all room cards not in the solution to the deck
 		for (Card r:roomCards) {
 			if (!r.getName().equals(solution.room)) {
 				dealDeck.add(r);
 			}
 		}
+		//Add all person cards not in the solution to the deck
 		for (Card p:personCards) {
 			if (!p.getName().equals(solution.person)) {
 				dealDeck.add(p);
 			}
 		}
+		//Add all weapon cards not in the solution to the deck
 		for (Card w:weaponCards) {
 			if (!w.getName().equals(solution.weapon)) {
 				dealDeck.add(w);
@@ -395,7 +399,7 @@ public class Board {
 	}
 	
 	public Set<BoardCell> getAdjList(int row, int col){
-		return adjMatrix.get(theInstance.getCellAt(row,col));
+		return adjMatrix.get(board[row][col]);
 	}
 	
 	public Set<BoardCell> getTargets(){

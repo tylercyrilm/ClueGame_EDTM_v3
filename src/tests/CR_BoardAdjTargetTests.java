@@ -23,7 +23,7 @@ public class CR_BoardAdjTargetTests {
 	public static void setUp() {
 		// Board is singleton, get the only instance and initialize it		
 		board = Board.getInstance();
-		board.setConfigFiles("data/CR_ClueLayout.csv", "data/CR_ClueLegend.txt");		
+		board.setConfigFiles("data/CR_ClueLayout.csv", "data/CR_ClueLegend.txt");
 		board.initialize();
 	}
 
@@ -176,13 +176,13 @@ public class CR_BoardAdjTargetTests {
 		assertEquals(2, targets.size());
 		assertTrue(targets.contains(board.getCellAt(20, 7)));
 		assertTrue(targets.contains(board.getCellAt(21, 6)));	
+		
 		board.calcTargets(14, 0, 1);
 		targets= board.getTargets();
 		assertEquals(3, targets.size());
 		assertTrue(targets.contains(board.getCellAt(14, 1)));
 		assertTrue(targets.contains(board.getCellAt(13, 0)));	
-		assertTrue(targets.contains(board.getCellAt(15, 0)));	
-		
+		assertTrue(targets.contains(board.getCellAt(15, 0)));			
 	}
 	
 	// Tests of just walkways, 2 steps
@@ -232,6 +232,7 @@ public class CR_BoardAdjTargetTests {
 	public void testTargetsSixSteps() {
 		board.calcTargets(14, 0, 6);
 		Set<BoardCell> targets= board.getTargets();
+		System.out.println(targets);
 		assertEquals(7, targets.size());
 		assertTrue(targets.contains(board.getCellAt(14, 6)));
 		assertTrue(targets.contains(board.getCellAt(15, 5)));	
@@ -251,6 +252,7 @@ public class CR_BoardAdjTargetTests {
 		// One room is exactly 2 away
 		board.calcTargets(17, 16, 2);
 		Set<BoardCell> targets= board.getTargets();
+		System.out.println(targets);
 		assertEquals(7, targets.size());
 		// directly left (can't go right 2 steps)
 		assertTrue(targets.contains(board.getCellAt(17, 14)));
@@ -302,7 +304,6 @@ public class CR_BoardAdjTargetTests {
 		// Take one step, essentially just the adj list
 		board.calcTargets(4, 20, 1);
 		Set<BoardCell> targets= board.getTargets();
-		System.out.println(targets); //REMOVE------------------------------------------------------------
 		// Ensure doesn't exit through the wall
 		assertEquals(1, targets.size());
 		assertTrue(targets.contains(board.getCellAt(4, 19)));

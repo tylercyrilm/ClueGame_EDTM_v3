@@ -22,10 +22,10 @@ public class BoardCell {
 	}
 	
 	public boolean isDoorway(){
-		if (this.direction == DoorDirection.NONE) return false;
-		else{
-			return true;
+		if (this.direction == DoorDirection.NONE){
+			return false;
 		}
+		return true;
 	}
 	
 	public DoorDirection getDoorDirection(){
