@@ -9,9 +9,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
-import java.util.TreeSet;
-
-import com.sun.prism.paint.Color;
+import java.awt.Color;
 
 public class Board {
 	public int numRows = 0;
@@ -29,13 +27,12 @@ public class Board {
 	private String legendInitials = "";
 	public HumanPlayer player;
 	public ArrayList<ComputerPlayer> comp = new ArrayList<ComputerPlayer>();
-	public ArrayList<ArrayList<Card>> deck = new ArrayList<ArrayList<Card>>();
-	public ArrayList<ArrayList<Card>> reducedDeck;
-	private ArrayList<Card> roomCards = new ArrayList<Card>();
-	private ArrayList<Card> personCards = new ArrayList<Card>();
-	private ArrayList<Card> weaponCards = new ArrayList<Card>();
+	private Set<Card> dealDeck;
+	public ArrayList<Card> roomCards;
+	public ArrayList<Card> personCards;
+	public ArrayList<Card> weaponCards;
 	public Set<Card> dealtCards = new HashSet<Card>();
-	private static Solution winningCards;
+	private static Solution solution;
 	
 	//This function has had "people" and "weapons" added, you'll need to update this call in previous tests
 	public void setConfigFiles(String layout, String legend){
@@ -80,7 +77,7 @@ public class Board {
 	}
 	
 	public void loadRoomConfig() throws BadConfigFormatException{
-		deck.add(roomCards);
+		roomCards = new ArrayList<Card>();
 		try{
 			FileReader input = new FileReader(roomConfigFile);
 			Scanner in = new Scanner(input);
@@ -91,7 +88,7 @@ public class Board {
 				legendInitials += splitPieces[0].charAt(0);
 				if (splitPieces[2].equalsIgnoreCase("Card")) {
 					Card roomCard = new Card(splitPieces[1], CardType.ROOM);
-					deck.get(0).add(roomCard);
+					roomCards.add(roomCard);
 				}
 				if (!splitPieces[2].equalsIgnoreCase("Card") && !splitPieces[2].equalsIgnoreCase("Other")){
 					throw new BadConfigFormatException("Incorrect room type");
@@ -181,7 +178,7 @@ public class Board {
 	}
 	
 	public void loadPlayerConfig() throws BadConfigFormatException {
-		deck.add(personCards);
+		personCards = new ArrayList<Card>();
 		try{
 			FileReader input = new FileReader(playerConfigFile);
 			Scanner in = new Scanner(input);
@@ -210,7 +207,7 @@ public class Board {
 					throw new BadConfigFormatException("The player configuration file is not in the correct format. Correct it and load again.");
 				}
 				Card playerCard = new Card(splitPieces[0], CardType.PERSON);
-				deck.get(1).add(playerCard);
+				personCards.add(playerCard);
 			}
 			in.close();
 		} catch (FileNotFoundException e){
@@ -219,14 +216,14 @@ public class Board {
 	}
 	
 	public void loadWeaponConfig() {
-		deck.add(weaponCards);
+		weaponCards = new ArrayList<Card>();
 		try{
 			FileReader input = new FileReader(weaponConfigFile);
 			Scanner in = new Scanner(input);
 			while(in.hasNextLine()){
 				String nextLine = in.nextLine();
 				Card weaponCard = new Card(nextLine, CardType.WEAPON);
-				deck.get(2).add(weaponCard);	
+				weaponCards.add(weaponCard);	
 			}
 			in.close();
 		} catch (FileNotFoundException e){
@@ -239,7 +236,7 @@ public class Board {
 		int y = boardArray.length;
 		for (int i = 0; i < y; i++){
 			for (int j = 0; j < x; j++){
-				Set<BoardCell> adj = new HashSet();
+				Set<BoardCell> adj = new HashSet<BoardCell>();
 				if (boardArray[i][j].initial != 'W'){ 
 					if (boardArray[i][j].isDoorway() == false){
 						//in a room and not in a doorway
@@ -320,18 +317,31 @@ public class Board {
 			visited.remove(boardArray[row][col]);
 		}
 	
-	public void deal() {
-		//Makes a set to deal from so that the cards are randomized
-		Set<Card> dealDeck = new HashSet<Card> ();
-		for(int i = 0; i < reducedDeck.size(); i++) {
-			for (int j = 0; j < reducedDeck.get(i).size(); j++) {
-				dealDeck.add(reducedDeck.get(i).get(j));
+	private void buildDeck() {
+		dealDeck = new HashSet<Card>();
+		for (Card r:roomCards) {
+			if (!r.getName().equals(solution.room)) {
+				dealDeck.add(r);
 			}
 		}
-		
+		for (Card p:personCards) {
+			if (!p.getName().equals(solution.person)) {
+				dealDeck.add(p);
+			}
+		}
+		for (Card w:weaponCards) {
+			if (!w.getName().equals(solution.weapon)) {
+				dealDeck.add(w);
+			}
+		}
+	}
+	
+	public void deal() {
+		//Randomly chooses an answer from the full deck
+		selectAnswer();
+		//Builds a deck to deal from that does not include the solution cards
+		buildDeck();
 		//Deal the cards to each players hand
-		int numPlayers = comp.size() + 1;
-		int numCards = dealDeck.size();
 		int counter = 0;
 		for (Card c : dealDeck) {
 			int recip = (counter % (comp.size() + 1)) - 1;
@@ -348,21 +358,19 @@ public class Board {
 	}
 	
 	public void selectAnswer() {
-		reducedDeck = new ArrayList<ArrayList<Card>>(deck);
 		//Assign the "winning" 3 cards
 		Random r = new Random();
-		int rand = r.nextInt(deck.get(0).size());
-		Card place = deck.get(0).get(rand);
-		reducedDeck.get(0).remove(rand);
-		rand = r.nextInt(deck.get(1).size());
-		Card person = deck.get(1).get(rand);
-		reducedDeck.get(1).remove(rand);
-		rand = r.nextInt(deck.get(2).size());
-		Card weapon = deck.get(2).get(rand);
-		System.out.println("Deck size: " + deck.get(0).size() + ", " + deck.get(1).size() + ", " + deck.get(2).size());
-		reducedDeck.get(2).remove(rand);
-		System.out.println("Deck size: " + deck.get(0).size() + ", " + deck.get(1).size() + ", " + deck.get(2).size());
-		winningCards = new Solution(person.getName(), place.getName(), weapon.getName());
+		//Select location
+		int rand = r.nextInt(roomCards.size());
+		Card place = roomCards.get(rand);
+		//Select culprit
+		rand = r.nextInt(personCards.size());
+		Card person = personCards.get(rand);
+		//Select weapon
+		rand = r.nextInt(weaponCards.size());
+		Card weapon = weaponCards.get(rand);
+		//Build the solution
+		solution = new Solution(person.getName(), place.getName(), weapon.getName());
 	}
 	
 	public Card handleSuggestion() {

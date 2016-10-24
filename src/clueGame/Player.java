@@ -2,8 +2,7 @@ package clueGame;
 
 import java.util.HashSet;
 import java.util.Set;
-
-import com.sun.prism.paint.Color;
+import java.awt.Color;
 
 public class Player {
 	private String playerName;
