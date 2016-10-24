@@ -189,7 +189,6 @@ public class Board {
 				if(splitPieces[4].equals("P")) {
 					player = new HumanPlayer();
 					player.setName(splitPieces[0]);
-					System.out.println(splitPieces[1]);
 					player.setColor(convertColor(splitPieces[1]));
 					player.setRow(Integer.parseInt(splitPieces[2]));
 					player.setColumn(Integer.parseInt(splitPieces[3]));
@@ -197,7 +196,6 @@ public class Board {
 				else if(splitPieces[4].equals("C")) {
 					ComputerPlayer C1 = new ComputerPlayer();
 					C1.setName(splitPieces[0]);
-					System.out.println(splitPieces[1]);
 					C1.setColor(convertColor(splitPieces[1]));
 					C1.setRow(Integer.parseInt(splitPieces[2]));
 					C1.setColumn(Integer.parseInt(splitPieces[3]));
@@ -406,7 +404,6 @@ public class Board {
 	
 	public Color convertColor(String strColor) {
 		Color color;
-		System.out.println("Inside: " + strColor );
 		try {
 			Field field = Class.forName("java.awt.Color").getField(strColor.trim());
 			color = (Color) field.get(null);
