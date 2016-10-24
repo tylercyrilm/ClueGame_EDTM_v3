@@ -410,9 +410,7 @@ public class Board {
 		try {
 			Field field = Class.forName("java.awt.Color").getField(strColor.trim());
 			color = (Color) field.get(null);
-			System.out.println("Color:" + color);
 		} catch (Exception e) {
-			System.out.println("No valid color?");
 			color = null;
 		}
 		return color;
