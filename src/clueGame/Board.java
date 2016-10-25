@@ -389,8 +389,12 @@ public class Board {
 	}
 	
 	public boolean checkAccusation(Solution accusation) {
-		//TODO
-		return false;
+		if (accusation.person.equals(solution.person) && accusation.weapon.equals(solution.weapon) && accusation.room.equals(solution.room)){
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
 	public Map<Character, String> getLegend(){
