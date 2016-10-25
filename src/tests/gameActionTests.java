@@ -8,6 +8,7 @@ import org.junit.Test;
 import clueGame.Board;
 import clueGame.BoardCell;
 import clueGame.Card;
+import clueGame.CardType;
 import clueGame.ComputerPlayer;
 import clueGame.Player;
 import clueGame.Solution;
@@ -116,30 +117,51 @@ public class gameActionTests {
 	
 	@Test
 	public void testAccusationCheck() {
+		ComputerPlayer testCompPlayer = new ComputerPlayer();
 		Solution testAccusation = new Solution();
 		board.selectAnswer();
 		board.setSolution("Hunter Cobalt","Rec Room", "Wrench");
 		//Correct Solution
-		testAccusation.person = "Hunter Cobalt";
-		testAccusation.room = "Rec Room";
-		testAccusation.weapon = "Wrench";
+		testAccusation = testCompPlayer.makeAccusation("Hunter Cobalt", "Rec Room", "Wrench");
 		assertTrue(board.checkAccusation(testAccusation));
 		//Wrong Person
-		testAccusation.person = "Captain Ebony";
+		testAccusation = testCompPlayer.makeAccusation("Captain Ebony", "Rec Room", "Wrench");
 		assertFalse(board.checkAccusation(testAccusation));
 		//Wrong Weapon
-		testAccusation.person = "Hunter Cobalt";
-		testAccusation.weapon = "Rock";
+		testAccusation = testCompPlayer.makeAccusation("Hunter Cobalt", "Rec Room", "Rock");
 		assertFalse(board.checkAccusation(testAccusation));
 		//Wrong Room
-		testAccusation.room = "Kitchen";
-		testAccusation.weapon = "Wrench";
+		testAccusation = testCompPlayer.makeAccusation("Hunter Cobalt", "Kitchen", "Wrench");
 		assertFalse(board.checkAccusation(testAccusation));
 	}
 	
 	@Test
 	public void testDisproveSuggestion() {
-		fail("Not yet implemented");
+		//if player has only one matching card it should be returned
+		Card testRoomCard = new Card("Mess Hall", CardType.ROOM);
+		Card testPlayerCard = new Card("Captain Ebony", CardType.PERSON);
+		ComputerPlayer testCompPlayer = new ComputerPlayer();
+		testCompPlayer.hand.add(testRoomCard);
+		Solution testSuggestion = new Solution("Arlan Citrine", "Mess Hall", "Heating Coil");
+		assertEquals(testRoomCard, testCompPlayer.disproveSuggestion(testSuggestion));
+		//if player has >1 matching card, returned card should be chosen randomly
+		testSuggestion = new Solution("Captain Ebony", "Mess Hall", "Heating Coil");
+		testCompPlayer.hand.add(testPlayerCard);
+		int testp = 0;
+		int testr = 0;
+		for (int i=0; i<300; i++) {
+			if(testPlayerCard.getName().equals(testCompPlayer.disproveSuggestion(testSuggestion).getName())) {
+				testp++;
+			}
+			else if (testRoomCard.getName().equals(testCompPlayer.disproveSuggestion(testSuggestion).getName())) {
+				testr++;
+			}
+		}
+		assert(testp > 1);
+		assert(testr > 1);
+		//if player has no matching cards, null is returned
+		testSuggestion = new Solution("Arlan Citrine", "Laboratory", "Heating Coil");
+		assertEquals(null, testCompPlayer.disproveSuggestion(testSuggestion));
 	}
 	
 	@Test
