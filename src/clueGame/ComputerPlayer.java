@@ -9,6 +9,7 @@ import clueGame.Board;
 public class ComputerPlayer extends Player {
 	public Set<Card> seenPeopleCards = new HashSet<Card>();
 	public Set<Card> seenWeaponCards = new HashSet<Card>();
+	public BoardCell lastRoomVisited = new BoardCell();
 	
 	public BoardCell pickLocation(Set<BoardCell> targets) {
 		BoardCell testCell = new BoardCell();

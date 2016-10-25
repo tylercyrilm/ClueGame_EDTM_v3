@@ -6,6 +6,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import clueGame.Board;
+import clueGame.BoardCell;
 import clueGame.Card;
 import clueGame.ComputerPlayer;
 import clueGame.Player;
@@ -20,12 +21,96 @@ public class gameActionTests {
 		board.setConfigFiles("data/ENTM_ClueMap.csv", "data/ENTM_Legend.txt");
 		board.setWPConfigFiles("data/ENTM_CluePlayers.txt", "data/ENTM_ClueWeapons.txt");
 		board.initialize();
-		
 	}
 
 	@Test
 	public void testTargetSelection() {
-		fail("Not yet implemented");
+		//if no rooms in list, select randomly
+		ComputerPlayer testCompPlayer = new ComputerPlayer();
+		testCompPlayer.setLocation(17, 23);
+		board.calcTargets(17, 23, 2);
+
+		int L1 = 0;
+		int L2 = 0;
+		int L3 = 0;
+		int L4 = 0;
+		for (int i=0; i<300; i++) {
+			BoardCell testCell = testCompPlayer.pickLocation(board.targets);
+			if(testCell == (board.getCellAt(17, 21))) {
+				L1++;
+			}
+			else if (testCell == (board.getCellAt(16, 22))) {
+				L2++;
+			}
+			else if (testCell == (board.getCellAt(16, 24))) {
+				L3++;
+			}
+			else if (testCell == board.getCellAt(17, 25)) {
+				L4++;
+			}
+		}
+		assert(L1 > 1);
+		assert(L2 > 1);
+		assert(L3 > 1);
+		assert(L4 > 1);
+		//if room in list that was not just visited, must select it
+		testCompPlayer.setLocation(15, 21);
+		board.calcTargets(15, 21, 3);
+		assertEquals(board.getCellAt(13, 22), testCompPlayer.pickLocation(board.targets));
+		//if room just visited is in list, each target including room selected randomly
+		int L11 = 0;
+		int L22 = 0;
+		int L33 = 0;
+		int L44 = 0;
+		int L55 = 0;
+		int L66 = 0;
+		int L77 = 0;
+		int L88 = 0;
+		int L99 = 0;
+		int room = 0;
+		for (int i=0; i<300; i++) {
+			BoardCell testCell = testCompPlayer.pickLocation(board.targets);
+			if(testCell == (board.getCellAt(13, 20))) {
+				L11++;
+			}
+			else if (testCell == (board.getCellAt(13, 22))) {
+				L22++;
+			}
+			else if (testCell == (board.getCellAt(14, 19))) {
+				L33++;
+			}
+			else if (testCell == board.getCellAt(14, 21)) {
+				L44++;
+			}
+			else if (testCell == board.getCellAt(15, 20)) {
+				L55++;
+			}
+			else if (testCell == board.getCellAt(16, 21)) {
+				L66++;
+			}
+			else if (testCell == board.getCellAt(16, 23)) {
+				L77++;
+			}
+			else if (testCell == board.getCellAt(17, 20)) {
+				L88++;
+			}
+			else if (testCell == board.getCellAt(17, 22)) {
+				L99++;
+			}
+			else if (testCell == board.getCellAt(12, 21)) {
+				room++;
+			}
+		}
+		assert(L11 > 1);
+		assert(L22 > 1);
+		assert(L33 > 1);
+		assert(L44 > 1);
+		assert(L55 > 1);
+		assert(L66 > 1);
+		assert(L77 > 1);
+		assert(L88 > 1);
+		assert(L99 > 1);
+		assert(room > 1);
 	}
 	
 	@Test

@@ -1,4 +1,99 @@
-Note: Katrina Steinman and Becca May worked evenly on this project
+commit 6daff853ac8d49c9bf444011769820f1a7bb5953
+Author: Emily Nielsen <enielsen@mymail.mines.edu>
+Date:   Mon Oct 24 21:05:20 2016 -0600
+
+    testSuggestionCreation test passes
+
+commit 2cfe33167b8c10db57a30ef61c14f1550100a5d3
+Author: Emily Nielsen <enielsen@mymail.mines.edu>
+Date:   Mon Oct 24 19:39:50 2016 -0600
+
+    testSuggestionCreation test fails
+
+commit aaa29d88dabe1275769a7681aa27928bcf9df152
+Author: Tyler Martinez <tymartin@adit.mines.edu>
+Date:   Mon Oct 24 15:49:40 2016 -0600
+
+    Target calculation working, all previous tests pass
+
+commit 96cc62d4ce3dbb3d14eef415a006a5bba0926585
+Author: Tyler Martinez <tymartin@adit.mines.edu>
+Date:   Mon Oct 24 14:58:56 2016 -0600
+
+    Removed extraneous print statements
+
+commit 6ed8a6fc39baca734f165bee363582a62e8c73ac
+Author: Tyler Martinez <tymartin@adit.mines.edu>
+Date:   Mon Oct 24 14:57:32 2016 -0600
+
+    Changed color for SL-8-R, updated appropriate test
+
+commit 5d90a33f52fee9ff4140f21fc6ca9626f097b717
+Author: Tyler Martinez <tymartin@adit.mines.edu>
+Date:   Mon Oct 24 14:54:57 2016 -0600
+
+    Fixed deck fragility, all PlayersI tests pass. Target selection borked
+
+commit 16733b0b4007df4c1618adfaa675d52cc8458be0
+Author: Tyler Martinez <tymartin@adit.mines.edu>
+Date:   Sat Oct 22 16:50:59 2016 -0600
+
+    All tests written, copy shenanigans occcurring, target calc not working
+
+commit db7bc159f898ba2c3b28a1011c7f06e7576180d4
+Author: Tyler Martinez <tymartin@adit.mines.edu>
+Date:   Sat Oct 22 16:23:07 2016 -0600
+
+    Wrote failing deal test
+
+commit bfc4907f8d66cfb2cf1b43e20beb81457edacd96
+Author: Tyler Martinez <tymartin@adit.mines.edu>
+Date:   Sat Oct 22 14:39:50 2016 -0600
+
+    Deck loading tests pass, all previous tests pass
+
+commit 0f6785a649739d6a0e285c79b182d9f53a83e2f7
+Author: Tyler Martinez <tymartin@adit.mines.edu>
+Date:   Sat Oct 22 14:07:04 2016 -0600
+
+    Deck loading tests written
+
+commit a82e799a749a764bc8f664ac2df0d169ae0d4593
+Author: Tyler Martinez <tymartin@adit.mines.edu>
+Date:   Sat Oct 22 12:31:38 2016 -0600
+
+    Having trouble with convertColor method
+
+commit 84f1dd49a0f0a7b16883646d5c280f83d3edea6a
+Author: Tyler Martinez <tymartin@adit.mines.edu>
+Date:   Sat Oct 22 11:42:47 2016 -0600
+
+    playerInitTest() fails
+
+commit dbdc79962cddf3b93d88297bbd1f4036f7ff5b31
+Author: Tyler Martinez <tymartin@adit.mines.edu>
+Date:   Sat Oct 22 10:12:32 2016 -0600
+
+    Created cluePlayers skeleton
+
+commit d798bcab65b0359a72ffb0c875b164c6a0db556e
+Author: Rebecca May <remay@adit.mines.edu>
+Date:   Thu Oct 13 11:05:48 2016 -0600
+
+    added layout file with tests indicated
+
+commit a9348ac856afeb912811dd428376312f22525679
+Author: Becca May <remay@mines.edu>
+Date:   Sun Oct 9 19:24:40 2016 -0600
+
+    Random print line removed
+
+commit 66fdd6f14980677cadc620e7b9954220a5c4ae2e
+Author: Becca May <remay@mines.edu>
+Date:   Sun Oct 9 16:30:25 2016 -0600
+
+    git log added
+
 commit 441f1f772bae7707ba3ed403799e971e710487a1
 Author: Becca May <remay@mines.edu>
 Date:   Sun Oct 9 16:28:03 2016 -0600
