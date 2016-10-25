@@ -115,11 +115,26 @@ public class gameActionTests {
 	}
 	
 	@Test
-	public void testAccustaionCheck() {
+	public void testAccusationCheck() {
+		Solution testAccusation = new Solution();
+		board.selectAnswer();
+		board.setSolution("Hunter Cobalt","Rec Room", "Wrench");
 		//Correct Solution
+		testAccusation.person = "Hunter Cobalt";
+		testAccusation.room = "Rec Room";
+		testAccusation.weapon = "Wrench";
+		assertTrue(board.checkAccusation(testAccusation));
 		//Wrong Person
+		testAccusation.person = "Captain Ebony";
+		assertFalse(board.checkAccusation(testAccusation));
 		//Wrong Weapon
+		testAccusation.person = "Hunter Cobalt";
+		testAccusation.weapon = "Rock";
+		assertFalse(board.checkAccusation(testAccusation));
 		//Wrong Room
+		testAccusation.room = "Kitchen";
+		testAccusation.weapon = "Wrench";
+		assertFalse(board.checkAccusation(testAccusation));
 	}
 	
 	@Test

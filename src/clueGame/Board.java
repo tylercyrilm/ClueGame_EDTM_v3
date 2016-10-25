@@ -32,9 +32,14 @@ public class Board {
 	public ArrayList<Card> personCards;
 	public ArrayList<Card> weaponCards;
 	public Set<Card> dealtCards = new HashSet<Card>();
-	private static Solution solution;
+	private static Solution solution = new Solution();
 	public Solution suggestion;
 	
+	public void setSolution(String person, String room, String weapon) {
+		solution.person = person;
+		solution.room = room;
+		solution.weapon = weapon;
+	}
 	
 	//This function has had "people" and "weapons" added, you'll need to update this call in previous tests
 	public void setConfigFiles(String layout, String legend){
@@ -374,7 +379,7 @@ public class Board {
 		rand = r.nextInt(weaponCards.size());
 		Card weapon = weaponCards.get(rand);
 		//Build the solution
-		solution = new Solution(person.getName(), place.getName(), weapon.getName());
+		setSolution(person.getName(), place.getName(), weapon.getName());
 	}
 	
 	public Card handleSuggestion() {
