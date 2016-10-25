@@ -53,10 +53,11 @@ public class gameActionTests {
 		assert(L2 > 1);
 		assert(L3 > 1);
 		assert(L4 > 1);
-		//if room in list that was not just visited, must select it
+		//if room is in list that was not just visited, must select it
 		testCompPlayer.setLocation(15, 21);
 		board.calcTargets(15, 21, 3);
 		assertEquals(board.getCellAt(13, 22), testCompPlayer.pickLocation(board.targets));
+		testCompPlayer.visitedRooms.add(board.getCellAt(13, 22));
 		//if room just visited is in list, each target including room selected randomly
 		int L11 = 0;
 		int L22 = 0;
@@ -115,7 +116,10 @@ public class gameActionTests {
 	
 	@Test
 	public void testAccustaionCheck() {
-		fail("Not yet implemented");
+		//Correct Solution
+		//Wrong Person
+		//Wrong Weapon
+		//Wrong Room
 	}
 	
 	@Test

@@ -9,11 +9,59 @@ import clueGame.Board;
 public class ComputerPlayer extends Player {
 	public Set<Card> seenPeopleCards = new HashSet<Card>();
 	public Set<Card> seenWeaponCards = new HashSet<Card>();
-	public BoardCell lastRoomVisited = new BoardCell();
+	public Set<BoardCell> visitedRooms = new HashSet<BoardCell>();
+	public ArrayList<BoardCell> doorsInRange = new ArrayList<BoardCell>();
+	public ArrayList<BoardCell> totalRooms = new ArrayList<BoardCell>();
 	
 	public BoardCell pickLocation(Set<BoardCell> targets) {
-		BoardCell testCell = new BoardCell();
-		return testCell;
+		doorsInRange.clear();
+		totalRooms.clear();
+		for (BoardCell bc : targets) {
+			if (bc.isDoorway()) {
+				doorsInRange.add(bc);
+			}
+		}
+		
+		if (doorsInRange.size() == 1) {
+			if (!visitedRooms.contains(doorsInRange.get(0))) {
+				//set player location
+				totalRooms.add(doorsInRange.get(0));
+			}
+			else {
+				for (BoardCell c: targets) {
+					totalRooms.add(c);		//all targets should be in totalRooms
+				}
+			}
+		}
+		
+		else if(doorsInRange.size() > 1) {
+			if((visitedRooms.contains(doorsInRange.get(0)) && (visitedRooms.contains(doorsInRange.get(1))))) {
+				for (BoardCell c: targets) {
+					totalRooms.add(c);		//all targets should be in totalRooms
+				}
+			}
+			else if(visitedRooms.contains(doorsInRange.get(0))) {
+				totalRooms.add(doorsInRange.get(1));
+			}
+			else if(visitedRooms.contains(doorsInRange.get(1))) {
+				totalRooms.add(doorsInRange.get(0));
+			}
+			else {
+				totalRooms.add(doorsInRange.get(0));
+				totalRooms.add(doorsInRange.get(1));
+			}
+		}
+		
+		else {
+			for (BoardCell c: targets) {
+				totalRooms.add(c);		//all targets should be in totalRooms
+			}
+		}
+		Random rand = new Random();
+		BoardCell returnCell = totalRooms.get(rand.nextInt(totalRooms.size()));
+		row = returnCell.row;
+		column = returnCell.column;
+		return returnCell;
 	}
 	
 	public void makeAccusation() {
