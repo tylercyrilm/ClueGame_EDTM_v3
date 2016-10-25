@@ -33,6 +33,8 @@ public class Board {
 	public ArrayList<Card> weaponCards;
 	public Set<Card> dealtCards = new HashSet<Card>();
 	private static Solution solution;
+	public Solution suggestion;
+	
 	
 	//This function has had "people" and "weapons" added, you'll need to update this call in previous tests
 	public void setConfigFiles(String layout, String legend){

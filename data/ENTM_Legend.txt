@@ -1,0 +1,11 @@
+H, Hangar, Card
+Q, Crew Quarters, Card
+B, Brig, Card
+L, Library, Card
+K, Kitchen, Card
+M, Mess Hall, Card
+C, Laboratory, Card
+I, Infirmary, Card
+R, Rec Room, Card
+W, Walkway, other
+X, Gravity Core, other

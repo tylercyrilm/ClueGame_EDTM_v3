@@ -1,0 +1,6 @@
+SL-8-R, gray, 11, 1, C
+Captain Ebony, black, 2, 3, C
+Arlan Citrine, yellow, 0, 16, C
+Prime Viridian, green, 17, 25, C
+Rosette Foxwell, red, 17, 16, P
+Hunter Cobalt, blue, 19, 11, C
