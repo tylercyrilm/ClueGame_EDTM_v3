@@ -41,6 +41,10 @@ public class Board {
 		solution.weapon = weapon;
 	}
 	
+	public Solution getSolution() {
+		return solution;
+	}
+	
 	//This function has had "people" and "weapons" added, you'll need to update this call in previous tests
 	public void setConfigFiles(String layout, String legend){
 		roomConfigFile = legend;
@@ -185,6 +189,7 @@ public class Board {
 	}
 	
 	public void loadPlayerConfig() throws BadConfigFormatException {
+		int idCounter = 0;
 		personCards = new ArrayList<Card>();
 		try{
 			FileReader input = new FileReader(playerConfigFile);
@@ -199,6 +204,7 @@ public class Board {
 					player.setColor(convertColor(splitPieces[1]));
 					player.setRow(Integer.parseInt(splitPieces[2]));
 					player.setColumn(Integer.parseInt(splitPieces[3]));
+					player.id = -1;
 				}
 				else if(splitPieces[4].equals("C")) {
 					ComputerPlayer C1 = new ComputerPlayer();
@@ -206,7 +212,9 @@ public class Board {
 					C1.setColor(convertColor(splitPieces[1]));
 					C1.setRow(Integer.parseInt(splitPieces[2]));
 					C1.setColumn(Integer.parseInt(splitPieces[3]));
+					C1.id = idCounter;
 					comp.add(C1);
+					idCounter++;
 				}
 				else {
 					throw new BadConfigFormatException("The player configuration file is not in the correct format. Correct it and load again.");
@@ -382,7 +390,7 @@ public class Board {
 		setSolution(person.getName(), place.getName(), weapon.getName());
 	}
 	
-	public Card handleSuggestion() {
+	public Card handleSuggestion(Solution suggestion) {
 		Card testCard = new Card();
 		//TODO
 		return testCard;

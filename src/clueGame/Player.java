@@ -14,6 +14,7 @@ public class Player {
 	protected int column;
 	private Color color;	//CHANGE BACK TO A COLOR OBJECT
 	public Set<Card> hand = new HashSet<Card>();
+	public int id;
 	
 	public Card disproveSuggestion(Solution suggestion) {
 		ArrayList<Card> inHand = new ArrayList<Card>();

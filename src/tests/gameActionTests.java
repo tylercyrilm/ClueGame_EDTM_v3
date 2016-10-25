@@ -10,6 +10,7 @@ import clueGame.BoardCell;
 import clueGame.Card;
 import clueGame.CardType;
 import clueGame.ComputerPlayer;
+import clueGame.HumanPlayer;
 import clueGame.Player;
 import clueGame.Solution;
 
@@ -166,7 +167,33 @@ public class gameActionTests {
 	
 	@Test
 	public void testSuggestionHandling() {
-		fail("Not yet implemented");
+		
+		Solution testSuggestion = new Solution();
+		board.deal();
+		testSuggestion = board.getSolution();
+		Card testCard = new Card(testSuggestion.person, CardType.PERSON);
+		ComputerPlayer accusingCompPlayer = board.comp.get(0);
+		ComputerPlayer accusingCompPlayerTwo = board.comp.get(1);
+		HumanPlayer humanPlayer = board.player;
+		//suggestion no one can disprove returns null
+		assertEquals(null, board.handleSuggestion(testSuggestion));
+		//suggestion only accusing player can disprove returns null
+		accusingCompPlayer.hand.add(testCard);
+		assertEquals(null, board.handleSuggestion(testSuggestion));
+		accusingCompPlayer.hand.remove(testCard);
+		//suggestion only human can disprove returns answer
+		humanPlayer.hand.add(testCard);
+		assertEquals(testCard, board.handleSuggestion(testSuggestion));
+		//suggestion only human can disprove, but human is accuser, returns null
+		testSuggestion.setAccuserId(-1);
+		assertEquals(null, board.handleSuggestion(testSuggestion));
+		//suggestion that 2 players can disprove, correct player returns answer
+		Card testCardTwo = new Card(testSuggestion.room, CardType.ROOM);
+		accusingCompPlayerTwo.hand.add(testCardTwo);
+		assertEquals(testCard, board.handleSuggestion(testSuggestion));
+		//suggestion that human and another player can disprove, other player is next in list, ensure other player returns answer
+		testSuggestion.setAccuserId(0);
+		assertEquals(testCardTwo, board.handleSuggestion(testSuggestion));
 	}
 	
 	@Test

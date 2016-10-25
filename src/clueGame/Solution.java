@@ -4,6 +4,7 @@ public class Solution {
 	public String person;
 	public String room;
 	public String weapon;
+	public int accuserId;
 	
 	public Solution(String person, String room, String weapon) {
 		super();
@@ -14,5 +15,9 @@ public class Solution {
 	
 	public Solution() {
 		super();
+	}
+	
+	public void setAccuserId(int i) {
+		accuserId = i;
 	}
 }
