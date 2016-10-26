@@ -173,7 +173,7 @@ public class gameActionTests {
 		testSuggestion = board.getSolution();
 		Card testCard = new Card(testSuggestion.person, CardType.PERSON);
 		ComputerPlayer accusingCompPlayer = board.comp.get(0);
-		ComputerPlayer accusingCompPlayerTwo = board.comp.get(1);
+		ComputerPlayer accusingCompPlayerTwo = board.comp.get(3);
 		HumanPlayer humanPlayer = board.player;
 		//suggestion no one can disprove returns null
 		assertEquals(null, board.handleSuggestion(testSuggestion));
@@ -188,10 +188,13 @@ public class gameActionTests {
 		testSuggestion.setAccuserId(-1);
 		assertEquals(null, board.handleSuggestion(testSuggestion));
 		//suggestion that 2 players can disprove, correct player returns answer
+		accusingCompPlayer.hand.add(testCard);
 		Card testCardTwo = new Card(testSuggestion.room, CardType.ROOM);
 		accusingCompPlayerTwo.hand.add(testCardTwo);
 		assertEquals(testCard, board.handleSuggestion(testSuggestion));
 		//suggestion that human and another player can disprove, other player is next in list, ensure other player returns answer
+		accusingCompPlayer.hand.remove(testCard);
+		humanPlayer.hand.add(testCard);
 		testSuggestion.setAccuserId(0);
 		assertEquals(testCardTwo, board.handleSuggestion(testSuggestion));
 	}

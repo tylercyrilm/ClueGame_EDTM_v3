@@ -391,9 +391,35 @@ public class Board {
 	}
 	
 	public Card handleSuggestion(Solution suggestion) {
-		Card testCard = new Card();
-		//TODO
-		return testCard;
+		System.out.println("New handling case");
+		//Check ID which is equal to the index
+		int id;
+		if (suggestion.accuserId == comp.size()-1) {
+			id = -1;
+		}
+		else {
+			id = suggestion.accuserId + 1;
+		}
+		int i = id +1;
+		Card resolution = null;
+		//Players to go in order and look in their own hands for the card
+		while (id != suggestion.accuserId) {
+			if (id == -1) {
+				resolution = player.disproveSuggestion(suggestion);
+			}
+			else {
+				resolution = comp.get(id).disproveSuggestion(suggestion);
+			}
+			System.out.println(id + ": " + resolution);
+			if (resolution != null) {
+				return resolution;
+			}
+			i++;
+			id = (i % (comp.size() + 1)) - 1;
+		}
+		//If card not in player hand, move to next player
+		//P--1--2--3--4--5--P
+		return resolution;
 	}
 	
 	public boolean checkAccusation(Solution accusation) {
