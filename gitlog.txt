@@ -1,3 +1,51 @@
+commit 7552e1945a91182d663f5cc368014076914c8f6c
+Author: Emily Nielsen <enielsen@mymail.mines.edu>
+Date:   Tue Oct 25 21:59:42 2016 -0600
+
+    All tests pass
+
+commit b4ea799ce4e310d4f661523d12377aabd7ccdf05
+Author: Emily Nielsen <enielsen@mymail.mines.edu>
+Date:   Tue Oct 25 16:14:04 2016 -0600
+
+    testSuggestionHandling tests written and fail
+
+commit 08f2a2c4f15af783a3f3355210e448337ee2ab31
+Author: Emily Nielsen <enielsen@mymail.mines.edu>
+Date:   Tue Oct 25 15:17:48 2016 -0600
+
+    testDisproveSuggestion() test passes
+
+commit 39da1aa0fbb7dca808bb3532bae3b5c1a46ed16f
+Author: Emily Nielsen <enielsen@mymail.mines.edu>
+Date:   Tue Oct 25 15:05:56 2016 -0600
+
+    testDisproveSuggestion() test written and fail
+
+commit 405c683d5116c34caf332ef2703b80baf9248ec5
+Author: Emily Nielsen <enielsen@mymail.mines.edu>
+Date:   Tue Oct 25 14:21:21 2016 -0600
+
+    testAccusation tests pass
+
+commit 1d2dfa987ce5310ac16a910bdf27b11e4e6191c2
+Author: Emily Nielsen <enielsen@mymail.mines.edu>
+Date:   Tue Oct 25 14:18:33 2016 -0600
+
+    testAccusation tests written and fail
+
+commit f9c219e509b37f43629402459e4fb72d5c117899
+Author: Emily Nielsen <enielsen@mymail.mines.edu>
+Date:   Tue Oct 25 14:01:47 2016 -0600
+
+    testTargetSelection test passes
+
+commit c804ca410eb7f94cb1bf764cce0bb54b1943f743
+Author: Emily Nielsen <enielsen@mymail.mines.edu>
+Date:   Tue Oct 25 11:53:04 2016 -0600
+
+    testTargetSelection test written and fails
+
 commit 6daff853ac8d49c9bf444011769820f1a7bb5953
 Author: Emily Nielsen <enielsen@mymail.mines.edu>
 Date:   Mon Oct 24 21:05:20 2016 -0600

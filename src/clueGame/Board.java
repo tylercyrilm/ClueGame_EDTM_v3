@@ -1,5 +1,8 @@
 package clueGame;
 import java.io.FileNotFoundException;
+
+//import javax.swing.JFrame;
+
 import java.io.FileReader;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -391,7 +394,6 @@ public class Board {
 	}
 	
 	public Card handleSuggestion(Solution suggestion) {
-		System.out.println("New handling case");
 		//Check ID which is equal to the index
 		int id;
 		if (suggestion.accuserId == comp.size()-1) {
@@ -410,7 +412,6 @@ public class Board {
 			else {
 				resolution = comp.get(id).disproveSuggestion(suggestion);
 			}
-			System.out.println(id + ": " + resolution);
 			if (resolution != null) {
 				return resolution;
 			}
