@@ -37,7 +37,7 @@ public class gameActionTests {
 		int L3 = 0;
 		int L4 = 0;
 		for (int i=0; i<300; i++) {
-			BoardCell testCell = testCompPlayer.pickLocation(board.targets);
+			BoardCell testCell = testCompPlayer.pickLocation(board.getTargets());
 			if(testCell == (board.getCellAt(17, 21))) {
 				L1++;
 			}
@@ -58,7 +58,7 @@ public class gameActionTests {
 		//if room is in list that was not just visited, must select it
 		testCompPlayer.setLocation(15, 21);
 		board.calcTargets(15, 21, 3);
-		assertEquals(board.getCellAt(13, 22), testCompPlayer.pickLocation(board.targets));
+		assertEquals(board.getCellAt(13, 22), testCompPlayer.pickLocation(board.getTargets()));
 		testCompPlayer.visitedRooms.add(board.getCellAt(13, 22));
 		//if room just visited is in list, each target including room selected randomly
 		int L11 = 0;
@@ -72,7 +72,7 @@ public class gameActionTests {
 		int L99 = 0;
 		int room = 0;
 		for (int i=0; i<300; i++) {
-			BoardCell testCell = testCompPlayer.pickLocation(board.targets);
+			BoardCell testCell = testCompPlayer.pickLocation(board.getTargets());
 			if(testCell == (board.getCellAt(13, 20))) {
 				L11++;
 			}
