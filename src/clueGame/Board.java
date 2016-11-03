@@ -248,7 +248,7 @@ public class Board {
 			System.out.println(e.getMessage());
 		}
 	}
-	
+	 
 	public void calcAdjacencies(){
 		adjMatrix.clear();
 		int x = board[0].length;
