@@ -480,9 +480,14 @@ public class Board extends JPanel {
 		return dealtCards;
 	}
 	
-	
+
 	public void paintComponent(Graphics g) {
-		
+		super.paintComponent(g);
+		for (int i = 0; i < numRows; i++) {
+			for (int j = 0; j < numColumns; j++) {
+				board[i][j].draw(g);
+			}
+		}
 	}
 	
 	
