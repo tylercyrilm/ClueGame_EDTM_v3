@@ -57,8 +57,8 @@ public class Player {
 		color = c; 
 	}
 	
-	public void setRow(int i) {
-		row = i;
+	public void setRow(int r) {
+		row = r;
 	}
 	
 	public void setColumn(int col) {
