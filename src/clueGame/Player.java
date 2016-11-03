@@ -25,7 +25,7 @@ public class Player {
 		}
 		
 		Random rand = new Random();
-		if (inHand.size() != 0) {
+		if (!inHand.isEmpty()) {
 			return inHand.get(rand.nextInt(inHand.size()));
 		}
 		else {
