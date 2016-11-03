@@ -109,6 +109,7 @@ public class Board {
 				}	
 			}
 			in.close();
+			
 		} catch (FileNotFoundException e){
 			System.out.println(e.getMessage());
 		}
@@ -156,7 +157,6 @@ public class Board {
 					switch (dir){
 					case 'D':
 						board[numRows][i].direction = DoorDirection.DOWN;
-						
 						break;
 					case 'U':
 						board[numRows][i].direction = DoorDirection.UP;

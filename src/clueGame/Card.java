@@ -10,7 +10,6 @@ public class Card {
 	private CardType type;
 	
 	public boolean equals(){
-		
 		return false;
 	}
 	

@@ -69,4 +69,5 @@ public class Player {
 		row = r;
 		column = col;
 	}
+	
 }
