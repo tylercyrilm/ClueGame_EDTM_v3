@@ -34,7 +34,7 @@ public class Board {
 	public ArrayList<Card> roomCards;
 	public ArrayList<Card> personCards;
 	public ArrayList<Card> weaponCards;
-	public Set<Card> dealtCards = new HashSet<Card>();
+	private Set<Card> dealtCards = new HashSet<Card>();
 	private static Solution solution = new Solution();
 	public Solution suggestion;
 	
@@ -461,5 +461,9 @@ public class Board {
 			color = null;
 		}
 		return color;
+	}
+	
+	public Set<Card> getDealtCards() {
+		return dealtCards;
 	}
 }

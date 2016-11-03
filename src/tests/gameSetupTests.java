@@ -76,7 +76,7 @@ public class gameSetupTests {
 		Player testPlayer;
 		testPlayer = board.player;
 		//all cards should be dealt
-		assertEquals(18, board.dealtCards.size());
+		assertEquals(18, board.getDealtCards().size());
 		//all players should have roughly same # of cards
 		assertEquals(3, board.player.hand.size());
 		assertEquals(3, board.comp.get(0).hand.size());
