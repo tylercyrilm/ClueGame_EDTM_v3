@@ -1,3 +1,15 @@
+commit b53a308e38d165995acc55e10d6e87d8e8336f1f
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Thu Nov 3 11:40:25 2016 -0600
+
+    NOTE: All programming done was pair programming
+
+commit 6df80652f53b652ceadfbce0ae7ad2242377bc15
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Thu Nov 3 11:39:48 2016 -0600
+
+    Further modified calcAdjacencies so that there was no longer unnecessary if/else statements
+
 commit 50c66c49219f0b3244ffe4e95fe3e5ea19666a96
 Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
 Date:   Thu Nov 3 11:36:36 2016 -0600
