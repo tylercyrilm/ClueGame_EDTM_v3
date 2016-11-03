@@ -1,3 +1,57 @@
+commit 50c66c49219f0b3244ffe4e95fe3e5ea19666a96
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Thu Nov 3 11:36:36 2016 -0600
+
+    Went through and deleted unnecessary comments and System.out.println() statements
+
+commit 3da40df0cf49754fed3ba38598e737efe85490aa
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Thu Nov 3 11:25:11 2016 -0600
+
+    Changed ccalcAdjacencies function so that code was more compacted.
+
+commit 111a6865f6e546c22131e3f004633c1bab319ffd
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Thu Nov 3 11:04:18 2016 -0600
+
+    Changedaccess modifiers in Board class so that more stuff was private. Added accessor functions.
+
+commit 9037a2be55c387ca1c7bbe8e14ee8098f71f8da1
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Thu Nov 3 10:56:24 2016 -0600
+
+    Modified disproveSuggestion function to be more concise
+
+commit 70e607b8e5c2d301548427fc4fce07ed63ff72b1
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Thu Nov 3 09:23:30 2016 -0600
+
+    Modified player class variables to be more clear
+
+commit e54cb6c8b7e80959fd6b0898c896e88c91953c1c
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Thu Nov 3 09:18:57 2016 -0600
+
+    Added comments to better explain what a few functions do
+
+commit 253a50e2cdf5193e9ee838feea343e3ce31c7564
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Tue Nov 1 13:38:59 2016 -0600
+
+    In board, changed targets from public to private, and made small modifications to tests to use a getter function
+
+commit 906a7329767224d135339f5162d2739c73d027d7
+Author: Emily Nielsen <enielsen@mymail.mines.edu>
+Date:   Sat Oct 29 19:15:42 2016 -0600
+
+    GUI files work and run! New class added to gitlog
+
+commit 12644bc026c8358b0ebcef6c7712fb38b2070499
+Author: Emily Nielsen <enielsen@mymail.mines.edu>
+Date:   Fri Oct 28 16:02:26 2016 -0600
+
+    GUI written, not yet finished
+
 commit 7552e1945a91182d663f5cc368014076914c8f6c
 Author: Emily Nielsen <enielsen@mymail.mines.edu>
 Date:   Tue Oct 25 21:59:42 2016 -0600

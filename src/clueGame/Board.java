@@ -257,11 +257,7 @@ public class Board {
 			for (int j = 0; j < x; j++){
 				Set<BoardCell> adj = new HashSet<BoardCell>();
 				if (board[i][j].initial != 'W'){ 
-					if (board[i][j].isDoorway() == false){
-						//in a room and not in a doorway
-						//no adjacencies added
-					}
-					else{
+					if (board[i][j].isDoorway()){
 						//in a doorway
 						switch(board[i][j].direction){
 						case UP:
