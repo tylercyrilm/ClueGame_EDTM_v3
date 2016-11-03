@@ -8,6 +8,7 @@ public class BoardCell {
 	public int column;
 	public char initial;
 	public DoorDirection direction = DoorDirection.NONE;
+	private int cellDim = 30; 
 	
 	public void setLocation(int i, int j) {
 		row = i;
@@ -30,7 +31,14 @@ public class BoardCell {
 		}
 		return true;
 	}
-	
+	public boolean isWalkway() {
+		if (initial == 'W') {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 	public DoorDirection getDoorDirection(){
 		return direction;
 	}
@@ -40,7 +48,13 @@ public class BoardCell {
 	}
 	
 	public void draw(Graphics g) {
-		g.setColor(Color.BLUE);
-		g.drawRect(row*10, column*10, 10, 10);
+		if (isWalkway()) {
+			g.setColor(Color.YELLOW);
+			g.drawRect(column*cellDim, row*cellDim, cellDim, cellDim);
+		}
+		else {
+			g.setColor(Color.BLUE);
+			g.drawRect(column*cellDim, row*cellDim, cellDim, cellDim);
+		}
 	}
 }
