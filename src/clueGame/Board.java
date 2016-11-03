@@ -248,6 +248,7 @@ public class Board {
 	}
 	
 	public void calcAdjacencies(){
+		//clear adj list here?
 		int x = board[0].length;
 		int y = board.length;
 		for (int i = 0; i < y; i++){
@@ -281,22 +282,22 @@ public class Board {
 				else{
 				//outside of a room and not in a doorway
 				if(i - 1 >= 0){ 
-					if((board[i-1][j].isDoorway() && board[i-1][j].direction == DoorDirection.DOWN)|| board[i-1][j].initial == 'W'){
+					if(inBoard(i-1,j,DoorDirection.DOWN)){
 						adj.add(board[i-1][j]);
 					}
 				}
 				if (i + 1 < y){
-					if((board[i+1][j].isDoorway() && board[i+1][j].direction == DoorDirection.UP)|| board[i+1][j].initial == 'W'){
+					if(inBoard(i+1,j,DoorDirection.UP)){
 						adj.add(board[i +1][j]);
 					}
 				}
 				if (j - 1 >= 0){
-					if((board[i][j-1].isDoorway() && board[i][j-1].direction == DoorDirection.RIGHT)|| board[i][j-1].initial == 'W'){
+					if(inBoard(i,j-1,DoorDirection.RIGHT)){
 						adj.add(board[i][j-1]);
 					}
 				}
 				if (j + 1 < x){
-					if((board[i][j+1].isDoorway() && board[i][j+1].direction == DoorDirection.LEFT)|| board[i][j+1].initial == 'W'){
+					if(inBoard(i,j+1,DoorDirection.LEFT)){
 						adj.add(board[i][j+1]);
 					}
 				}
@@ -305,6 +306,16 @@ public class Board {
 			adjMatrix.put(board[i][j], adj);
 			}
 		}
+	}
+	
+	private boolean inBoard(int row, int col, DoorDirection current) {
+		if ((board[row][col].isDoorway() && board[row][col].direction == current)|| board[row][col].initial == 'W') {
+			return true;
+		}
+		else {
+			return false;
+		}
+		
 	}
 	
 	public void calcTargets(int row, int column, int pathLength) {
