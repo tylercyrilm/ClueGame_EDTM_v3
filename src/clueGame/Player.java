@@ -12,7 +12,7 @@ public class Player {
 	private String playerName;
 	protected int row;
 	protected int column;
-	private Color color;	//CHANGE BACK TO A COLOR OBJECT
+	private Color color;	
 	public Set<Card> hand = new HashSet<Card>();
 	public int id;
 	

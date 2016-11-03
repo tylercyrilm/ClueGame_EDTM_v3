@@ -69,7 +69,7 @@ public class ComputerPlayer extends Player {
 		return new Solution(person, room, weapon);
 	}
 	
-	//What does this do?
+
 	public void createSuggestion(Board board) {
 		if(board.getCellAt(row, column).isDoorway()) {
 			Random rand = new Random();

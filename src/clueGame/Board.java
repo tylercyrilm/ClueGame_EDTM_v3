@@ -136,8 +136,10 @@ public class Board {
 			if(numRows == 0){
 				rowLength = splitRows.length;
 			}
-			//CHECK THIS STATEMENT
-			if (numColumns == 0) numColumns = splitRows.length;
+
+			if (numColumns == 0) {
+				numColumns = splitRows.length;
+			}
 			
 			if(splitRows.length != numColumns){
 				throw new BadConfigFormatException("Incorrect number of Columns");
@@ -171,11 +173,11 @@ public class Board {
 					
 				}	
 				
-			}//end of for loop
+			}
 			
 			numRows++;
 
-		} //end of while loop
+		} 
 		BoardCell [][] tempArray = new BoardCell[numRows][rowLength];
 		for(int i = 0; i < numRows; i++){
 			for (int j = 0; j < rowLength; j++){
@@ -248,7 +250,7 @@ public class Board {
 	}
 	
 	public void calcAdjacencies(){
-		//clear adj list here?
+		adjMatrix.clear();
 		int x = board[0].length;
 		int y = board.length;
 		for (int i = 0; i < y; i++){

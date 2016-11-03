@@ -232,7 +232,6 @@ public class CR_BoardAdjTargetTests {
 	public void testTargetsSixSteps() {
 		board.calcTargets(14, 0, 6);
 		Set<BoardCell> targets= board.getTargets();
-		//System.out.println(targets);
 		assertEquals(7, targets.size());
 		assertTrue(targets.contains(board.getCellAt(14, 6)));
 		assertTrue(targets.contains(board.getCellAt(15, 5)));	
@@ -252,7 +251,6 @@ public class CR_BoardAdjTargetTests {
 		// One room is exactly 2 away
 		board.calcTargets(17, 16, 2);
 		Set<BoardCell> targets= board.getTargets();
-		//System.out.println(targets);
 		assertEquals(7, targets.size());
 		// directly left (can't go right 2 steps)
 		assertTrue(targets.contains(board.getCellAt(17, 14)));
