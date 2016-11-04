@@ -57,30 +57,28 @@ public class BoardCell {
 			g.drawRect(column*cellDim, row*cellDim, cellDim, cellDim);
 		}
 		else if (isDoorway()) {
-			
-			
+			g.setColor(Color.LIGHT_GRAY);
+			g.fillRect(column*cellDim, row*cellDim, cellDim, cellDim);	
 			switch (direction){
 				case UP: {
 					g.setColor(Color.BLUE);
-					g.fillRect(column*cellDim, row*cellDim, cellDim, doorWidth);
-					g.setColor(Color.LIGHT_GRAY);
-					g.fillRect(column*cellDim, row*cellDim + doorWidth, cellDim, cellDim-doorWidth);
+					g.fillRect(column*cellDim, row*cellDim, cellDim, doorWidth);				
 					break;	
 				}
 				case DOWN: {
-					g.setColor(Color.RED);
-					g.fillRect(column*cellDim, row*cellDim, cellDim, cellDim);
-					break;
+					g.setColor(Color.BLUE);
+					g.fillRect(column*cellDim, (row+1)*cellDim - doorWidth, cellDim, doorWidth);
+					break;	
 				}
 				case LEFT: {
-					g.setColor(Color.GREEN);
-					g.fillRect(column*cellDim, row*cellDim, cellDim, cellDim);
-					break;
+					g.setColor(Color.BLUE);
+					g.fillRect(column*cellDim, row*cellDim, doorWidth, cellDim);
+					break;	
 				}
 				case RIGHT: {
-					g.setColor(Color.YELLOW);
-					g.fillRect(column*cellDim, row*cellDim, cellDim, cellDim);
-					break;
+					g.setColor(Color.BLUE);
+					g.fillRect((column+1)*cellDim - doorWidth, row*cellDim, doorWidth, cellDim);
+					break;	
 				}
 				default: {
 					g.setColor(Color.BLUE);
