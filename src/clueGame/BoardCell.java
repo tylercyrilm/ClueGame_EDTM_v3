@@ -58,6 +58,10 @@ public class BoardCell {
 			g.setColor(Color.DARK_GRAY);
 			g.fillRect(column*cellDim, row*cellDim, cellDim, cellDim);
 		}
+		else if (initial == 'X') {
+			g.setColor(Color.DARK_GRAY);
+			g.fillRect(column*cellDim, row*cellDim, cellDim, cellDim);
+		}
 		else {
 			g.setColor(Color.LIGHT_GRAY);
 			g.fillRect(column*cellDim, row*cellDim, cellDim, cellDim);
