@@ -173,6 +173,8 @@ public class Board extends JPanel {
 					case 'R':
 						board[numRows][i].direction = DoorDirection.RIGHT;
 						break;
+					case 'W':
+						board[numRows][i].writesName = true;
 					}
 					
 				}	
