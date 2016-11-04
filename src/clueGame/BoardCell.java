@@ -9,6 +9,7 @@ public class BoardCell {
 	public char initial;
 	public DoorDirection direction = DoorDirection.NONE;
 	private int cellDim = 30; 
+	private int doorWidth = 10; 
 	public boolean writesName = false;
 	
 	public void setLocation(int i, int j) {
@@ -56,13 +57,35 @@ public class BoardCell {
 			g.drawRect(column*cellDim, row*cellDim, cellDim, cellDim);
 		}
 		else if (isDoorway()) {
-			g.setColor(Color.BLUE);
-			g.fillRect(column*cellDim, row*cellDim, cellDim, cellDim);
-			g.setColor(Color.GREEN);
+			
+			
 			switch (direction){
-			case UP: {
-				
-			}
+				case UP: {
+					g.setColor(Color.BLUE);
+					g.fillRect(column*cellDim, row*cellDim, cellDim, doorWidth);
+					g.setColor(Color.LIGHT_GRAY);
+					g.fillRect(column*cellDim, row*cellDim + doorWidth, cellDim, cellDim-doorWidth);
+					break;	
+				}
+				case DOWN: {
+					g.setColor(Color.RED);
+					g.fillRect(column*cellDim, row*cellDim, cellDim, cellDim);
+					break;
+				}
+				case LEFT: {
+					g.setColor(Color.GREEN);
+					g.fillRect(column*cellDim, row*cellDim, cellDim, cellDim);
+					break;
+				}
+				case RIGHT: {
+					g.setColor(Color.YELLOW);
+					g.fillRect(column*cellDim, row*cellDim, cellDim, cellDim);
+					break;
+				}
+				default: {
+					g.setColor(Color.BLUE);
+					g.fillRect(column*cellDim, row*cellDim, cellDim, cellDim);
+				}
 			
 			}
 		}
