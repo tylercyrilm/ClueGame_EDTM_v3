@@ -14,6 +14,7 @@ import javax.swing.JMenuItem;
 
 public class ClueGame extends JFrame {
 	private static Board board;
+	private DetectiveNotes notes;
 	private Graphics g;
 	
 	public ClueGame() {
@@ -35,6 +36,7 @@ public class ClueGame extends JFrame {
 	private JMenu createFileMenu() {
 		JMenu menu = new JMenu("File");
 		menu.add(createFileExitItem());
+		menu.add(createDetectiveNotesItem());
 		return menu;
 	}
 	
@@ -43,6 +45,18 @@ public class ClueGame extends JFrame {
 		class MenuItemListener implements ActionListener {
 			public void actionPerformed (ActionEvent e) {
 				System.exit(0);
+			}
+		}
+		item.addActionListener(new MenuItemListener());
+		return item;
+	}
+	
+	private JMenuItem createDetectiveNotesItem() {
+		JMenuItem item = new JMenuItem("Show Notes");
+		class MenuItemListener implements ActionListener {
+			public void actionPerformed (ActionEvent e) {
+				notes = new DetectiveNotes();
+				notes.setVisible(true);
 			}
 		}
 		item.addActionListener(new MenuItemListener());

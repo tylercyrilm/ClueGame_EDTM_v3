@@ -1,5 +1,10 @@
 package clueGame;
 
-public class DetectiveNotes {
+import javax.swing.JDialog;
 
+public class DetectiveNotes extends JDialog{
+
+	public DetectiveNotes() {
+		setTitle("Detective Notes");
+	}
 }
