@@ -3,6 +3,7 @@ package clueGame;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -13,7 +14,7 @@ import javax.swing.border.TitledBorder;
 
 public class DetectiveNotes extends JDialog{
 
-	private JTextField guess, result, roll, whoseTurn;
+	//private JCheckBox person1;
 	
 	public DetectiveNotes() {
 		setTitle("Detective Notes");
@@ -37,6 +38,9 @@ public class DetectiveNotes extends JDialog{
 
 	private JPanel createPeople() {
 		JPanel panel = new JPanel();
+		
+		JCheckBox person1 = new JCheckBox ("First Person");
+		panel.add(person1);
 		panel.setBorder(new TitledBorder (new EtchedBorder(), "People"));
 		return panel;
 	}
