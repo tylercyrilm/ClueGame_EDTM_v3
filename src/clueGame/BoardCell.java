@@ -2,6 +2,7 @@ package clueGame;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 public class BoardCell {
 	public int row;
@@ -15,7 +16,6 @@ public class BoardCell {
 	public void setLocation(int i, int j) {
 		row = i;
 		column = j;
-		
 	}
 	
 	public BoardCell(){
@@ -59,29 +59,25 @@ public class BoardCell {
 		else if (isDoorway()) {
 			g.setColor(Color.LIGHT_GRAY);
 			g.fillRect(column*cellDim, row*cellDim, cellDim, cellDim);	
+			g.setColor(Color.BLUE);
 			switch (direction){
 				case UP: {
-					g.setColor(Color.BLUE);
 					g.fillRect(column*cellDim, row*cellDim, cellDim, doorWidth);				
 					break;	
 				}
 				case DOWN: {
-					g.setColor(Color.BLUE);
 					g.fillRect(column*cellDim, (row+1)*cellDim - doorWidth, cellDim, doorWidth);
 					break;	
 				}
 				case LEFT: {
-					g.setColor(Color.BLUE);
 					g.fillRect(column*cellDim, row*cellDim, doorWidth, cellDim);
 					break;	
 				}
 				case RIGHT: {
-					g.setColor(Color.BLUE);
 					g.fillRect((column+1)*cellDim - doorWidth, row*cellDim, doorWidth, cellDim);
 					break;	
 				}
 				default: {
-					g.setColor(Color.BLUE);
 					g.fillRect(column*cellDim, row*cellDim, cellDim, cellDim);
 				}
 			
@@ -96,6 +92,8 @@ public class BoardCell {
 			g.fillRect(column*cellDim, row*cellDim, cellDim, cellDim);
 		}
 		if(writesName) {
+			//Graphics2D g2d = (Graphics2D)g;
+			g.setColor(Color.BLUE);
 			g.drawString("Name of Room", column*cellDim, row*cellDim);
 		}
 	}

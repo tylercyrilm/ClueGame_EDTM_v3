@@ -25,18 +25,12 @@ public class DetectiveNotes extends JDialog{
 		setSize(400,700);
 		
 		setLayout(new GridLayout(3,2));
-		JPanel panel = createPeople();
-		add(panel);
-		panel = createPersonGuess();
-		add(panel);
-		panel = createRooms();
-		add(panel);
-		panel = createRoomGuess();
-		add(panel);
-		panel = createWeapon();
-		add(panel);
-		panel = createWeaponGuess();
-		add(panel);
+		add(createPeople());
+		add(createPersonGuess());
+		add(createRooms());
+		add(createRoomGuess());
+		add(createWeapon());
+		add(createWeaponGuess());
 		
 	}
 
@@ -105,12 +99,4 @@ public class DetectiveNotes extends JDialog{
 		panel.setBorder(new TitledBorder (new EtchedBorder(), "Weapon Guess"));
 		return panel;
 	}
-
-
-
-
-	
-	
-	
-	
 }

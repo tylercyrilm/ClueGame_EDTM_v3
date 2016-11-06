@@ -490,6 +490,10 @@ public class Board extends JPanel {
 				board[i][j].draw(g);
 			}
 		}
+		player.draw(g);
+		for (ComputerPlayer c: comp) {
+			c.draw(g);
+		}
 	}
 	
 	

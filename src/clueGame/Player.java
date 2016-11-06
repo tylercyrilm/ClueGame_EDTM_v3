@@ -7,6 +7,7 @@ import java.util.Random;
 import clueGame.Board;
 import java.util.Set;
 import java.awt.Color;
+import java.awt.Graphics;
 
 public class Player {
 	private String playerName;
@@ -15,6 +16,8 @@ public class Player {
 	private Color color;	
 	public Set<Card> hand = new HashSet<Card>();
 	public int id;
+	private static final int playerDim = 28;
+	private static final int cellDim = 30;
 	
 	public Card disproveSuggestion(Solution suggestion) {
 		ArrayList<Card> inHand = new ArrayList<Card>();
@@ -31,6 +34,13 @@ public class Player {
 		else {
 			return null;
 		}
+	}
+	
+	public void draw(Graphics g) {
+		g.setColor(color);
+		g.fillOval(column*cellDim, row*cellDim, playerDim, playerDim);
+		g.setColor(Color.BLACK);
+		g.drawOval(column*cellDim, row*cellDim, playerDim, playerDim);
 	}
 	
 	public String getName() {

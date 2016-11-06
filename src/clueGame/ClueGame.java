@@ -24,7 +24,7 @@ public class ClueGame extends JFrame {
 		board.setWPConfigFiles("data/ENTM_CluePlayers.txt", "data/ENTM_ClueWeapons.txt");
 		board.initialize();
 		
-		setSize(board.getNumColumns()*30, (board.getNumRows()+1)*30);
+		setSize(board.getNumColumns()*40, (board.getNumRows()+1)*40);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		add(board, BorderLayout.CENTER);
 		
