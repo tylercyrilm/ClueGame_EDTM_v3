@@ -487,7 +487,7 @@ public class Board extends JPanel {
 		super.paintComponent(g);
 		for (int i = 0; i < numRows; i++) {
 			for (int j = 0; j < numColumns; j++) {
-				board[i][j].draw(g);
+				board[i][j].draw(g, rooms);
 			}
 		}
 		player.draw(g);
@@ -495,6 +495,4 @@ public class Board extends JPanel {
 			c.draw(g);
 		}
 	}
-	
-	
 }

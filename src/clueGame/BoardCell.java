@@ -3,6 +3,7 @@ package clueGame;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.Map;
 
 public class BoardCell {
 	public int row;
@@ -49,9 +50,9 @@ public class BoardCell {
 		return initial; 
 	}
 	
-	public void draw(Graphics g) {
+	public void draw(Graphics g, Map<Character,String> legend) {
 		if (isWalkway()) {
-			g.setColor(Color.YELLOW);
+			g.setColor(Color.WHITE);
 			g.fillRect(column*cellDim, row*cellDim, cellDim, cellDim);
 			g.setColor(Color.PINK);
 			g.drawRect(column*cellDim, row*cellDim, cellDim, cellDim);
@@ -92,9 +93,9 @@ public class BoardCell {
 			g.fillRect(column*cellDim, row*cellDim, cellDim, cellDim);
 		}
 		if(writesName) {
-			//Graphics2D g2d = (Graphics2D)g;
 			g.setColor(Color.BLUE);
-			g.drawString("Name of Room", column*cellDim, row*cellDim);
+			Graphics2D g2d = (Graphics2D)g;
+			g2d.drawString(legend.get(initial), column*cellDim, row*cellDim);
 		}
 	}
 }
