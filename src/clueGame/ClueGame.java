@@ -51,12 +51,12 @@ public class ClueGame extends JFrame {
 		return item;
 	}
 	
-	//Do we want to pass the board into the detective notes? 
+
 	private JMenuItem createDetectiveNotesItem() {
 		JMenuItem item = new JMenuItem("Show Notes");
 		class MenuItemListener implements ActionListener {
 			public void actionPerformed (ActionEvent e) {
-				notes = new DetectiveNotes();
+				notes = new DetectiveNotes(board);
 				notes.setVisible(true);
 			}
 		}
