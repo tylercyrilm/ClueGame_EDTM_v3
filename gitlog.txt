@@ -1,3 +1,21 @@
+commit 65638d6dc724cc7fe715cdd9638ac0b7009337f6
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Tue Nov 8 12:02:53 2016 -0700
+
+    Added cards along the side of the display board gui
+
+commit cda384ae0cf3cff272c8fa7c77262d168bfc7a14
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Tue Nov 8 11:45:33 2016 -0700
+
+    Added Info Panel at bottom of Board gui
+
+commit 0ee8a46fbb0085ba147091969c32ab27b52afb03
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Tue Nov 8 11:08:53 2016 -0700
+
+    Added welcome to clue popup message box
+
 commit 6c756888643bbbc1c25ff44c0ca0cb236eec9e11
 Author: Tyler Martinez <tymartin@adit.mines.edu>
 Date:   Sun Nov 6 15:02:27 2016 -0700

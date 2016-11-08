@@ -362,7 +362,7 @@ public class Board extends JPanel {
 			if (!p.getName().equals(solution.person)) {
 				dealDeck.add(p);
 			}
-		}
+		} 
 		//Add all weapon cards not in the solution to the deck
 		for (Card w:weaponCards) {
 			if (!w.getName().equals(solution.weapon)) {
