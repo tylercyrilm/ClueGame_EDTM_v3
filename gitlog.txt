@@ -1,3 +1,105 @@
+commit 6c756888643bbbc1c25ff44c0ca0cb236eec9e11
+Author: Tyler Martinez <tymartin@adit.mines.edu>
+Date:   Sun Nov 6 15:02:27 2016 -0700
+
+    Rooms display their names, walkway color temporarily changed to white to make yellow player easier to see
+
+commit 365b68c3459e169f41a2c02f2f3a20aa4209ec9b
+Author: Tyler Martinez <tymartin@adit.mines.edu>
+Date:   Sun Nov 6 14:49:54 2016 -0700
+
+    Players are now drawn
+
+commit b438c3375b72298380a6d746b712fd7326518b03
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Sat Nov 5 18:06:27 2016 -0600
+
+    Finished DetectiveNotes, possibly need to resize some of the panels. But basic functionality is there.
+
+commit 9bcb7ad67d07cc91d9938939ef037ef0b1013073
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Sat Nov 5 11:09:20 2016 -0600
+
+    Added comments to code
+
+commit abd55d4d2cd02894afa1ee83a56e693900998079
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Sat Nov 5 10:52:30 2016 -0600
+
+    Started making checkboxes. A little stuck on how to run through and get all the names without hardcoding them in
+
+commit b04770206c2ddebf4f7153be7fabaa9eaaeda128
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Fri Nov 4 20:24:28 2016 -0600
+
+    Added skeleton code to DetectiveNotes.
+
+commit 667055b9d5c6c0b9b8fb820c2afaeed01bea0275
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Fri Nov 4 17:10:09 2016 -0600
+
+    Finished adding doorways into map
+
+commit f0ba19523f5f9641898b6408375cc7ad81fce386
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Fri Nov 4 16:57:48 2016 -0600
+
+    Started adding in door directions
+
+commit ba1428ccccce2da00aa472b5bbce73175065cc81
+Author: Tyler Martinez <tymartin@adit.mines.edu>
+Date:   Fri Nov 4 13:48:18 2016 -0600
+
+    Added grid drawing. So much progress.
+
+commit a5fe53addec7d90507147501fdacf79c7c9b5bf9
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Fri Nov 4 10:35:53 2016 -0600
+
+    Made smal changes to DetectiveNotes and ClueGame
+
+commit 6c296978d0f4350d8f7512c3a4b3c3b74c009209
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Fri Nov 4 10:21:57 2016 -0600
+
+    Added in detective notes window
+
+commit 740e7bd5f36e44babb8fe76126322c5f808c0638
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Fri Nov 4 10:09:34 2016 -0600
+
+    Added DetectiveNotes class
+
+commit 9d6cd14cf68b8e9e40da31599217484734ec0038
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Fri Nov 4 09:29:47 2016 -0600
+
+    Added menu bar and exit option
+
+commit 969f06bc2c55722fdca4b57e13c6adbcb0fae257
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Thu Nov 3 15:49:19 2016 -0600
+
+    Added in colors for rooms and walkways. Filled cells.
+
+commit 4fe5137cf1c97a2a60e26e72851f852e3c224e65
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Thu Nov 3 15:39:28 2016 -0600
+
+    Changed board so that hallways are a different color
+
+commit 2c1c0351dfe95ee4cc1c01f7688790e34ddbb311
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Thu Nov 3 12:14:53 2016 -0600
+
+    Started outline of graphics
+
+commit 31aaf8169490a2f51428649bdb739ea941173ca0
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Thu Nov 3 11:50:55 2016 -0600
+
+    Started process of creating the visual of board
+
 commit b53a308e38d165995acc55e10d6e87d8e8336f1f
 Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
 Date:   Thu Nov 3 11:40:25 2016 -0600

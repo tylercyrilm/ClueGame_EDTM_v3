@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 
 
@@ -28,9 +29,12 @@ public class ClueGame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		add(board, BorderLayout.CENTER);
 		
+		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		menuBar.add(createFileMenu());
+		
+		
 	}
 	
 	private JMenu createFileMenu() {
@@ -63,11 +67,11 @@ public class ClueGame extends JFrame {
 		item.addActionListener(new MenuItemListener());
 		return item;
 	}
-	
-	
+
 	
 	public static void main(String[] args) {
 		ClueGame window = new ClueGame();
 		window.setVisible(true);
+		JOptionPane.showMessageDialog(window, "You are " + board.player.getName() + ", press next player to begin play." , "Welcome to Clue!", JOptionPane.INFORMATION_MESSAGE);
 	}
 }
