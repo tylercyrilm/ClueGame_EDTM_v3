@@ -26,4 +26,8 @@ public class Card {
 	public Card() {
 		super();
 	}
+	
+	public CardType getType() {
+		return type;
+	}
 }

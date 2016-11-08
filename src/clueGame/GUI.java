@@ -1,4 +1,6 @@
+package clueGame;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
@@ -9,12 +11,11 @@ import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
-public class GUI extends JFrame{
+public class GUI extends JPanel{
 	public GUI() {
-		setTitle("CLUE");
-		setSize(1000, 400);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		createLayout();
+		setPreferredSize(new Dimension(400,200));
 	}
 	
 	private void createLayout() {
@@ -25,7 +26,7 @@ public class GUI extends JFrame{
 		JPanel whoseTurn = new JPanel();
 		whoseTurn.setLayout(new GridLayout(3,1));
 		JLabel turnLabel = new JLabel("Whose turn?");
-		JTextField turnText = new  JTextField(50);
+		JTextField turnText = new  JTextField(20);
 		whoseTurn.add(turnLabel);
 		whoseTurn.add(turnText);
 		
@@ -70,12 +71,7 @@ public class GUI extends JFrame{
 		masterPanel.add(guessResult);
 		
 	}
-	
-	public static void main(String[] args) {
-		GUI gui = new GUI();
-		gui.setVisible(true);
-		
-	}
+
 	
 
 }

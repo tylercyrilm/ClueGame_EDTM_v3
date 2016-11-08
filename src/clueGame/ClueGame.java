@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 public class ClueGame extends JFrame {
 	private static Board board;
 	private DetectiveNotes notes;
-	private Graphics g;
+	//private Graphics g;
 	
 	public ClueGame() {
 
@@ -25,7 +25,7 @@ public class ClueGame extends JFrame {
 		board.setWPConfigFiles("data/ENTM_CluePlayers.txt", "data/ENTM_ClueWeapons.txt");
 		board.initialize();
 		
-		setSize(board.getNumColumns()*40, (board.getNumRows()+1)*40);
+		setSize(board.getNumColumns()*40, (board.getNumRows()+1)*50);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		add(board, BorderLayout.CENTER);
 		
@@ -33,6 +33,12 @@ public class ClueGame extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		menuBar.add(createFileMenu());
+		
+		ShowCardPanel sc = new ShowCardPanel(board.player.hand);
+		add(sc, BorderLayout.EAST);
+		
+		GUI gui = new GUI();
+		add(gui, BorderLayout.SOUTH);
 		
 		
 	}

@@ -10,7 +10,7 @@ public class BoardCell {
 	public int column;
 	public char initial;
 	public DoorDirection direction = DoorDirection.NONE;
-	private int cellDim = 30; 
+	private int cellDim = 25; 
 	private int doorWidth = 10; 
 	public boolean writesName = false;
 	

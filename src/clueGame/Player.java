@@ -16,8 +16,8 @@ public class Player {
 	private Color color;	
 	public Set<Card> hand = new HashSet<Card>();
 	public int id;
-	private static final int playerDim = 28;
-	private static final int cellDim = 30;
+	private static final int cellDim = 25;
+	private static final int playerDim = cellDim - 2;
 	
 	public Card disproveSuggestion(Solution suggestion) {
 		ArrayList<Card> inHand = new ArrayList<Card>();
