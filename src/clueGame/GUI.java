@@ -12,8 +12,9 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 public class GUI extends JPanel{
-	public GUI() {
-		
+	private Board board;
+	public GUI(Board board) {
+		this.board = board; 
 		createLayout();
 		setPreferredSize(new Dimension(400,200));
 	}

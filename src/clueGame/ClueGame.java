@@ -38,7 +38,7 @@ public class ClueGame extends JFrame {
 		ShowCardPanel sc = new ShowCardPanel(board.player.hand);
 		add(sc, BorderLayout.EAST);
 		
-		GUI gui = new GUI();
+		GUI gui = new GUI(board);
 		add(gui, BorderLayout.SOUTH);
 		
 		
