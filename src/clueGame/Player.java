@@ -38,9 +38,9 @@ public class Player {
 	
 	public void draw(Graphics g) {
 		g.setColor(color);
-		g.fillOval(column*cellDim, row*cellDim, playerDim, playerDim);
+		g.fillOval(column*cellDim+1, row*cellDim+1, playerDim, playerDim);
 		g.setColor(Color.BLACK);
-		g.drawOval(column*cellDim, row*cellDim, playerDim, playerDim);
+		g.drawOval(column*cellDim+1, row*cellDim+1, playerDim, playerDim);
 	}
 	
 	public String getName() {
