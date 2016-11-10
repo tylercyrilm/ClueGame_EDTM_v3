@@ -11,7 +11,7 @@ public class BoardCell {
 	public char initial;
 	public DoorDirection direction = DoorDirection.NONE;
 	private int cellDim = 25; 
-	private int doorWidth = 10; 
+	private int doorWidth = 5; 
 	public boolean writesName = false;
 	
 	public void setLocation(int i, int j) {

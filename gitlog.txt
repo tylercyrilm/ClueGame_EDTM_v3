@@ -1,3 +1,9 @@
+commit a8c1b092caabab6f076b7ad939f61262dd780a64
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Tue Nov 8 12:10:14 2016 -0700
+
+    All programming done on this portion was pair programming
+
 commit 65638d6dc724cc7fe715cdd9638ac0b7009337f6
 Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
 Date:   Tue Nov 8 12:02:53 2016 -0700
