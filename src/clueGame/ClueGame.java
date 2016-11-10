@@ -75,10 +75,14 @@ public class ClueGame extends JFrame {
 		return item;
 	}
 
+	public void playGame() {
+		
+	}
 	
 	public static void main(String[] args) {
 		ClueGame window = new ClueGame();
 		window.setVisible(true);
 		JOptionPane.showMessageDialog(window, "You are " + board.player.getName() + ", press next player to begin play." , "Welcome to Clue!", JOptionPane.INFORMATION_MESSAGE);
+		window.playGame();
 	}
 }

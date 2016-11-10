@@ -2,10 +2,13 @@ package clueGame;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
@@ -14,6 +17,9 @@ import javax.swing.border.TitledBorder;
 public class GUI extends JPanel{
 	
 	private Board board;
+	JButton nextPlayerButton;
+	JPanel whoseTurn;
+	JTextField turnText;
 	public GUI(Board board) {
 		this.board = board; 
 		createLayout();
@@ -25,12 +31,12 @@ public class GUI extends JPanel{
 		masterPanel.setLayout(new GridLayout(2,3));
 
 		//WhoseTurn
-		JPanel whoseTurn = new JPanel();
+		whoseTurn = new JPanel();
 		whoseTurn.setLayout(new GridLayout(3,1));
 		JLabel turnLabel = new JLabel("Whose turn?");
-		JTextField turnText = new  JTextField(20);
+		//JTextField turnText = new  JTextField(20);
 		whoseTurn.add(turnLabel);
-		whoseTurn.add(turnText);
+		whoseTurn.add(updateTurnCount());
 		
 		//Die
 		JPanel die = new JPanel();
@@ -58,22 +64,39 @@ public class GUI extends JPanel{
 		guessResult.add(resultText);
 		guessResult.setBorder(new TitledBorder (new EtchedBorder(), "Guess Result"));
 
-		
+
+		masterPanel.add(whoseTurn);
 		//add buttons to the button panel
-		JButton nextPlayerButton = new JButton("Next player");
+		nextPlayerButton = new JButton("Next player");
+		nextPlayerButton.addActionListener(new ButtonListener());
 		masterPanel.add(nextPlayerButton);
 		JButton accusationButton = new JButton("Make an accusation");
 		masterPanel.add(accusationButton);
 		add(masterPanel);
 		
 		//add Labels to the button Panel
-		masterPanel.add(whoseTurn);
 		masterPanel.add(die);
 		masterPanel.add(guess);
 		masterPanel.add(guessResult);
 		
 	}
 
+	private JTextField updateTurnCount() {
+		turnText = new  JTextField(20);
+		board.incrementTurn();
+		turnText.setText(board.player.getName());
+		turnText.setEditable(false);
+		return turnText;
+	}
 	
+	private class ButtonListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+		
+				turnText.setText("YAY IT WORKED");
+			
+				
+		}
+		
+	}
 
 }

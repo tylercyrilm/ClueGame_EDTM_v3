@@ -22,6 +22,7 @@ public class Board extends JPanel {
 	public int numRows = 0;
 	public int numColumns = 0;
 	private final int MAX_BOARD_SIZE = 50;
+	private int turnCount = -2;
 	private BoardCell [][] board = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 	private Map<Character, String> rooms = new HashMap<Character, String>();
 	private Map<BoardCell, Set<BoardCell>> adjMatrix = new HashMap<BoardCell, Set<BoardCell>>();
@@ -494,5 +495,9 @@ public class Board extends JPanel {
 		for (ComputerPlayer c: comp) {
 			c.draw(g);
 		}
+	}
+	
+	public void incrementTurn() {
+		turnCount++;
 	}
 }
