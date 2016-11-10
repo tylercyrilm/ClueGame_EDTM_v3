@@ -20,7 +20,7 @@ public class ComputerPlayer extends Player {
 		for (BoardCell bc : targets) {
 			if (bc.isDoorway()) {
 				doorsInRange.add(bc);
-			}
+			} 
 		}
 		
 		if (doorsInRange.size() == 1) {

@@ -56,7 +56,8 @@ public class GUI extends JPanel{
 		guessResult.add(resultText);
 		guessResult.setBorder(new TitledBorder (new EtchedBorder(), "Guess Result"));
 
-		
+
+		masterPanel.add(whoseTurn);
 		//add buttons to the button panel
 		JButton nextPlayerButton = new JButton("Next player");
 		masterPanel.add(nextPlayerButton);
@@ -65,7 +66,6 @@ public class GUI extends JPanel{
 		add(masterPanel);
 		
 		//add Labels to the button Panel
-		masterPanel.add(whoseTurn);
 		masterPanel.add(die);
 		masterPanel.add(guess);
 		masterPanel.add(guessResult);
