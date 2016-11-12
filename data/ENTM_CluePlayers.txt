@@ -1,5 +1,5 @@
 SL-8-R, gray, 11, 1, C, 112, 128, 144
-Captain Ebony, black, 2, 3, C, 0, 0, 0
+Captain Ebony, black, 2, 3, C, 85, 93, 80
 Arlan Citrine, yellow, 0, 16, C, 228, 208, 10
 Prime Viridian, green, 17, 25, C, 64, 130, 109
 Rosette Foxwell, red, 17, 16, P, 255, 0, 127
