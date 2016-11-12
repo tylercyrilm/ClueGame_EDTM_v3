@@ -62,6 +62,7 @@ public class ComputerPlayer extends Player {
 		BoardCell returnCell = totalRooms.get(rand.nextInt(totalRooms.size()));
 		row = returnCell.row;
 		column = returnCell.column;
+		
 		return returnCell;
 	}
 	
@@ -111,12 +112,25 @@ public class ComputerPlayer extends Player {
 			}
 			
 			board.suggestion = new Solution(accusedPerson, accusedRoom, accusedWeapon);
+			
 		}
 	}
 
 	@Override
-	public void makeMove(Set<BoardCell> targets) {
-		pickLocation(targets);
-		
+	public void makeMove(Set<BoardCell> targets, Board board) {
+		if(pickLocation(targets).isDoorway()) {
+			boolean personMoved = false;
+			createSuggestion(board);
+			for (ComputerPlayer p: board.comp) {
+				if (board.suggestion.person.equals(p.getName())) {
+					p.setLocation(row, column);
+					personMoved = true;
+					break;
+				}
+			}
+			if (!personMoved){
+				board.player.setLocation(row, column);
+			}
+		}
 	}
 }

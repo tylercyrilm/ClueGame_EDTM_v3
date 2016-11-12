@@ -23,6 +23,7 @@ public class GUI extends JPanel{
 	JPanel whoseTurn;
 	JTextField turnText;
 	JTextField rollText;
+	JTextField guessText;
 	
 	public GUI(Board board) {
 		this.board = board; 
@@ -46,7 +47,7 @@ public class GUI extends JPanel{
 		//Die
 		JPanel die = new JPanel();
 		JLabel rollLabel = new JLabel("Roll");
-		rollText = new  JTextField(10);
+		rollText = new  JTextField(5);
 		rollText.setEditable(false);
 		die.add(rollLabel);
 		die.add(rollText);
@@ -56,17 +57,17 @@ public class GUI extends JPanel{
 		JPanel guess = new JPanel();
 		//guess.setLayout(new GridLayout(2,1));
 		JLabel guessLabel = new JLabel("Guess");
-		JTextField guessText = new  JTextField(20);
+		guessText = new  JTextField(25);
 		guessText.setEditable(false);
 		guess.add(guessLabel);
 		guess.add(guessText);
-		guess.setBorder(new TitledBorder (new EtchedBorder(), "Guess"));
+		guess.setBorder(new TitledBorder (new EtchedBorder(), "Suggestion"));
 		
 		//GuessResult
 		JPanel guessResult = new JPanel();
 		//guessResult.setLayout(new GridLayout(2, 1));
 		JLabel resultLabel = new JLabel("Response");
-		JTextField resultText = new  JTextField(20);
+		JTextField resultText = new  JTextField(15);
 		guessResult.add(resultLabel);
 		guessResult.add(resultText);
 		guessResult.setBorder(new TitledBorder (new EtchedBorder(), "Guess Result"));
@@ -88,7 +89,7 @@ public class GUI extends JPanel{
 	}
 
 	private JTextField updateTurnCount() {
-		turnText = new  JTextField(20);
+		turnText = new  JTextField(10);
 		//turnText.setText(board.getCurrentPlayer().getName());
 		turnText.setEditable(false);
 		return turnText;
@@ -105,6 +106,7 @@ public class GUI extends JPanel{
 				Integer roll = board.rollDie();
 				rollText.setText(Integer.toString(roll));
 				board.takeTurn(roll);
+				guessText.setText(board.suggestion.person + " in the " + board.suggestion.room + " with the " + board.suggestion.weapon);
 			}
 		}
 		

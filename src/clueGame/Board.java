@@ -222,6 +222,8 @@ public class Board extends JPanel implements MouseListener {
 					player.setColor(convertColor(splitPieces[1]));
 					player.setRow(Integer.parseInt(splitPieces[2]));
 					player.setColumn(Integer.parseInt(splitPieces[3]));
+					//Sets color using RGB values, comment out if you want simple, yucky colors
+					player.setColor(new Color(Integer.parseInt(splitPieces[5]), Integer.parseInt(splitPieces[6]), Integer.parseInt(splitPieces[7])));
 					player.id = -1;
 				}
 				else if(splitPieces[4].equals("C")) {
@@ -230,6 +232,8 @@ public class Board extends JPanel implements MouseListener {
 					C1.setColor(convertColor(splitPieces[1]));
 					C1.setRow(Integer.parseInt(splitPieces[2]));
 					C1.setColumn(Integer.parseInt(splitPieces[3]));
+					//Sets color using RGB values, comment out if you want simple, yucky colors
+					C1.setColor(new Color(Integer.parseInt(splitPieces[5]), Integer.parseInt(splitPieces[6]), Integer.parseInt(splitPieces[7])));
 					C1.id = idCounter;
 					comp.add(C1);
 					idCounter++;
@@ -527,7 +531,7 @@ public class Board extends JPanel implements MouseListener {
 	
 	public void takeTurn(Integer roll) {
 		calcTargets(currentPlayer.getRow(), currentPlayer.getColumn(), roll);
-		currentPlayer.makeMove(targets);
+		currentPlayer.makeMove(targets, theInstance);
 		repaint();
 	}
 	
