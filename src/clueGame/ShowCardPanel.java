@@ -25,7 +25,7 @@ public class ShowCardPanel extends JPanel{
 		for(Card c: ph) {
 			if(c.getType() == CardType.PERSON) {
 				JTextField currentText = new JTextField(c.getName());
-				currentText.setEnabled(false);
+				currentText.setEditable(false);
 				people.add(currentText);
 			}
 		}
@@ -38,7 +38,7 @@ public class ShowCardPanel extends JPanel{
 		for(Card c: ph) {
 			if(c.getType() == CardType.WEAPON) {
 				JTextField currentText = new JTextField(c.getName());
-				currentText.setEnabled(false);
+				currentText.setEditable(false);
 				weapon.add(currentText);
 			}
 		}
@@ -51,7 +51,7 @@ public class ShowCardPanel extends JPanel{
 		for(Card c: ph) {
 			if(c.getType() == CardType.ROOM) {
 				JTextField currentText = new JTextField(c.getName());
-				currentText.setEnabled(false);
+				currentText.setEditable(false);
 				room.add(currentText);
 			}
 		}

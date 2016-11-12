@@ -3,6 +3,8 @@ package clueGame;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.util.Map;
 
 public class BoardCell {
@@ -13,6 +15,7 @@ public class BoardCell {
 	private int cellDim = 25; 
 	private int doorWidth = 5; 
 	public boolean writesName = false;
+	public boolean isTarget = false;
 	
 	public void setLocation(int i, int j) {
 		row = i;
@@ -92,10 +95,22 @@ public class BoardCell {
 			g.setColor(Color.LIGHT_GRAY);
 			g.fillRect(column*cellDim, row*cellDim, cellDim, cellDim);
 		}
+		if (isTarget) {
+			g.setColor(Color.GREEN);
+			g.fillRect(column*cellDim, row*cellDim, cellDim, cellDim);
+		}
 		if(writesName) {
 			g.setColor(Color.BLUE);
 			Graphics2D g2d = (Graphics2D)g;
 			g2d.drawString(legend.get(initial), column*cellDim, row*cellDim);
 		}
+	}
+
+	public boolean containsClick(int mouseX, int mouseY) {
+		Rectangle rect = new Rectangle(column*cellDim, row*cellDim, cellDim, cellDim);
+		if (rect.contains(new Point(mouseX, mouseY))) {
+			return true;
+		}
+		return false;
 	}
 }

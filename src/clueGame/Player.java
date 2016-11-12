@@ -9,7 +9,7 @@ import java.util.Set;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Player {
+public abstract class Player {
 	private String playerName;
 	protected int row;
 	protected int column;
@@ -18,6 +18,16 @@ public class Player {
 	public int id;
 	private static final int cellDim = 25;
 	private static final int playerDim = cellDim - 2;
+	protected boolean mustFinish = false;
+	
+	public boolean getFinishState() {
+		return mustFinish;
+	}
+	public void turnFinished() {
+		mustFinish = false;
+	}
+	
+	public abstract void makeMove(Set<BoardCell> targets);
 	
 	public Card disproveSuggestion(Solution suggestion) {
 		ArrayList<Card> inHand = new ArrayList<Card>();

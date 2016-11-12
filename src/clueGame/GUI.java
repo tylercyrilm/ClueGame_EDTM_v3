@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -20,10 +22,13 @@ public class GUI extends JPanel{
 	JButton nextPlayerButton;
 	JPanel whoseTurn;
 	JTextField turnText;
+	JTextField rollText;
+	
 	public GUI(Board board) {
 		this.board = board; 
 		createLayout();
 		setPreferredSize(new Dimension(400,200));
+		
 	}
 	
 	private void createLayout() {
@@ -41,7 +46,8 @@ public class GUI extends JPanel{
 		//Die
 		JPanel die = new JPanel();
 		JLabel rollLabel = new JLabel("Roll");
-		JTextField rollText = new  JTextField(10);
+		rollText = new  JTextField(10);
+		rollText.setEditable(false);
 		die.add(rollLabel);
 		die.add(rollText);
 		die.setBorder(new TitledBorder (new EtchedBorder(), "Die"));
@@ -51,6 +57,7 @@ public class GUI extends JPanel{
 		//guess.setLayout(new GridLayout(2,1));
 		JLabel guessLabel = new JLabel("Guess");
 		JTextField guessText = new  JTextField(20);
+		guessText.setEditable(false);
 		guess.add(guessLabel);
 		guess.add(guessText);
 		guess.setBorder(new TitledBorder (new EtchedBorder(), "Guess"));
@@ -77,24 +84,28 @@ public class GUI extends JPanel{
 		//add Labels to the button Panel
 		masterPanel.add(die);
 		masterPanel.add(guess);
-		masterPanel.add(guessResult);
-		
+		masterPanel.add(guessResult);		
 	}
 
 	private JTextField updateTurnCount() {
 		turnText = new  JTextField(20);
-		board.incrementTurn();
-		turnText.setText(board.player.getName());
+		//turnText.setText(board.getCurrentPlayer().getName());
 		turnText.setEditable(false);
 		return turnText;
 	}
 	
 	private class ButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-		
-				turnText.setText("YAY IT WORKED");
-			
+			if (board.player.getFinishState()) {
 				
+			}
+			else {
+				board.nextPlayer();
+				turnText.setText(board.getCurrentPlayer().getName());
+				Integer roll = board.rollDie();
+				rollText.setText(Integer.toString(roll));
+				board.takeTurn(roll);
+			}
 		}
 		
 	}
