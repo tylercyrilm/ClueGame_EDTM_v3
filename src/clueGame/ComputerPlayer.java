@@ -113,4 +113,10 @@ public class ComputerPlayer extends Player {
 			board.suggestion = new Solution(accusedPerson, accusedRoom, accusedWeapon);
 		}
 	}
+
+	@Override
+	public void makeMove(Set<BoardCell> targets) {
+		pickLocation(targets);
+		
+	}
 }

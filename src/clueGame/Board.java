@@ -13,12 +13,15 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public class Board extends JPanel {
+public class Board extends JPanel implements MouseListener {
 	public int numRows = 0;
 	public int numColumns = 0;
 	private final int MAX_BOARD_SIZE = 50;
@@ -77,6 +80,7 @@ public class Board extends JPanel {
 		}
 	
 	public void initialize(){
+		addMouseListener(this);
 		loadConfigFiles();
 		calcAdjacencies();
 	}
@@ -515,4 +519,66 @@ public class Board extends JPanel {
 	public Player getCurrentPlayer() {
 		return currentPlayer;
 	}
+	
+	public int rollDie() {
+		Random r = new Random();
+		return r.nextInt(6)+1;
+	}
+	
+	public void takeTurn(Integer roll) {
+		calcTargets(currentPlayer.getRow(), currentPlayer.getColumn(), roll);
+		currentPlayer.makeMove(targets);
+		repaint();
+	}
+	
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		if (currentPlayer.getFinishState()) {
+			BoardCell targetCell = null;
+			for (BoardCell c: targets)
+				if(c.containsClick(e.getX(), e.getY())){
+					System.out.println("You clicked it!");
+					targetCell = c;
+					break;
+				}
+			if (targetCell != null) {
+				currentPlayer.setLocation(targetCell.row, targetCell.column);
+				currentPlayer.turnFinished();
+				repaint();
+			}
+			else {
+				System.out.println("You can't go there!");
+			}
+		}
+		else {
+			System.out.println("It's not your turn!");
+		}
+	}
+	
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	
 }

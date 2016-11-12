@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -13,7 +15,7 @@ import javax.swing.JOptionPane;
 
 
 
-public class ClueGame extends JFrame {
+public class ClueGame extends JFrame   {
 	private static Board board;
 	private DetectiveNotes notes;
 	//private Graphics g;
@@ -78,6 +80,7 @@ public class ClueGame extends JFrame {
 	public void playGame() {
 		
 	}
+
 	
 	public static void main(String[] args) {
 		ClueGame window = new ClueGame();
@@ -85,4 +88,6 @@ public class ClueGame extends JFrame {
 		JOptionPane.showMessageDialog(window, "You are " + board.player.getName() + ", press next player to begin play." , "Welcome to Clue!", JOptionPane.INFORMATION_MESSAGE);
 		window.playGame();
 	}
+
+
 }
