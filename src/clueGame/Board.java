@@ -22,7 +22,7 @@ public class Board extends JPanel {
 	public int numRows = 0;
 	public int numColumns = 0;
 	private final int MAX_BOARD_SIZE = 50;
-	private int turnCount = -2;
+	private int turnCount = -1;
 	private BoardCell [][] board = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 	private Map<Character, String> rooms = new HashMap<Character, String>();
 	private Map<BoardCell, Set<BoardCell>> adjMatrix = new HashMap<BoardCell, Set<BoardCell>>();
@@ -42,6 +42,8 @@ public class Board extends JPanel {
 	private Set<Card> dealtCards = new HashSet<Card>();
 	private static Solution solution = new Solution();
 	public Solution suggestion;
+	private int turn;
+	private Player currentPlayer = player;
 	
 	public void setSolution(String person, String room, String weapon) {
 		solution.person = person;
@@ -497,7 +499,20 @@ public class Board extends JPanel {
 		}
 	}
 	
-	public void incrementTurn() {
+	public void nextPlayer() {
 		turnCount++;
+		turn = (turnCount % (comp.size() + 1)) - 1;
+		if (turn == -1) {
+			currentPlayer = player;
+		}
+		else if (turn == -2) {
+			
+		}
+		else
+			currentPlayer = comp.get(turn);
+	}
+	
+	public Player getCurrentPlayer() {
+		return currentPlayer;
 	}
 }

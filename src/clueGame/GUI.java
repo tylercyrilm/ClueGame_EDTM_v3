@@ -82,18 +82,17 @@ public class GUI extends JPanel{
 
 	private JTextField updateTurnCount() {
 		turnText = new  JTextField(20);
-		board.incrementTurn();
-		turnText.setText(board.player.getName());
+		//turnText.setText(board.getCurrentPlayer().getName());
 		turnText.setEditable(false);
 		return turnText;
 	}
 	
 	private class ButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-		
-				turnText.setText("YAY IT WORKED");
-			
-				
+			turnText.setText("button functional");
+			//updateTurnCount();
+			board.nextPlayer();
+			turnText.setText(board.getCurrentPlayer().getName());
 		}
 		
 	}
