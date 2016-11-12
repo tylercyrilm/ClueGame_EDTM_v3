@@ -527,7 +527,7 @@ public class Board extends JPanel implements MouseListener {
 	
 	public void takeTurn(Integer roll) {
 		calcTargets(currentPlayer.getRow(), currentPlayer.getColumn(), roll);
-		currentPlayer.makeMove(targets);
+		currentPlayer.makeMove(targets, theInstance);
 		repaint();
 	}
 	

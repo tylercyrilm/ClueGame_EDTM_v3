@@ -5,7 +5,7 @@ import java.util.Set;
 public class HumanPlayer extends Player{
 
 	@Override
-	public void makeMove(Set<BoardCell> targets) {
+	public void makeMove(Set<BoardCell> targets, Board board) {
 		for(BoardCell c:targets) {
 			c.isTarget = true;
 		}

@@ -62,6 +62,7 @@ public class ComputerPlayer extends Player {
 		BoardCell returnCell = totalRooms.get(rand.nextInt(totalRooms.size()));
 		row = returnCell.row;
 		column = returnCell.column;
+		
 		return returnCell;
 	}
 	
@@ -115,8 +116,9 @@ public class ComputerPlayer extends Player {
 	}
 
 	@Override
-	public void makeMove(Set<BoardCell> targets) {
-		pickLocation(targets);
-		
+	public void makeMove(Set<BoardCell> targets, Board board) {
+		if(pickLocation(targets).isDoorway()) {
+			createSuggestion(board);
+		}
 	}
 }

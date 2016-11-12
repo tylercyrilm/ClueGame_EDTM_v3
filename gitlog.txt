@@ -1,3 +1,58 @@
+commit 4b8eaa9887d323cbf6dd35d6932a946b46973137
+Author: Tyler Martinez <tymartin@adit.mines.edu>
+Date:   Sat Nov 12 15:34:25 2016 -0700
+
+    Moving improperly gives errors, ClueGame 1 complete. All pair programming
+
+commit 0767a0e356b40e7733ba944a1ea3071c27766d7e
+Author: Tyler Martinez <tymartin@adit.mines.edu>
+Date:   Sat Nov 12 15:26:51 2016 -0700
+
+    Computer and Human players move correctly
+
+commit 1c35870ae141307b5b35f1dcb7bba64cfb87e0c2
+Author: Tyler Martinez <tymartin@adit.mines.edu>
+Date:   Sat Nov 12 14:10:59 2016 -0700
+
+    Players cycle and display properly when Next Player button is pushed
+
+commit 214f3b193565ba63a11afb7c474145eadf3cdfbf
+Author: Tyler Martinez <tymartin@adit.mines.edu>
+Date:   Thu Nov 10 12:32:49 2016 -0700
+
+    YAY IT WORKED (successfully updated a text field)
+
+commit db759d01e94135d9859d9cafacf17de5d6d69660
+Merge: 60d8358 dbb0739
+Author: Tyler Martinez <tymartin@adit.mines.edu>
+Date:   Thu Nov 10 11:58:57 2016 -0700
+
+    Merge branch 'master' of https://github.com/tylercyrilm/ClueGame_EDTM_v3
+
+commit 60d83589f1e142d880bc41afa4afecea850a1600
+Author: Tyler Martinez <tymartin@adit.mines.edu>
+Date:   Thu Nov 10 11:58:53 2016 -0700
+
+    Created playGame function to play the game
+
+commit dbb07391b02955d7c48763f02e85462839009630
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Thu Nov 10 11:58:13 2016 -0700
+
+    Made it so GUI class could take Board object
+
+commit 14317e00f1509dd88c80155bb13efed0afedc2e1
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Thu Nov 10 11:48:36 2016 -0700
+
+    Changed door width
+
+commit 025686c7bb560b3bb53470e226154383a0e5101b
+Author: Tyler Martinez <tymartin@adit.mines.edu>
+Date:   Thu Nov 10 11:03:18 2016 -0700
+
+    Centered player location in board cells
+
 commit a8c1b092caabab6f076b7ad939f61262dd780a64
 Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
 Date:   Tue Nov 8 12:10:14 2016 -0700

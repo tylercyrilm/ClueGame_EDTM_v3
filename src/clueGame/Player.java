@@ -27,7 +27,7 @@ public abstract class Player {
 		mustFinish = false;
 	}
 	
-	public abstract void makeMove(Set<BoardCell> targets);
+	public abstract void makeMove(Set<BoardCell> targets, Board board);
 	
 	public Card disproveSuggestion(Solution suggestion) {
 		ArrayList<Card> inHand = new ArrayList<Card>();
