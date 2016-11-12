@@ -533,26 +533,7 @@ public class Board extends JPanel implements MouseListener {
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if (currentPlayer.getFinishState()) {
-			BoardCell targetCell = null;
-			for (BoardCell c: targets)
-				if(c.containsClick(e.getX(), e.getY())){
-					System.out.println("You clicked it!");
-					targetCell = c;
-					break;
-				}
-			if (targetCell != null) {
-				currentPlayer.setLocation(targetCell.row, targetCell.column);
-				currentPlayer.turnFinished();
-				repaint();
-			}
-			else {
-				System.out.println("You can't go there!");
-			}
-		}
-		else {
-			System.out.println("It's not your turn!");
-		}
+	
 	}
 	
 	@Override
@@ -568,8 +549,31 @@ public class Board extends JPanel implements MouseListener {
 	}
 
 	@Override
-	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+	public void mousePressed(MouseEvent e) {
+		if (currentPlayer.getFinishState()) {
+			BoardCell targetCell = null;
+			for (BoardCell c: targets)
+				if(c.containsClick(e.getX(), e.getY())){
+					System.out.println("You clicked it!");
+					targetCell = c;
+					break;
+				}
+			if (targetCell != null) {
+				currentPlayer.setLocation(targetCell.row, targetCell.column);
+				currentPlayer.turnFinished();
+				repaint();
+			}
+			else {
+				System.out.println("You can't go there!");
+				JOptionPane.showMessageDialog(null, "You can't go there!" , "No no no no no", JOptionPane.INFORMATION_MESSAGE);
+			}
+			for(BoardCell c:targets) {
+				c.isTarget = false;
+			}
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "It's not your turn!" , "You scamp", JOptionPane.INFORMATION_MESSAGE);
+		}
 		
 	}
 
