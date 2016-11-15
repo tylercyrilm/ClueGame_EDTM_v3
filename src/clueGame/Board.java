@@ -45,9 +45,11 @@ public class Board extends JPanel implements MouseListener {
 	private Set<Card> dealtCards = new HashSet<Card>();
 	private static Solution solution = new Solution();
 	public Solution suggestion;
+	public Solution accusation;
 	private int turn;
 	private Player currentPlayer = player;
-	public String proveSuggestionFalse;
+	public String proveSuggestionFalse = "";
+	public boolean gameRunning = true;
 	
 	public void setSolution(String person, String room, String weapon) {
 		solution.person = person;
@@ -418,6 +420,7 @@ public class Board extends JPanel implements MouseListener {
 		Card weapon = weaponCards.get(rand);
 		//Build the solution
 		setSolution(person.getName(), place.getName(), weapon.getName());
+		System.out.println(person.getName() +" "+ place.getName() +" "+ weapon.getName());
 	}
 	
 	public Card handleSuggestion(Solution suggestion) {

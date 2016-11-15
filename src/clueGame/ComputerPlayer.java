@@ -119,6 +119,16 @@ public class ComputerPlayer extends Player {
 
 	@Override
 	public void makeMove(Set<BoardCell> targets, Board board) {
+		if (board.proveSuggestionFalse == null) {
+			board.accusation = makeAccusation(board.suggestion.person, board.suggestion.room, board.suggestion.weapon);
+			if(board.checkAccusation(board.accusation)){
+				board.gameRunning = false;
+			}
+			else {
+				board.accusation = null;
+				board.proveSuggestionFalse = "";
+			}
+		}
 		if(pickLocation(targets).isDoorway()) {
 			boolean personMoved = false;
 			createSuggestion(board);

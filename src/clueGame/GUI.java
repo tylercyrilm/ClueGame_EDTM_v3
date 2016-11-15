@@ -66,6 +66,7 @@ public class GUI extends JPanel{
 		JPanel guessResult = new JPanel();
 		JLabel resultLabel = new JLabel("Response");
 		resultText = new  JTextField(15);
+		resultText.setEditable(false);
 		guessResult.add(resultLabel);
 		guessResult.add(resultText);
 		guessResult.setBorder(new TitledBorder (new EtchedBorder(), "Guess Result"));
@@ -111,7 +112,6 @@ public class GUI extends JPanel{
 			}
 			guessText.setText(board.suggestion.person + " in the " + board.suggestion.room + " with the " + board.suggestion.weapon);
 			resultText.setText(board.proveSuggestionFalse);
-			
 		}
 	}
 	
@@ -121,12 +121,16 @@ public class GUI extends JPanel{
 		accusationDialog guess;
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if (board.getCurrentPlayer().getFinishState()) {
-				guess = new accusationDialog(board, "Accuse");
-				guess.setVisible(true);
+			if (board.gameRunning) {
+				if (board.getCurrentPlayer().getFinishState()) {
+					guess = new accusationDialog(board, "Accuse");
+					guess.setVisible(true);
+				}
+				else
+					JOptionPane.showMessageDialog(null, "It's not your turn!" , "You scamp", JOptionPane.INFORMATION_MESSAGE);
 			}
 			else
-				JOptionPane.showMessageDialog(null, "It's not your turn!" , "You scamp", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "XXX correctly accused " + board.getSolution().person +" in the "+board.getSolution().room+" with the "+board.getSolution().weapon+"." , "Game Over", JOptionPane.INFORMATION_MESSAGE);
 		}
 		
 	}

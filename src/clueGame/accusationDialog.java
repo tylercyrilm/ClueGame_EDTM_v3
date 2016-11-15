@@ -118,6 +118,13 @@ public class accusationDialog extends JDialog {
 			board.suggestion = s;
 			if (isSuggestion) {
 				board.handleSuggestion(s);
+				for (Player a: board.comp) {
+					if (a.getName().equals(board.suggestion.person)) {
+						a.setLocation(board.player.getRow(), board.player.getColumn());
+						break;
+					}
+				}
+				board.repaint();
 			}
 			else {
 				if(board.checkAccusation(s)) {
