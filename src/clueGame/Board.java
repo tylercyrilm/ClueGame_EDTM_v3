@@ -563,6 +563,10 @@ public class Board extends JPanel implements MouseListener {
 				}
 			if (targetCell != null) {
 				currentPlayer.setLocation(targetCell.row, targetCell.column);
+				if (board[targetCell.row][targetCell.column].isDoorway()){
+					accusationDialog d = new accusationDialog(theInstance, "Suggestion");
+					d.setVisible(true);
+				}
 				currentPlayer.turnFinished();
 				repaint();
 			}
