@@ -558,7 +558,6 @@ public class Board extends JPanel implements MouseListener {
 			BoardCell targetCell = null;
 			for (BoardCell c: targets)
 				if(c.containsClick(e.getX(), e.getY())){
-					System.out.println("You clicked it!");
 					targetCell = c;
 					break;
 				}

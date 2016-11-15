@@ -8,6 +8,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -79,6 +81,7 @@ public class GUI extends JPanel{
 		nextPlayerButton.addActionListener(new ButtonListener());
 		masterPanel.add(nextPlayerButton);
 		JButton accusationButton = new JButton("Make an accusation");
+		accusationButton.addActionListener(new AccusationListener());
 		masterPanel.add(accusationButton);
 		add(masterPanel);
 		
@@ -98,7 +101,7 @@ public class GUI extends JPanel{
 	private class ButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if (board.player.getFinishState()) {
-				
+				JOptionPane.showMessageDialog(null, "You need to finish your turn! \nChoose a space to move to or make an accusation." , "Illegal", JOptionPane.INFORMATION_MESSAGE);
 			}
 			else {
 				board.nextPlayer();
@@ -109,7 +112,21 @@ public class GUI extends JPanel{
 				guessText.setText(board.suggestion.person + " in the " + board.suggestion.room + " with the " + board.suggestion.weapon);
 			}
 		}
+	}
+	
+	
+
+	private class AccusationListener implements ActionListener {
+		accusationDialog guess;
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (board.getCurrentPlayer().getFinishState()) {
+				guess = new accusationDialog(board, "Accusation");
+				guess.setVisible(true);
+			}
+			else
+				JOptionPane.showMessageDialog(null, "It's not your turn!" , "You scamp", JOptionPane.INFORMATION_MESSAGE);
+		}
 		
 	}
-
 }
