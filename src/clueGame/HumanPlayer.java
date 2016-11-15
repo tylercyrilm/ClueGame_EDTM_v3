@@ -1,5 +1,6 @@
 package clueGame;
 
+import java.util.Map;
 import java.util.Set;
 
 public class HumanPlayer extends Player{
@@ -11,5 +12,8 @@ public class HumanPlayer extends Player{
 		}
 		mustFinish = true;
 	}
-
+	public String getLocationType(Board board) {
+		Map <Character, String> legend = board.getLegend();
+		return legend.get(board.getCellAt(row, column).getInitial());
+	}
 }

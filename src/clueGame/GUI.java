@@ -120,7 +120,7 @@ public class GUI extends JPanel{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (board.getCurrentPlayer().getFinishState()) {
-				guess = new accusationDialog(board, "Accusation");
+				guess = new accusationDialog(board, "Accuse");
 				guess.setVisible(true);
 			}
 			else
