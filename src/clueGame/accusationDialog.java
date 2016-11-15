@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
@@ -24,13 +25,17 @@ public class accusationDialog extends JDialog {
 	
 	accusationDialog(Board board, String name) {
 
+		
+		this.board = board;
+		this.name = name;
+		
 		if (name.equals("Suggest")) {
 			isSuggestion = true;
 		}
 		else
 			isSuggestion = false;
-		this.board = board;
-		this.name = name;
+		
+		
 		setTitle(name);
 		setSize(400,700);
 		
@@ -115,10 +120,10 @@ public class accusationDialog extends JDialog {
 			}
 			else {
 				if(board.checkAccusation(s)) {
-					//YOU WIN
+					JOptionPane.showMessageDialog(null, "Your accusation is correct! You win the game!" , "Winner!", JOptionPane.INFORMATION_MESSAGE);
 				}
 				else {
-					
+					JOptionPane.showMessageDialog(null, "Your accusation is incorrect." , "False Accusation", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 			setVisible(false);
