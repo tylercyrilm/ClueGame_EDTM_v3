@@ -8,6 +8,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -78,6 +80,7 @@ public class GUI extends JPanel{
 		nextPlayerButton.addActionListener(new ButtonListener());
 		masterPanel.add(nextPlayerButton);
 		JButton accusationButton = new JButton("Make an accusation");
+		accusationButton.addActionListener(new AccusationListener());
 		masterPanel.add(accusationButton);
 		add(masterPanel);
 		
@@ -97,7 +100,7 @@ public class GUI extends JPanel{
 	private class ButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if (board.player.getFinishState()) {
-				
+				JOptionPane.showMessageDialog(null, "You need to finish your turn! \nChoose a space to move to or make an accusation." , "Illegal", JOptionPane.INFORMATION_MESSAGE);
 			}
 			else {
 				board.nextPlayer();
@@ -108,7 +111,64 @@ public class GUI extends JPanel{
 				guessText.setText(board.suggestion.person + " in the " + board.suggestion.room + " with the " + board.suggestion.weapon);
 			}
 		}
-		
+	}
+	
+	private class accusationDialog extends JDialog {
+			accusationDialog(String name) {
+				setTitle(name);
+				setSize(400,700);
+				
+				setLayout(new GridLayout(3,1));
+				add(createPersonGuess());
+				add(createRoomGuess());
+				add(createWeaponGuess());
+			}
+			
+			private JPanel createPersonGuess() {
+				JPanel panel = new JPanel();
+				JComboBox<String> people = new JComboBox<String>();
+			 	for (Card c: board.personCards) {		
+					people.addItem(c.getName());
+				}
+			 	panel.add(people);
+				panel.setBorder(new TitledBorder (new EtchedBorder(), "Person Guess"));
+				return panel;
+			}
+			
+			private JPanel createRoomGuess() {
+			 	JPanel panel = new JPanel();
+			 	JComboBox<String> rooms = new JComboBox<String>();
+			 	for (Card c: board.roomCards) {		
+					rooms.addItem(c.getName());
+				}
+			 	panel.add(rooms);
+				panel.setBorder(new TitledBorder (new EtchedBorder(), "Room Guess"));
+				return panel;
+			}
+			
+			private JPanel createWeaponGuess() {
+				JPanel panel = new JPanel();
+				JComboBox<String> weapons = new JComboBox<String>();
+			 	for (Card c: board.weaponCards) {		
+					weapons.addItem(c.getName());
+				}
+			 	panel.add(weapons);
+				panel.setBorder(new TitledBorder (new EtchedBorder(), "Weapon Guess"));
+				return panel;
+			}
 	}
 
+	private class AccusationListener implements ActionListener {
+		accusationDialog guess;
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (board.getCurrentPlayer().getFinishState()) {
+				guess = new accusationDialog("Accusation");
+				guess.setVisible(true);
+			}
+			else
+				JOptionPane.showMessageDialog(null, "It's not your turn!" , "You scamp", JOptionPane.INFORMATION_MESSAGE);
+		}
+		
+	}
 }
