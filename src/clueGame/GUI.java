@@ -21,11 +21,9 @@ import javax.swing.border.TitledBorder;
 public class GUI extends JPanel{
 	
 	private Board board;
-	JButton nextPlayerButton;
-	JPanel whoseTurn;
-	JTextField turnText;
-	JTextField rollText;
-	JTextField guessText;
+	private JButton nextPlayerButton;
+	private JPanel whoseTurn;
+	private JTextField turnText, rollText, guessText, resultText;
 	
 	public GUI(Board board) {
 		this.board = board; 
@@ -57,7 +55,6 @@ public class GUI extends JPanel{
 		
 		//Guess
 		JPanel guess = new JPanel();
-		//guess.setLayout(new GridLayout(2,1));
 		JLabel guessLabel = new JLabel("Guess");
 		guessText = new  JTextField(25);
 		guessText.setEditable(false);
@@ -67,9 +64,8 @@ public class GUI extends JPanel{
 		
 		//GuessResult
 		JPanel guessResult = new JPanel();
-		//guessResult.setLayout(new GridLayout(2, 1));
 		JLabel resultLabel = new JLabel("Response");
-		JTextField resultText = new  JTextField(15);
+		resultText = new  JTextField(15);
 		guessResult.add(resultLabel);
 		guessResult.add(resultText);
 		guessResult.setBorder(new TitledBorder (new EtchedBorder(), "Guess Result"));
@@ -78,8 +74,9 @@ public class GUI extends JPanel{
 		masterPanel.add(whoseTurn);
 		//add buttons to the button panel
 		nextPlayerButton = new JButton("Next player");
-		nextPlayerButton.addActionListener(new ButtonListener());
+		nextPlayerButton.addActionListener(new PlayerListener());
 		masterPanel.add(nextPlayerButton);
+		
 		JButton accusationButton = new JButton("Make an accusation");
 		accusationButton.addActionListener(new AccusationListener());
 		masterPanel.add(accusationButton);
@@ -98,8 +95,9 @@ public class GUI extends JPanel{
 		return turnText;
 	}
 	
-	private class ButtonListener implements ActionListener {
+	private class PlayerListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+			
 			if (board.player.getFinishState()) {
 				JOptionPane.showMessageDialog(null, "You need to finish your turn! \nChoose a space to move to or make an accusation." , "Illegal", JOptionPane.INFORMATION_MESSAGE);
 			}
@@ -109,8 +107,11 @@ public class GUI extends JPanel{
 				Integer roll = board.rollDie();
 				rollText.setText(Integer.toString(roll));
 				board.takeTurn(roll);
-				guessText.setText(board.suggestion.person + " in the " + board.suggestion.room + " with the " + board.suggestion.weapon);
+				
 			}
+			guessText.setText(board.suggestion.person + " in the " + board.suggestion.room + " with the " + board.suggestion.weapon);
+			resultText.setText(board.proveSuggestionFalse);
+			
 		}
 	}
 	

@@ -115,6 +115,7 @@ public class accusationDialog extends JDialog {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			Solution s = new Solution(person, room, weapon);
+			board.suggestion = s;
 			if (isSuggestion) {
 				board.handleSuggestion(s);
 			}

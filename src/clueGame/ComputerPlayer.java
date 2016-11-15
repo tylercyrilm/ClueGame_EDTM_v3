@@ -112,6 +112,7 @@ public class ComputerPlayer extends Player {
 			}
 			
 			board.suggestion = new Solution(accusedPerson, accusedRoom, accusedWeapon);
+			board.handleSuggestion(board.suggestion);
 			
 		}
 	}

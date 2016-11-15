@@ -47,6 +47,7 @@ public class Board extends JPanel implements MouseListener {
 	public Solution suggestion;
 	private int turn;
 	private Player currentPlayer = player;
+	public String proveSuggestionFalse;
 	
 	public void setSolution(String person, String room, String weapon) {
 		solution.person = person;
@@ -439,6 +440,7 @@ public class Board extends JPanel implements MouseListener {
 				resolution = comp.get(id).disproveSuggestion(suggestion);
 			}
 			if (resolution != null) {
+				proveSuggestionFalse = resolution.getName();
 				return resolution;
 			}
 			i++;
@@ -446,6 +448,8 @@ public class Board extends JPanel implements MouseListener {
 		}
 		//If card not in player hand, move to next player
 		//P--1--2--3--4--5--P
+		
+		
 		return resolution;
 	}
 	
@@ -539,7 +543,6 @@ public class Board extends JPanel implements MouseListener {
 	public void mouseClicked(MouseEvent e) {
 	
 	}
-	
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub
@@ -548,10 +551,8 @@ public class Board extends JPanel implements MouseListener {
 
 	@Override
 	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub	
 	}
-
 	@Override
 	public void mousePressed(MouseEvent e) {
 		if (currentPlayer.getFinishState()) {
@@ -571,7 +572,7 @@ public class Board extends JPanel implements MouseListener {
 				repaint();
 			}
 			else {
-				System.out.println("You can't go there!");
+				
 				JOptionPane.showMessageDialog(null, "You can't go there!" , "No no no no no", JOptionPane.INFORMATION_MESSAGE);
 			}
 			for(BoardCell c:targets) {
