@@ -1,3 +1,97 @@
+commit 82f9e33a9491abc16b1866de6da75015f47e8c7b
+Author: Tyler Martinez <tymartin@mines.edu>
+Date:   Tue Nov 15 16:09:13 2016 -0700
+
+    Implemented logic for computer accusations. Does it work? I dunno, they kept suggesting I did it and I couldn't get to the right room. Will test tonight.
+
+commit 74dcd59c525a84f0c7c46b05c9c75ae79d9c2757
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Tue Nov 15 13:20:27 2016 -0700
+
+    Made it so that suggestions and results show for both computer and human players (only when you hit next player-- does not immediately update)
+
+commit 92d38e7564928f975c5a27b93f6075776805de46
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Tue Nov 15 12:35:55 2016 -0700
+
+    Added popup dialogs for when accuse button is pressed
+
+commit 168ba2d9698cb56bbcdb1730885aa49a4eed9cff
+Merge: 6c4fece 19d57e3
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Tue Nov 15 12:19:31 2016 -0700
+
+    Merge branch 'master' of https://github.com/tylercyrilm/ClueGame_EDTM_v3
+
+commit 19d57e3d6e1dc46f56431bb45d7f6419c97f48cb
+Author: Tyler Martinez <tymartin@adit.mines.edu>
+Date:   Tue Nov 15 12:19:07 2016 -0700
+
+    Dialogs do not disappear when needed
+
+commit 678ef3642d4e555eeb82fa2e957bf699da7f07e8
+Author: Tyler Martinez <tymartin@adit.mines.edu>
+Date:   Tue Nov 15 11:36:33 2016 -0700
+
+    Dialog displays when moving into room
+
+commit 6c4feced3f50affc06f781c0a8dc8183f08113dd
+Merge: b62a120 596acb6
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Tue Nov 15 11:32:43 2016 -0700
+
+    Merge branch 'master' of https://github.com/tylercyrilm/ClueGame_EDTM_v3
+
+commit 596acb605995e0c44248062e01c10316641b4687
+Author: Tyler Martinez <tymartin@adit.mines.edu>
+Date:   Tue Nov 15 11:32:29 2016 -0700
+
+    Broke accusationDialog into its own class file
+
+commit 130505860d62f70b737ff93105120fc9605a5510
+Author: Tyler Martinez <tymartin@adit.mines.edu>
+Date:   Tue Nov 15 11:29:50 2016 -0700
+
+    Dialog box created when accusation button pressed
+
+commit b62a120ba241da67f238bd864a5fe2dbd3e15cf9
+Merge: deb24c9 5643851
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Sat Nov 12 16:53:56 2016 -0700
+
+    Merge branch 'master' of https://github.com/tylercyrilm/ClueGame_EDTM_v3
+
+commit 56438514dfa3ce06d6f7b155fece34d3bfe4c2ae
+Author: Tyler Martinez <tymartin@adit.mines.edu>
+Date:   Sat Nov 12 16:27:46 2016 -0700
+
+    Updated the values for Ebony. Turns out it's not just 0/0/0 black. Revert if too similar to Slate
+
+commit 27e8732bc64bf98bbf4b1acc14527db6c33743d4
+Author: Tyler Martinez <tymartin@adit.mines.edu>
+Date:   Sat Nov 12 16:25:31 2016 -0700
+
+    Updated player initialization to take RGB colors. Rosette has to be colored rose, I say.
+
+commit 17abdce82870eb35bb4b8230cd405e239f6c57cc
+Author: Tyler Martinez <tymartin@adit.mines.edu>
+Date:   Sat Nov 12 16:05:28 2016 -0700
+
+    Accused players are moved to the location of their accuser
+
+commit f4a684643fd6b1b159248ca915010788394df35f
+Author: Tyler Martinez <tymartin@adit.mines.edu>
+Date:   Sat Nov 12 15:56:27 2016 -0700
+
+    Displayed suggestions from computer players
+
+commit deb24c9bf2bd850ac785a4f8fd78170c084eaef9
+Merge: 604345b 4b8eaa9
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Sat Nov 12 15:34:54 2016 -0700
+
+    Merge branch 'master' of https://github.com/tylercyrilm/ClueGame_EDTM_v3
+
 commit 4b8eaa9887d323cbf6dd35d6932a946b46973137
 Author: Tyler Martinez <tymartin@adit.mines.edu>
 Date:   Sat Nov 12 15:34:25 2016 -0700
@@ -15,6 +109,19 @@ Author: Tyler Martinez <tymartin@adit.mines.edu>
 Date:   Sat Nov 12 14:10:59 2016 -0700
 
     Players cycle and display properly when Next Player button is pushed
+
+commit 604345b3097c5f2f0d98180605d721387e50d1a1
+Merge: ffbcfdd 214f3b1
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Thu Nov 10 12:44:26 2016 -0700
+
+    Merge branch 'master' of https://github.com/tylercyrilm/ClueGame_EDTM_v3
+
+commit ffbcfdd867d6641412a6d8226050a6422d5b385d
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Thu Nov 10 12:44:23 2016 -0700
+
+    Made minor changes
 
 commit 214f3b193565ba63a11afb7c474145eadf3cdfbf
 Author: Tyler Martinez <tymartin@adit.mines.edu>

@@ -108,11 +108,15 @@ public class GUI extends JPanel{
 				Integer roll = board.rollDie();
 				rollText.setText(Integer.toString(roll));
 				board.takeTurn(roll);
-				
+				updateText();
 			}
-			guessText.setText(board.suggestion.person + " in the " + board.suggestion.room + " with the " + board.suggestion.weapon);
-			resultText.setText(board.proveSuggestionFalse);
+			
 		}
+	}
+	
+	public void updateText() {
+		guessText.setText(board.suggestion.person + " in the " + board.suggestion.room + " with the " + board.suggestion.weapon);
+		resultText.setText(board.proveSuggestionFalse);
 	}
 	
 	
@@ -125,6 +129,8 @@ public class GUI extends JPanel{
 				if (board.getCurrentPlayer().getFinishState()) {
 					guess = new accusationDialog(board, "Accuse");
 					guess.setVisible(true);
+					board.getCurrentPlayer().turnFinished();
+					
 				}
 				else
 					JOptionPane.showMessageDialog(null, "It's not your turn!" , "You scamp", JOptionPane.INFORMATION_MESSAGE);
