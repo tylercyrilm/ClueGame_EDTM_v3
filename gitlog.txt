@@ -1,3 +1,21 @@
+commit 5c3636aa3990eebc341c99bbc1e408a3d3cd140f
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Thu Nov 17 09:06:30 2016 -0700
+
+    Attempted to fix bug where it wouldn't print out the name if you didn't choose it
+
+commit e1cfa0caf238ce359daf93c6fc06794c0b8228e8
+Author: Tyler Martinez <tymartin@mines.edu>
+Date:   Wed Nov 16 21:02:16 2016 -0700
+
+    Game now ends (buttons stop working) when a correct accusation is made
+
+commit 756f3ac14a05834311a1ae433c00085fd90f819e
+Author: Erica Dettmer-Radtke <edettmer@mymail.mines.edu>
+Date:   Wed Nov 16 14:12:26 2016 -0700
+
+    Added functionality so that you can only accuse or make a move in a turn, not do both
+
 commit 82f9e33a9491abc16b1866de6da75015f47e8c7b
 Author: Tyler Martinez <tymartin@mines.edu>
 Date:   Tue Nov 15 16:09:13 2016 -0700
