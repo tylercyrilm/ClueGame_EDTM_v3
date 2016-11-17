@@ -127,10 +127,11 @@ public class ComputerPlayer extends Player {
 			board.accusation = makeAccusation(board.suggestion.person, board.suggestion.room, board.suggestion.weapon);
 			if(board.checkAccusation(board.accusation)){
 				
-				//JOptionPane.showMessageDialog(null, board.getWinner() + " correctly accused " + board.getSolution().person +" in the "+board.getSolution().room+" with the "+board.getSolution().weapon+"." , "Game Over", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, board.getWinner() + " correctly accused " + board.getSolution().person +" in the "+board.getSolution().room+" with the "+board.getSolution().weapon+"." , "Game Over", JOptionPane.INFORMATION_MESSAGE);
 				board.gameRunning = false;
 			}
 			else {
+				JOptionPane.showMessageDialog(null, playerName + " incorrectly accused " + board.getSolution().person +" in the "+board.getSolution().room+" with the "+board.getSolution().weapon+"." , "Keep playing", JOptionPane.INFORMATION_MESSAGE);
 				board.accusation = null;
 				board.proveSuggestionFalse = "";
 			}

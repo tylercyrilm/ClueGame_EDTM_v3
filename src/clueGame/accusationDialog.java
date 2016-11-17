@@ -15,6 +15,7 @@ import javax.swing.border.TitledBorder;
 public class accusationDialog extends JDialog {
 	Board board;
 	String name;
+	GUI gui;
 	
 	JComboBox<String> people, rooms, weapons;
 	JButton finish;
@@ -25,16 +26,37 @@ public class accusationDialog extends JDialog {
 	
 	accusationDialog(Board board, String name) {
 
-		
 		this.board = board;
 		this.name = name;
 		
 		if (name.equals("Suggest")) {
 			isSuggestion = true;
 		}
-		else
+		else {
 			isSuggestion = false;
+		}
 		
+		setTitle(name);
+		setSize(400,700);
+		
+		setLayout(new GridLayout(4,1));
+		add(createPersonGuess());
+		add(createRoomGuess());
+		add(createWeaponGuess());
+		add(finishButton());
+	}
+	accusationDialog(Board board, String name, GUI gui) {
+
+		this.board = board;
+		this.name = name;
+		this.gui = gui;
+		
+		if (name.equals("Suggest")) {
+			isSuggestion = true;
+		}
+		else {
+			isSuggestion = false;
+		}
 		
 		setTitle(name);
 		setSize(400,700);
@@ -125,6 +147,7 @@ public class accusationDialog extends JDialog {
 						break;
 					}
 				}
+				gui.updateText();
 				board.repaint();
 			}
 			else {
@@ -135,6 +158,7 @@ public class accusationDialog extends JDialog {
 					JOptionPane.showMessageDialog(null, "Your accusation is incorrect." , "False Accusation", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
+			
 			setVisible(false);
 		}
 		

@@ -42,7 +42,7 @@ public class ClueGame extends JFrame   {
 		
 		GUI gui = new GUI(board);
 		add(gui, BorderLayout.SOUTH);
-		
+		board.addGUI(gui);
 		
 	}
 	

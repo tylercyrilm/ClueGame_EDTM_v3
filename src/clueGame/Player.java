@@ -10,7 +10,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public abstract class Player {
-	private String playerName;
+	protected String playerName;
 	protected int row;
 	protected int column;
 	private Color color;	

@@ -25,11 +25,12 @@ public class GUI extends JPanel{
 	private JPanel whoseTurn;
 	private JTextField turnText, rollText, guessText, resultText;
 	
+	private static GUI theGUI = new GUI();
+	public GUI(){};
 	public GUI(Board board) {
 		this.board = board; 
 		createLayout();
 		setPreferredSize(new Dimension(400,200));
-		
 	}
 	
 	private void createLayout() {
@@ -112,7 +113,7 @@ public class GUI extends JPanel{
 				board.takeTurn(roll);
 				updateText();
 			}
-			
+			updateText();
 		}
 	}
 	
@@ -122,7 +123,6 @@ public class GUI extends JPanel{
 	}
 	
 	
-
 	private class AccusationListener implements ActionListener {
 		accusationDialog guess;
 		@Override

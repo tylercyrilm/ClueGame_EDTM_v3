@@ -51,6 +51,7 @@ public class Board extends JPanel implements MouseListener {
 	public String proveSuggestionFalse = "";
 	public boolean gameRunning = true;
 	private String winner = "The Winner";
+	private GUI gui;
 	
 	public void setSolution(String person, String room, String weapon) {
 		solution.person = person;
@@ -421,7 +422,7 @@ public class Board extends JPanel implements MouseListener {
 		Card weapon = weaponCards.get(rand);
 		//Build the solution
 		setSolution(person.getName(), place.getName(), weapon.getName());
-		System.out.println(person.getName() +" "+ place.getName() +" "+ weapon.getName());
+		System.out.println(person.getName()+" "+ place.getName()+" "+weapon.getName());
 	}
 	
 	public Card handleSuggestion(Solution suggestion) {
@@ -582,14 +583,13 @@ public class Board extends JPanel implements MouseListener {
 			if (targetCell != null) {
 				currentPlayer.setLocation(targetCell.row, targetCell.column);
 				if (board[targetCell.row][targetCell.column].isDoorway()){
-					accusationDialog d = new accusationDialog(theInstance, "Suggest");
+					accusationDialog d = new accusationDialog(theInstance, "Suggest", gui);
 					d.setVisible(true);
 				}
 				currentPlayer.turnFinished();
 				repaint();
 			}
 			else {
-				
 				JOptionPane.showMessageDialog(null, "You can't go there!" , "No no no no no", JOptionPane.INFORMATION_MESSAGE);
 			}
 			for(BoardCell c:targets) {
@@ -608,6 +608,8 @@ public class Board extends JPanel implements MouseListener {
 		
 	}
 
-
+	public void addGUI(GUI gui) {
+		this.gui = gui;
+	}
 	
 }
