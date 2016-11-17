@@ -50,6 +50,7 @@ public class Board extends JPanel implements MouseListener {
 	private Player currentPlayer = player;
 	public String proveSuggestionFalse = "";
 	public boolean gameRunning = true;
+	private String winner = "The Winner";
 	
 	public void setSolution(String person, String room, String weapon) {
 		solution.person = person;
@@ -444,6 +445,14 @@ public class Board extends JPanel implements MouseListener {
 			}
 			if (resolution != null) {
 				proveSuggestionFalse = resolution.getName();
+				for (ComputerPlayer c:comp) {
+					if(resolution.getType() == CardType.PERSON) {
+						c.seenPeopleCards.add(resolution);
+					}
+					else if (resolution.getType() == CardType.WEAPON) {
+						c.seenWeaponCards.add(resolution);
+					}
+				}
 				return resolution;
 			}
 			i++;
@@ -452,12 +461,13 @@ public class Board extends JPanel implements MouseListener {
 		//If card not in player hand, move to next player
 		//P--1--2--3--4--5--P
 		
-		
+		proveSuggestionFalse = "No new clue";
 		return resolution;
 	}
 	
 	public boolean checkAccusation(Solution accusation) {
 		if (accusation.person.equals(solution.person) && accusation.weapon.equals(solution.weapon) && accusation.room.equals(solution.room)){
+			gameRunning = false;
 			return true;
 		}
 		else {
@@ -540,6 +550,10 @@ public class Board extends JPanel implements MouseListener {
 		calcTargets(currentPlayer.getRow(), currentPlayer.getColumn(), roll);
 		currentPlayer.makeMove(targets, theInstance);
 		repaint();
+	}
+	
+	public String getWinner() {
+		return winner;
 	}
 	
 	@Override

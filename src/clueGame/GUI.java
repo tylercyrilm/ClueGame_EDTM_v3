@@ -98,8 +98,10 @@ public class GUI extends JPanel{
 	
 	private class PlayerListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			
-			if (board.player.getFinishState()) {
+			if (!board.gameRunning) {
+				JOptionPane.showMessageDialog(null, "The game is over!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
+			}
+			else if (board.player.getFinishState()) {
 				JOptionPane.showMessageDialog(null, "You need to finish your turn! \nChoose a space to move to or make an accusation." , "Illegal", JOptionPane.INFORMATION_MESSAGE);
 			}
 			else {
@@ -125,18 +127,18 @@ public class GUI extends JPanel{
 		accusationDialog guess;
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if (board.gameRunning) {
-				if (board.getCurrentPlayer().getFinishState()) {
-					guess = new accusationDialog(board, "Accuse");
-					guess.setVisible(true);
-					board.getCurrentPlayer().turnFinished();
-					
-				}
-				else
+			if (!board.gameRunning) {
+				JOptionPane.showMessageDialog(null, board.getWinner() + " correctly accused " + board.getSolution().person +" in the "+board.getSolution().room+" with the "+board.getSolution().weapon+"." , "Game Over", JOptionPane.INFORMATION_MESSAGE);
+			}
+			else if (board.getCurrentPlayer().getFinishState()) {
+				guess = new accusationDialog(board, "Accuse");
+				guess.setVisible(true);		
+			}
+			else {
 					JOptionPane.showMessageDialog(null, "It's not your turn!" , "You scamp", JOptionPane.INFORMATION_MESSAGE);
 			}
-			else
-				JOptionPane.showMessageDialog(null, "XXX correctly accused " + board.getSolution().person +" in the "+board.getSolution().room+" with the "+board.getSolution().weapon+"." , "Game Over", JOptionPane.INFORMATION_MESSAGE);
+			
+			board.getCurrentPlayer().turnFinished();
 		}
 		
 	}

@@ -9,6 +9,7 @@ import clueGame.Board;
 public class ComputerPlayer extends Player {
 	public Set<Card> seenPeopleCards = new HashSet<Card>();
 	public Set<Card> seenWeaponCards = new HashSet<Card>();
+	public Set<Card> seenRoomCards = new HashSet<Card>();
 	public Set<BoardCell> visitedRooms = new HashSet<BoardCell>();
 	public ArrayList<BoardCell> doorsInRange = new ArrayList<BoardCell>();
 	public ArrayList<BoardCell> totalRooms = new ArrayList<BoardCell>();
@@ -119,7 +120,7 @@ public class ComputerPlayer extends Player {
 
 	@Override
 	public void makeMove(Set<BoardCell> targets, Board board) {
-		if (board.proveSuggestionFalse == null) {
+		if (board.proveSuggestionFalse.equals("No new clue")) {
 			board.accusation = makeAccusation(board.suggestion.person, board.suggestion.room, board.suggestion.weapon);
 			if(board.checkAccusation(board.accusation)){
 				board.gameRunning = false;
@@ -141,6 +142,7 @@ public class ComputerPlayer extends Player {
 			}
 			if (!personMoved){
 				board.player.setLocation(row, column);
+				visitedRooms.add(board.getCellAt(row, column));
 			}
 		}
 	}
