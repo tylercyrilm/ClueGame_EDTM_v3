@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
+
+import javax.swing.JOptionPane;
+
 import clueGame.Board;
 
 public class ComputerPlayer extends Player {
@@ -123,6 +126,8 @@ public class ComputerPlayer extends Player {
 		if (board.proveSuggestionFalse.equals("No new clue")) {
 			board.accusation = makeAccusation(board.suggestion.person, board.suggestion.room, board.suggestion.weapon);
 			if(board.checkAccusation(board.accusation)){
+				
+				//JOptionPane.showMessageDialog(null, board.getWinner() + " correctly accused " + board.getSolution().person +" in the "+board.getSolution().room+" with the "+board.getSolution().weapon+"." , "Game Over", JOptionPane.INFORMATION_MESSAGE);
 				board.gameRunning = false;
 			}
 			else {

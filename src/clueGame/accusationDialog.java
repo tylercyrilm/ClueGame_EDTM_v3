@@ -63,6 +63,7 @@ public class accusationDialog extends JDialog {
 	 	rooms = new JComboBox<String>();
 	 	if (isSuggestion) {
 	 		rooms.addItem(board.player.getLocationType(board));
+	 		board.suggestion.room = board.player.getLocationType(board);
 	 	}
 	 	else {
 	 		for (Card c: board.roomCards) {		
